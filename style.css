@@ -1,0 +1,2306 @@
+/* 전역 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #FAF9F6;
+    /* 은은한 베이지 */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 60px;
+    color: #4A90E2;
+    /* 스카이 블루 */
+    font-weight: 700;
+}
+
+/* ── 네비게이션 바 ── */
+.navbar {
+    position: relative;
+    z-index: 10;
+    padding: 18px 0;
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center;
+    /* 로고 그룹과 메뉴 수직 중앙 정렬 */
+    justify-content: space-between;
+}
+
+/* 로고 이미지 + 텍스트 묶음 */
+.logo-group {
+    display: flex;
+    align-items: center;
+    /* 이미지와 텍스트 수직 중앙 정렬 */
+    gap: 10px;
+    line-height: 1;
+    /* 줄간격 제거로 미세 어긋남 방지 */
+}
+
+/* 로고 원형 이미지 */
+.nav-poca {
+    width: 38px;
+    /* ← 크기 조정 시 이 값 변경 */
+    height: 38px;
+    /* ← 크기 조정 시 이 값 변경 */
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #26A69A;
+    /* ← 테두리 색상 변경 가능 */
+    display: block;
+    /* baseline 어긋남 완전 제거 */
+    flex-shrink: 0;
+}
+
+/* 로고 텍스트 */
+.logo {
+    font-size: 1.2rem;
+    /* ← 글자 크기 조정 시 이 값 변경 */
+    font-weight: 700;
+    color: #26A69A;
+    /* ← 로고 색상 변경 가능 */
+    line-height: 1;
+}
+
+/* 네비 메뉴 */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+    color: #26A69A;
+}
+
+/* 히어로 레이아웃 (상단) */
+.hero {
+    background: linear-gradient(135deg, #FAF9F6 0%, #E0F7FA 100%);
+    padding: 120px 0;
+    overflow: hidden;
+    position: relative;
+    /* blob 배치 기준 */
+}
+
+/* ── Blob 배경 애니메이션 ── */
+.hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-blob-1 {
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, #26A69A, #80DEEA);
+    top: -100px;
+    left: -80px;
+    animation: blobFloat1 10s ease-in-out infinite;
+}
+
+.hero-blob-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ff8a65, #ffcc80);
+    top: 30px;
+    right: -60px;
+    animation: blobFloat2 13s ease-in-out infinite;
+}
+
+.hero-blob-3 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #b2dfdb, #e0f7fa);
+    bottom: -60px;
+    left: 40%;
+    animation: blobFloat3 11s ease-in-out infinite;
+}
+
+@keyframes blobFloat1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, 20px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 30px) scale(0.97);
+    }
+}
+
+@keyframes blobFloat2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    40% {
+        transform: translate(-25px, 15px) scale(1.08);
+    }
+
+    70% {
+        transform: translate(15px, -20px) scale(0.95);
+    }
+}
+
+@keyframes blobFloat3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(20px, -25px) scale(1.06);
+    }
+}
+
+/* ── 텍스트 Fade-in Slide-up 애니메이션 ── */
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(32px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-wrapper {
+    position: relative;
+    z-index: 1;
+    /* blob 위로 */
+}
+
+.hero-text .badge {
+    animation: heroFadeUp 0.7s ease both;
+    animation-delay: 0.1s;
+}
+
+.hero-text h1 {
+    animation: heroFadeUp 0.7s ease both;
+    animation-delay: 0.3s;
+}
+
+.hero-text p {
+    animation: heroFadeUp 0.7s ease both;
+    animation-delay: 0.5s;
+}
+
+.poca-message-container {
+    animation: heroFadeUp 0.7s ease both;
+    animation-delay: 0.7s;
+}
+
+.hero-mockup-container {
+    animation: heroFadeUp 0.8s ease both;
+    animation-delay: 0.5s;
+}
+
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.badge {
+    display: inline-block;
+    background: #fff;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #ff5f56;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+}
+
+.hero-text h1 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.highlight {
+    color: #26A69A;
+    /* 민트 그린 */
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    color: #555;
+    word-break: keep-all;
+}
+
+/* 아이폰 목업 컨테이너 및 애니메이션 */
+.hero-mockup-container {
+    flex: 1;
+    position: relative;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.iphone-frame {
+    position: absolute;
+    width: 260px;
+    height: 530px;
+    background: #0F1115;
+    border-radius: 44px;
+    padding: 12px;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25);
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 25px;
+    background: #0F1115;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    z-index: 10;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.phone-left {
+    z-index: 2;
+    transform: translateX(-40px) translateY(-70px) rotate(-6deg); /* 위로 올림 ↑ */
+}
+
+.phone-right {
+    z-index: 1;
+    transform: translateX(40px) translateY(70px) rotate(6deg);  /* 아래로 내림 ↓ */
+}
+
+/* 호버 시 펼쳐지는 효과 */
+.hero-mockup-container:hover .phone-left {
+    transform: translateX(-170px) translateY(-50px) rotate(-15deg);
+}
+
+.hero-mockup-container:hover .phone-right {
+    transform: translateX(110px) translateY(90px) rotate(12deg);
+}
+
+/* ── 가상 앱 UI (phone-left 내부) ── */
+.phone-app-screen {
+    display: flex;
+    flex-direction: column;
+    background: #F7FDFC;
+    overflow: hidden;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 앱 상단 헤더 */
+.app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 36px 14px 10px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.app-logo-txt {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #26A69A;
+}
+
+.app-ai-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    background: #26A69A;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+/* 검색창 */
+.app-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 10px 12px 0;
+    background: #fff;
+    border: 1.5px solid #26A69A;
+    border-radius: 22px;
+    padding: 7px 12px;
+    box-shadow: 0 2px 8px rgba(38,166,154,0.08);
+    min-height: 34px;
+}
+
+.app-search-icon {
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.app-search-input {
+    font-size: 0.7rem;
+    color: #333;
+    word-break: keep-all;
+    line-height: 1.3;
+    flex: 1;
+    transition: color 0.2s;
+}
+
+/* 증상 태그 행 */
+.app-tags {
+    display: flex;
+    gap: 5px;
+    padding: 8px 12px 6px;
+    flex-wrap: wrap;
+}
+
+.app-tag {
+    font-size: 0.62rem;
+    font-weight: 600;
+    background: #E8F5E9;
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.app-tag.active {
+    background: #26A69A;
+    color: #fff;
+    border-color: #26A69A;
+}
+
+/* 결과 리스트 */
+.app-result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 6px 12px 0;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.app-result-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #f5f5f5;
+    transition: background 0.2s;
+}
+
+.app-result-item:last-child {
+    border-bottom: none;
+}
+
+.app-result-icon {
+    font-size: 1.1rem;
+    width: 30px;
+    height: 30px;
+    background: #E0F7FA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.app-result-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.app-result-info strong {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.app-result-info span {
+    font-size: 0.6rem;
+    color: #999;
+}
+
+
+/* 문제 제기 섹션 스타일 */
+.problem-section {
+    background: linear-gradient(to right, #f4f1ea 45%, #f4f1ea 45%);
+    padding: 120px 0;
+    color: #26A69A;
+    overflow: hidden;
+}
+
+.problem-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+/* 왼쪽 영역 */
+.problem-left {
+    flex: 1;
+    position: relative;
+}
+
+.problem-number {
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    top: -60px;
+    left: -20px;
+}
+
+/* 포카 캐릭터와 서브타이틀 정렬을 위한 추가 스타일 */
+.problem-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* PROBLEM 글자와 포카 사이 간격 */
+    margin-bottom: 15px;
+}
+
+.problem-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    color: #ff8a65;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    /* wrapper에서 간격을 조절하므로 0으로 변경 */
+}
+
+/* 17번 포카 캐릭터 스타일 추가 */
+.problem-poca {
+    width: 65px;
+    /* 캐릭터 크기 */
+    height: auto;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.1));
+    /* 아이들이 좋아할 만한 부드러운 움직임 효과 */
+    animation: pocaBounce 2s infinite ease-in-out;
+}
+
+.problem-main-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.orange-line-short {
+    width: 40px;
+    height: 2px;
+    background-color: #ff8a65;
+    margin-bottom: 30px;
+}
+
+.problem-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #8a8888;
+    max-width: 450px;
+}
+
+/* 오른쪽 카드 영역 */
+.problem-right {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.problem-card {
+    background: #fff;
+    padding: 35px 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #ff8a65;
+    transition: transform 0.3s ease;
+}
+
+.problem-card:hover {
+    transform: translateX(10px);
+}
+
+.card-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #eee;
+    font-style: italic;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.card-content p {
+    font-size: 1rem;
+    color: #777;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+/* 포카 움직임 애니메이션 정의 */
+@keyframes pocaBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* 모바일 대응 */
+@media (max-width: 992px) {
+    .problem-section {
+        background: #f4f1ea;
+        /* 기존 배경색 유지 */
+        padding: 80px 20px;
+    }
+
+    .problem-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .problem-right {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .problem-card {
+        padding: 25px;
+    }
+
+    .problem-poca {
+        width: 50px;
+        /* 모바일에서는 조금 작게 */
+    }
+}
+
+
+
+
+
+/* 앱 미리보기 섹션 레이아웃 */
+.mockup-section {
+    background-color: #f4f1ea;
+    color: #26A69A;
+    padding: 140px 0;
+    overflow: hidden;
+}
+
+.preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* 텍스트 영역 */
+.preview-text-area {
+    flex: 0.7;
+    min-width: 300px;
+}
+
+.preview-main-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin: 20px 0;
+    font-weight: 800;
+    white-space: normal;
+    word-break: keep-all;
+}
+
+/* 아이폰 목업 구역 (넓은 배경 박스) */
+.preview-mockup-area {
+    flex: 2.3;
+    background: #fdf0e9;
+    padding: 100px 50px;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.05);
+    position: relative;
+    /* 캐릭터 배치를 위해 추가 */
+}
+
+.mockup-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    position: relative;
+    /* 캐릭터 배치를 위해 추가 */
+}
+
+/* ---------------------------------------------------------
+   [추가] 2번 따봉 포카 캐릭터 스타일 
+   --------------------------------------------------------- */
+.preview-poca-thumb {
+    position: absolute;
+    width: 130px;
+    /* 존재감 있는 크기 */
+    height: auto;
+    /* 메인 목업(중앙)의 오른쪽 상단 뒤쪽에 배치 */
+    right: 22%;
+    top: -10px;
+    z-index: 1;
+    /* 목업보다는 뒤, 배경보다는 위 */
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+    /* 부드럽게 까딱거리는 애니메이션 */
+    animation: pocaThumbMove 3s infinite ease-in-out;
+    pointer-events: none;
+    /* 클릭 방해 금지 */
+}
+
+@keyframes pocaThumbMove {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(5px, -10px) rotate(5deg);
+    }
+}
+
+/* 실제 아이폰 기기 스타일 */
+.iphone-device {
+    position: relative;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iphone-device.side {
+    width: 240px;
+    transform: scale(0.85);
+    opacity: 0.8;
+}
+
+.iphone-device.main-center {
+    margin-bottom: 60px;
+    z-index: 2;
+    /* 캐릭터보다 위로 오도록 설정 */
+}
+
+/* 폰 본체 케이스 */
+.iphone-case {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 2;
+    background: #000;
+    border-radius: 35px;
+    padding: 8px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    border: 3px solid #1a1a1a;
+}
+
+/* 아이폰 화면 */
+.iphone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+}
+
+.iphone-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 노치 디자인 */
+.iphone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55%;
+    height: 24px;
+    background: #000;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 10;
+}
+
+.iphone-notch::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 25%;
+    width: 6px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 50%;
+}
+
+/* 라벨 태그 */
+.mockup-label-tag {
+    display: inline-block;
+    margin-top: 25px;
+    background: #e6d7d0;
+    color: #a48c82;
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* 반응형 모바일 */
+@media (max-width: 1024px) {
+    .preview-container {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    .preview-mockup-area {
+        width: 100%;
+        padding: 80px 20px 40px 20px;
+        margin-top: 40px;
+    }
+
+    .preview-poca-thumb {
+        width: 80px;
+        /* 모바일 크기 조정 */
+        right: 15%;
+        top: 20px;
+        z-index: 3;
+        /* 모바일은 겹침이 심하므로 맨 앞으로 */
+    }
+
+    .mockup-wrapper {
+        gap: 15px;
+    }
+
+    .iphone-device {
+        width: 150px;
+    }
+
+    .iphone-device.side {
+        width: 150px;
+    }
+
+    .iphone-device.main-center {
+        margin-bottom: 40px;
+    }
+}
+
+
+
+
+/* 주요 기능 섹션 레이아웃 */
+.key-features {
+    background-color: #FAF9F6;
+    padding: 120px 0;
+}
+
+.feature-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+}
+
+/* 왼쪽 타이틀 영역 */
+.feature-title-area {
+    flex: 1;
+}
+
+.feature-subtitle {
+    color: #ff5f56;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.feature-main-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin: 20px 0;
+    font-weight: 800;
+    color: #26A69A;
+}
+
+.green-line {
+    width: 35px;
+    height: 3px;
+    background-color: #ff8a65;
+    margin-bottom: 30px;
+}
+
+.feature-desc {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+/* 오른쪽 2x2 그리드 */
+.feature-grid {
+    flex: 1.8;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    position: relative;
+    /* 포카 배치를 위한 기준점 */
+    background: #fff;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+    overflow: visible;
+    /* 포카가 카드 밖으로 살짝 나가도록 설정 */
+}
+
+/* [추가] 6번 포카 캐릭터 스타일 */
+.poca-card-icon {
+    position: absolute;
+    width: 70px;
+    /* 카드 크기에 맞춘 적절한 사이즈 */
+    top: -25px;
+    /* 카드의 위쪽 경계에 걸침 */
+    right: 15px;
+    /* 오른쪽 상단 배치 */
+    opacity: 0;
+    /* 평소에는 숨김 */
+    transform: translateY(10px) rotate(10deg);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: #26A69A;
+}
+
+/* 카드 호버 시 포카가 뿅! 하고 나타나는 효과 */
+.feature-card:hover .poca-card-icon {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+}
+
+.icon-box {
+    width: 45px;
+    height: 45px;
+    background: #f1f8e9;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.feature-number {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: #777;
+    line-height: 1.6;
+}
+
+/* 반응형 처리 */
+@media (max-width: 1024px) {
+    .feature-container {
+        flex-direction: column;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .poca-card-icon {
+        width: 60px;
+        top: -20px;
+        opacity: 0.8;
+        /* 모바일은 호버가 없으므로 항상 살짝 보이게 설정 가능 */
+        transform: none;
+    }
+}
+
+
+
+
+
+/* 페르소나 섹션 레이아웃 */
+.persona {
+    background-color: #FAF9F6;
+    padding: 100px 0;
+}
+
+.persona-left-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.persona-footer-title {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.p-sub {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #ff8a65;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.p-main {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 10px 0;
+    color: #26A69A;
+}
+
+.short-line {
+    width: 30px;
+    height: 3px;
+    background-color: #ff8a65;
+    margin-bottom: 8px;
+}
+
+.p-desc {
+    color: #777;
+    font-size: 1rem;
+    margin-top: -2px;
+    line-height: 1.6;
+}
+
+/* 카드 리스트 스타일 */
+.persona-column {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.persona-row-card {
+    position: relative;
+    /* 포카 배치를 위한 기준점 */
+    background: #fff;
+    padding: 25px 40px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    overflow: visible;
+    /* 포카가 밖으로 튀어나올 수 있게 함 */
+    transition: transform 0.3s ease;
+}
+
+.persona-row-card:hover {
+    transform: translateY(-5px);
+}
+
+/* [추가] 페르소나 포카 캐릭터 스타일 */
+.persona-poca-peek {
+    position: absolute;
+    width: 85px;
+    bottom: -12px;
+    /* 하단 경계선에 걸치기 */
+    right: 25px;
+    z-index: 10;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.persona-row-card:hover .persona-poca-peek {
+    transform: translateY(-8px) rotate(-3deg) scale(1.05);
+}
+
+.persona-img-box {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.persona-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.persona-text-box h3 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.persona-text-box .role {
+    font-size: 0.85rem;
+    color: #ff8a65;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.persona-text-box .quote {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    max-width: 85%;
+    /* 포카와 겹치지 않도록 텍스트 가로폭 조절 */
+}
+
+/* 섹션 배경 및 기본 레이아웃 */
+.prompt-section {
+    background-color: #f4f1ea;
+    padding: 100px 0;
+    overflow: visible;
+    /* 포카가 튀어나오게 설정 */
+}
+
+.prompt-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* 대화창 윈도우 디자인 */
+.chat-window-new {
+    flex: 1;
+    max-width: 550px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    z-index: 2;
+}
+
+/* 상단 윈도우 헤더 (점 3개) */
+.chat-header {
+    background: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.red {
+    background: #ff5f56;
+}
+
+.yellow {
+    background: #ffbd2e;
+}
+
+.green {
+    background: #27c93f;
+}
+
+.header-title {
+    margin-left: 10px;
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+}
+
+/* 메세지 카드 내부 스타일 */
+.chat-content {
+    padding: 30px;
+    max-height: 500px;
+    /* 너무 길어지면 스크롤 */
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 25px;
+    padding: 18px;
+    border-radius: 12px;
+    position: relative;
+}
+
+/* 사용자 질문 (유저 프롬프트) */
+.user-msg {
+    background: #e0f2f1;
+    border-left: 5px solid #26a69a;
+}
+
+/* AI 답변 (분석 내용) */
+.ai-msg {
+    background: #fdfdfd;
+    border: 1px solid #eee;
+}
+
+.msg-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #26a69a;
+    text-transform: uppercase;
+}
+
+.msg-label.ai {
+    color: #555;
+}
+
+
+
+/* AI 프롬프트 섹션 레이아웃 */
+.prompt-section {
+    background-color: #f4f1ea;
+    padding: 100px 0;
+}
+
+.prompt-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 대화창 윈도우 */
+.chat-window-new {
+    position: relative;
+    /* 포카 배치를 위한 기준 */
+    flex: 1;
+    max-width: 550px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    overflow: visible;
+    /* 포카가 경계 밖으로 빼꼼 나오도록 설정 */
+    border: 1px solid #e0e0e0;
+}
+
+/* AI 프롬프트 섹션의 포카 캐릭터 (빼꼼) */
+.prompt-poca-peek {
+    position: absolute;
+    width: 110px;
+    top: -55px;
+    /* 대화창 위로 더 빼꼼 올라오게 조정 */
+    left: -35px;
+    /* 왼쪽으로 살짝 더 나가게 조정 */
+    z-index: 3;
+    /* 둥둥 떠있는 느낌의 애니메이션 */
+    animation: floatingPoca 3.5s infinite ease-in-out;
+}
+
+@keyframes floatingPoca {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+/* 헤더 및 메시지 스타일 생략 (기존 코드 유지) */
+
+/* 우측 텍스트 설명 영역 */
+.prompt-text-area {
+    flex: 0.8;
+}
+
+.small-title {
+    color: #ff5f56;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: block;
+}
+
+.main-title {
+    font-size: 3rem;
+    color: #26a69a;
+    margin: 15px 0;
+    font-weight: 800;
+}
+
+.line {
+    width: 50px;
+    height: 3px;
+    background: #ff5f56;
+    /* 포인트 컬러 유지 */
+    margin-bottom: 25px;
+}
+
+.desc {
+    color: #666;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+
+/* 공통 섹션 배경색 및 간격 조정 */
+.ai-utilization-section,
+.conclusion-section {
+    padding: 140px 0;
+    /* 상하 패딩을 키워 섹션의 공간감을 확보 */
+    background-color: #f4f1ea;
+}
+
+
+
+/* 섹션 1: AI 활용 현황 상세 스타일 */
+
+/* 캐릭터 포인트 스타일 추가 */
+.character-point {
+    margin-top: 30px;
+    /* 설명글과의 간격 */
+    text-align: left;
+}
+
+.character-point img {
+    width: 180px;
+    /* 포카 캐릭터 크기 조절 */
+    height: auto;
+    /* 8번 캐릭터가 전체 시트 안에 있다면 object-fit과 clip-path로 잘라내거나, 
+       개별 파일일 경우 바로 사용합니다. */
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.character-point img:hover {
+    transform: scale(1.05) rotate(-3deg);
+    /* 마우스 올리면 살짝 움직이는 효과 */
+}
+
+.utilization-wrapper {
+    display: flex;
+    gap: 80px;
+    /* 요소 간 간격을 넓힘 */
+    align-items: center;
+    max-width: 1300px;
+    /* 전체적인 가로 폭 확장 */
+    margin: 0 auto;
+}
+
+.util-title-area {
+    flex: 0.7;
+}
+
+.util-table-area {
+    flex: 1.3;
+    background: #fff;
+    padding: 50px;
+    /* 내부 여백 확장 */
+    border-radius: 30px;
+    /* 라운드 크기 확장 */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+.util-subtitle {
+    color: #ff5f56;
+    font-weight: 700;
+    font-size: 1.1rem;
+    /* 크기 확대 */
+    letter-spacing: 2px;
+}
+
+.util-main-title {
+    font-size: 3.5rem;
+    /* 타이틀 크기 대폭 확대 */
+    margin: 20px 0;
+    color: #26a69a;
+    line-height: 1.2;
+}
+
+.brand-line {
+    width: 60px;
+    /* 라인 길이 확장 */
+    height: 4px;
+    background: #ff5f56;
+    margin-bottom: 30px;
+}
+
+.util-desc {
+    font-size: 1.2rem;
+    /* 설명 텍스트 확대 */
+    line-height: 1.7;
+    color: #555;
+}
+
+.util-table-header {
+    display: grid;
+    grid-template-columns: 0.7fr 1.5fr 1fr 0.6fr;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    font-size: 1.1rem;
+    /* 헤더 폰트 확대 */
+    color: #888;
+    font-weight: 600;
+}
+
+.util-row {
+    display: grid;
+    grid-template-columns: 0.7fr 1.5fr 1fr 0.6fr;
+    align-items: center;
+    padding: 30px 0;
+    /* 행 간격 확대 */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.util-tag {
+    padding: 6px 16px;
+    border-radius: 25px;
+    font-size: 1rem;
+    /* 태그 폰트 확대 */
+    font-weight: 700;
+}
+
+.util-purpose {
+    font-size: 1.1rem;
+    /* 내용 폰트 확대 */
+    padding-right: 15px;
+}
+
+/* 도구 박스(Badge) 색상 수정 부분 */
+.tool-badge {
+    background: #ff5f56;
+    /* 배경색 변경 */
+    color: #ffffff;
+    /* 글씨색 흰색으로 변경 */
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    /* 도구 뱃지 확대 */
+    margin-right: 5px;
+    font-weight: 500;
+    /* 흰색 글씨 가독성을 위해 두께 약간 추가 */
+}
+
+.freq-text {
+    font-size: 1rem;
+}
+
+
+
+
+
+
+/* 섹션 2: 결론 상세 스타일 보완 */
+.summary-conclusion {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 120px 0;
+    /* 상하 여백을 충분히 주어 마무리 느낌 강조 */
+}
+
+.conclusion-tags {
+    display: inline-flex;
+    /* 버튼과 캐릭터를 가로로 정렬 */
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* 캐릭터 배치를 위한 기준점 */
+    padding: 0 50px;
+}
+
+.ending-character {
+    position: absolute;
+    right: -100px;
+    /* 버튼 오른쪽 여백에 배치 */
+    bottom: -10px;
+}
+
+.ending-character img {
+    width: 140px;
+    /* 캐릭터 크기 */
+    height: auto;
+    /* 12번 캐릭터 추출을 위해 object-fit 등을 활용하거나 개별 이미지 사용 */
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+/* 마우스 올렸을 때 더 신나게 춤추는 효과 */
+.ending-character img:hover {
+    transform: translateY(-10px) rotate(5deg);
+}
+
+/* 모바일 대응 (화면이 좁아지면 캐릭터 위치 조정) */
+@media (max-width: 768px) {
+    .ending-character {
+        position: static;
+        margin-top: 30px;
+        display: block;
+    }
+
+    .conclusion-tags {
+        display: block;
+        padding: 0;
+    }
+}
+
+/* 기존 스타일 유지 */
+.conclusion-title {
+    font-size: 3.2rem;
+    color: #222;
+    margin-bottom: 30px;
+    line-height: 1.3;
+}
+
+.conclusion-title span {
+    color: #26a69a;
+    font-weight: 800;
+}
+
+.conclusion-desc {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 50px;
+    line-height: 1.9;
+}
+
+.tag-badge {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 60px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin: 0 8px;
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.tag-badge.highlight {
+    background: #26a69a;
+    color: #fff;
+    border-color: #26a69a;
+}
+
+
+
+
+/* ==========================================================================
+   작업 과정 섹션 (Process) - 화사한 민트 & 화이트 테마 (포카 캐릭터 버전)
+   ========================================================================== */
+
+.section.process {
+    background-color: #f0f7f4;
+    color: #ff5f56;
+    font-weight: 700;
+    padding: 120px 0;
+}
+
+.process-container {
+    display: flex;
+    gap: 60px;
+    /* 좌우 간격 (기존 80px에서 조정) */
+    align-items: flex-start;
+    max-width: 1200px;
+    /* 중앙 정렬을 위해 추가 권장 */
+    margin: 0 auto;
+}
+
+/* 왼쪽 영역 */
+.process-left {
+    flex: 1.1;
+    /* 사용 도구 박스 영역 */
+}
+
+
+.box-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #26A69A;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+/* 작업 기간 박스 */
+.content-box.duration-box {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.duration-main .weeks {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-right: 15px;
+    color: #1a1a1a;
+}
+
+.duration-main .dates {
+    font-size: 1rem;
+    color: #999;
+}
+
+/* 프로그레스 바 */
+.progress-bar-container {
+    margin-top: 35px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 10px;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #26A69A, #80ced6);
+    border-radius: 10px;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #777;
+    font-weight: 600;
+}
+
+/* 사용 도구 그리드 */
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.tool-item {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 25px 15px;
+    /* 캐릭터 공간 확보를 위해 패딩 수정 */
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+}
+
+.tool-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(38, 166, 154, 0.15);
+    border-color: #26A69A;
+}
+
+/* 포카 캐릭터 아이콘 전용 스타일 */
+.tool-icon {
+    width: 60px;
+    /* 원형 배경 크기 */
+    height: 60px;
+    margin: 0 auto 15px;
+    background: #f4f7f6;
+    /* 캐릭터 뒤 은은한 배경색 */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.tool-icon img {
+    width: 85%;
+    /* 캐릭터가 원 안에 쏙 들어가도록 조절 */
+    height: auto;
+    object-fit: contain;
+}
+
+.tool-item:hover .tool-icon {
+    background: #ffffff;
+    transform: scale(1.1);
+}
+
+.tool-info strong {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: #333;
+    font-weight: 700;
+}
+
+.tool-info span {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.process-right {
+    flex: 0.9;
+    /* 4주간의 작업 과정 영역 */
+}
+
+.process-main-title {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin: 20px 0;
+    font-weight: 800;
+    color: #26A69A;
+}
+
+.orange-line {
+    width: 45px;
+    height: 5px;
+    background-color: #26A69A;
+    /* 일관성을 위해 민트로 수정 */
+    margin-bottom: 45px;
+    border-radius: 2px;
+}
+
+/* 주차별 리스트 스타일 */
+.week-item {
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 40px;
+    border-left: 2px solid #e0f2f1;
+}
+
+.week-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background-color: #26A69A;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(38, 166, 154, 0.3);
+}
+
+.week-label {
+    font-size: 0.8rem;
+    color: #26A69A;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.week-item h3 {
+    font-size: 1.4rem;
+    margin: 8px 0;
+    color: #333;
+}
+
+.week-item p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    word-break: keep-all;
+}
+
+/* 반응형 */
+@media (max-width: 992px) {
+    .process-container {
+        flex-direction: column-reverse;
+        gap: 60px;
+    }
+
+    .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* 3에서 2로 변경 */
+        gap: 20px;
+    }
+}
+
+
+
+
+
+
+
+/* 푸터 기본 스타일 유지 */
+.thank-you {
+    background: #E0F7FA;
+    color: #333;
+    text-align: center;
+    padding: 100px 0;
+}
+
+.thank-you h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    word-break: keep-all;
+    display: flex;
+    /* 요소 정렬을 위해 추가 */
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* 모바일 대응 */
+    gap: 10px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    color: #26a69a;
+    /* 브랜드 컬러 강조 */
+}
+
+/* 청진기 아이콘 크기 조절 */
+.stetho-question-container {
+    display: inline-block;
+    width: 30px;
+    height: 45px;
+    margin-left: 5px;
+}
+
+.stetho-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 포카 캐릭터 스타일링 */
+.poka-footer-wrapper {
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.footer-poka {
+    width: 60px;
+    /* 캐릭터 크기 최적화 */
+    height: auto;
+    transform-origin: bottom center;
+    transition: all 0.3s ease;
+}
+
+/* 마우스 호버 시 응원하듯 살짝 커지는 효과 */
+.footer-poka:hover {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: #666;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+
+
+/* 반응형 모바일 최적화 */
+@media (max-width: 992px) {
+    .thank-you h2 {
+        font-size: 1.5rem;
+        padding: 0 20px;
+    }
+
+    .hero-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-mockup-container {
+        width: 100%;
+        margin-top: 60px;
+        transform: scale(0.85);
+    }
+
+    .mockup-grid,
+    .persona-grid,
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        margin-bottom: 40px;
+    }
+}
+
+
+
+
+/* ==========================================================================
+   네비게이션 스타일 (수정 부분)
+   ========================================================================== */
+
+.navbar {
+    width: 100%;
+    padding: 20px 0;
+    position: fixed;
+    /* 상단 고정으로 변경하여 접근성 향상 */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(250, 249, 246, 0.95);
+    /* 배경색 추가 및 투명도 조절 */
+    backdrop-filter: blur(10px);
+    /* 배경 블러 효과로 고급스러움 추가 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    /* 경계 구분을 위한 옅은 그림자 */
+    transition: all 0.3s ease;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #26A69A;
+    /* 서비스 포인트 컬러와 통일 */
+    letter-spacing: -0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #444;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    padding: 8px 4px;
+    position: relative;
+}
+
+/* 마우스 올렸을 때 애니메이션 효과 */
+.nav-menu li a:hover {
+    color: #26A69A;
+}
+
+.nav-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #26A69A;
+    transition: width 0.3s ease;
+}
+
+.nav-menu li a:hover::after {
+    width: 100%;
+}
+
+/* 부드러운 스크롤 효과 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 히어로 섹션 상단 여백 (고정 메뉴 공간 확보) */
+.hero {
+    padding-top: 160px;
+    /* 고정 메뉴 높이에 맞춰 여백 증가 */
+}
+
+/* 네비게이션 모바일 대응 */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        /* 모바일에서는 메뉴 숨김 (필요 시 햄버거 메뉴 구현 가능) */
+    }
+
+    .navbar {
+        padding: 15px 0;
+    }
+}
+
+/* ==========================================================================
+   기타 전역 및 섹션 스타일 (유지)
+   ========================================================================== */
+/* ... 이후 제공해주신 전역 스타일, 히어로, 문제 제기, 섹션 코드들은 그대로 유지됩니다 ... */
+
+
+
+/* 청진기 아이콘 스타일 조정 (header h1)*/
+.stethoscope-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -2px;
+}
+
+.stethoscope-icon svg {
+    width: 0.85em;
+    /* 크기를 아주 살짝 키워 가독성 확보 */
+    height: auto;
+    margin-bottom: 0.1em;
+    /* 약간의 입체감을 위해 그림자 효과 추가 */
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.highlight {
+    display: inline-flex;
+    align-items: center;
+}
+
+
+/* 어디아파 ?(청진기) 스타일 (주요기능섹션 h2)*/
+/* 청진기 물음표 컨테이너 */
+/* 텍스트 색상 및 타이틀 스타일 */
+.feature-main-title {
+    color: #26a69a;
+    /* 이미지와 동일한 청록색 */
+    font-size: 3.5rem;
+    line-height: 1.3;
+    font-weight: 800;
+}
+
+/* 청진기 물음표 컨테이너 */
+.stetho-question-container {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0.9em;
+    height: 1.3em;
+    margin-left: 2px;
+    position: relative;
+    top: -0.05em;
+}
+
+/* SVG 스타일 */
+.stetho-svg {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 전체 타이틀 스타일 (footer전 단계 h2)*/
+.footer-title {
+    font-size: 1.5rem;
+    /* 문구 크기에 맞춰 적절히 조절 가능 */
+    color: #333;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+/* 강조될 브랜드 로고 부분 */
+.brand-logo {
+    color: #26a69a;
+    /* 이미지와 동일한 청록색 */
+    font-weight: 800;
+    margin-left: 5px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* 청진기 물음표 컨테이너 */
+.stetho-question-container {
+    display: inline-block;
+    width: 0.9em;
+    height: 1.3em;
+    margin-left: 2px;
+    position: relative;
+    top: -0.05em;
+}
+
+/* SVG 스타일 */
+.stetho-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ==========================================================================
+   포카 캐릭터 시각화 최적화 (Nav 확대 및 Header 대형화)
+   ========================================================================== */
+
+/* 1. 네비게이션 로고 그룹 (얼굴이 선명하게 보이도록) */
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-poca {
+    /* 기존보다 훨씬 키워서 얼굴 윤곽이 뚜렷하게 보이게 함 */
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+    border-radius: 50%;
+    /* 선명도를 위해 테두리를 더 굵고 깔끔하게 변경 */
+    border: 4px solid #26A69A;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* 이미지 퀄리티 유지 */
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* 2. 히어로 섹션 (캐릭터 단독 노출 및 초대형화) */
+.poca-message-container {
+    display: block;
+    /* 가로 정렬 해제하여 캐릭터 공간 확보 */
+    margin-top: 60px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.poca-avatar img {
+    /* 아이들이 좋아하도록 아주 크게 키움 */
+    width: 320px !important;
+    height: auto !important;
+    display: block;
+    object-fit: contain;
+    /* 배경 상자나 테두리 모두 제거하여 누끼 캐릭터만 강조 */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    /* 선명하게 보이도록 필터 적용 */
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.12));
+    image-rendering: auto;
+}
+
+/* 3. 말풍선 및 불필요 요소 완전 제거 */
+.speech-bubble,
+.bubble-tail {
+    display: none !important;
+}
+
+/* 애니메이션 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   css 추가된 효과 <header>부분의 hero효과
+   ========================================= */
+/* =============================================
+   Hero 추가 효과: 타이핑 애니메이션 + 스크롤 목업
+   ============================================= */
+
+/* 타이핑 커서 */
+.typing-cursor {
+    display: inline-block;
+    width: 4px;
+    height: 0.8em;
+    background: #26A69A;
+    margin-left: 4px;
+    border-radius: 2px;
+    vertical-align: middle;
+    animation: cursorBlink 0.75s step-end infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* 타이핑 텍스트 줄 */
+.hero-typing-line {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: #26A69A;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    min-height: 1.25em;
+}
+
+/* 스크롤 연동: 폰 펼치기 */
+.hero-mockup-container {
+    transition: all 0.3s ease;
+}
+
+.iphone-frame {
+    transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.7s ease;
+}
+
+.hero-mockup-container.spread .phone-left {
+    transform: translateX(-155px) translateY(30px) rotate(-12deg);
+    box-shadow: -20px 40px 80px -12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-mockup-container.spread .phone-right {
+    transform: translateX(105px) translateY(-20px) rotate(10deg);
+    box-shadow: 20px 40px 80px -12px rgba(0, 0, 0, 0.3);
+}
+
+/* 스텝 인디케이터 도트 */
+.scroll-steps {
+    position: absolute;
+    right: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    z-index: 10;
+}
+
+.scroll-step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #C8E6E3;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.scroll-step-dot.active {
+    background: #26A69A;
+    transform: scale(1.5);
+}
+
+/* 스텝 라벨 */
+.step-label {
+    position: absolute;
+    bottom: -44px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 600;
+    color: #26A69A;
+    background: #fff;
+    padding: 5px 16px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(38, 166, 154, 0.18);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+}
+
+.step-label.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
