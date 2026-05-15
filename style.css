@@ -13,6 +13,64 @@ body {
     line-height: 1.6;
 }
 
+/* ══════════════════════════════════════════════════
+   🐻 포카 커서 팔로워 (Custom Cursor Follower)
+   이 효과를 "커서 팔로워(Cursor Follower Effect)" 또는
+   "커스텀 커서(Custom Cursor Effect)"라고 부릅니다.
+   마우스 위치를 Lerp(선형 보간)으로 부드럽게 추적합니다.
+══════════════════════════════════════════════════ */
+#poca-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;      /* 클릭 이벤트 방해 금지 */
+    z-index: 99999;
+    opacity: 0;
+    transform: translate(-200px, -200px); /* JS가 이동 제어 */
+    transition: opacity 0.3s ease;
+    /* translate는 JS의 RAF 루프가 직접 갱신하므로 transition 제외 */
+    will-change: transform;
+}
+
+#poca-cursor-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 배경 제거된 PNG를 위한 drop-shadow */
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
+    /* 귀여운 좌우 흔들기 */
+    animation: pocaCursorWiggle 1.8s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+/* 링크/버튼 호버 시: 포카가 살짝 더 커짐 */
+#poca-cursor.poca-hover {
+    width: 100px;
+    height: 100px;
+}
+
+#poca-cursor.poca-hover #poca-cursor-img {
+    filter: drop-shadow(0 6px 18px rgba(38, 166, 154, 0.35));
+    animation: pocaCursorWiggleFast 0.8s ease-in-out infinite;
+}
+
+@keyframes pocaCursorWiggle {
+    0%, 100% { transform: rotate(-6deg); }
+    50%       { transform: rotate(6deg); }
+}
+
+@keyframes pocaCursorWiggleFast {
+    0%, 100% { transform: rotate(-10deg) scale(1.05); }
+    50%       { transform: rotate(10deg) scale(1.05); }
+}
+
+/* ══ 커스텀 커서 작동 시 전체 기본 커서 숨김 ══ */
+body, a, button, [role="button"] {
+    cursor: none !important;
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;

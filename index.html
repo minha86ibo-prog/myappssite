@@ -11,6 +11,11 @@
 
 <body>
 
+    <!-- 🐻 커스텀 커서 팔로워 (포카 캐릭터) -->
+    <div id="poca-cursor" aria-hidden="true">
+        <img src="img/poka01re.png" alt="포카 커서" id="poca-cursor-img">
+    </div>
+
     <!-- 헤더 영역 (히어로 섹션) -->
     <header class="hero">
         <!-- Blob 배경 요소 -->
@@ -770,6 +775,43 @@
             stepLabel.textContent = LABELS[0];
             stepLabel.classList.add('show');
         }, 2000);
+
+        /* ── 포카 커서 팔로워 (Cursor Follower Effect) ── */
+        (function () {
+            const cursor = document.getElementById('poca-cursor');
+            let mouseX = -200, mouseY = -200;
+            let curX = -200, curY = -200;
+            const LERP = 0.13; // 부드러움 계수 (0~1, 낮을수록 더 느리게 따라옴)
+
+            /* 기본 커서 숨김 */
+            document.body.style.cursor = 'none';
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.opacity = '1';
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+            });
+
+            /* 링크/버튼 위에서 약간 커지는 효과 */
+            document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+                el.style.cursor = 'none';
+                el.addEventListener('mouseenter', () => cursor.classList.add('poca-hover'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('poca-hover'));
+            });
+
+            /* RAF 기반 부드러운 이동 (Lerp) */
+            function animate() {
+                curX += (mouseX - curX) * LERP;
+                curY += (mouseY - curY) * LERP;
+                cursor.style.transform = `translate(${curX}px, ${curY}px)`;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
     </script>
 </body>
 
