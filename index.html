@@ -193,73 +193,38 @@
 
 
 
-    <!-- 앱 미리보기 섹션 -->
     <section id="mockup" class="section mockup-section">
         <div class="container preview-container">
             <div class="preview-text-area">
                 <span class="preview-subtitle">MAIN SCREENS</span>
-                <h2 class="preview-main-title">앱 화면<br>미리 보기</h2>
+                <h2 class="preview-main-title">어디아파? 앱<br> 미리보기</h2>
                 <div class="orange-line"></div>
                 <p class="preview-desc">
-                    증상 검색을 통해 정확한 진료과를 추천받고, AI 분석으로 상세 증상을 체크합니다.
-                    나의 모든 진료 기록을 히스토리로 관리하여 체계적인 건강 관리를 진행합니다.
+                    증상 검색을 통해 정확한 진료과를 추천받고,<br>
+                    AI 분석으로 상세 증상을 체크합니다.<br>
+                    나의 모든 진료 기록을 히스토리로 관리하여<br> 체계적인 건강 관리를 진행합니다.
                 </p>
+
                 <div class="preview-badges">
-                    <span class="p-badge">List View — 직관적인 정보</span>
-                    <span class="p-badge highlight">AI Analysis — 정밀 분석</span>
+                    <span class="p-badge highlight">List View — 직관적인 정보 <br>AI Analysis — 정밀 분석</span>
                 </div>
             </div>
 
+            <img src="img/pokacallre_01.png" alt="포카 캐릭터" class="poka-character">
+
             <div class="preview-mockup-area">
-                <div class="mockup-wrapper">
-                    <!-- 화면 1 -->
-                    <div class="iphone-device side">
-                        <div class="iphone-case">
-                            <div class="iphone-buttons left-btns"><span></span><span></span></div>
-                            <div class="iphone-buttons right-btn"></div>
-                            <div class="iphone-screen">
-                                <div class="iphone-notch"></div>
-                                <img src="img/04.ai_symptom_check.png" alt="AI 증상 체크">
-                            </div>
+                <div class="iphone-device main-center">
+                    <div class="iphone-case">
+                        <div class="iphone-screen">
+                            <img id="autoSliderImg" src="img/02. search.png" style="width:100%; transition:0.5s;">
                         </div>
-                        <span class="mockup-label-tag">AI 증상 분석</span>
                     </div>
-
-                    <!-- 화면 2 (메인) - 포카 캐릭터 추가 -->
-                    <div class="iphone-device main-center">
-                        <!-- 따봉 포카 배치 -->
-                        <img src="img/poca02re.png" alt="추천하는 포카" class="preview-poca-thumb">
-
-                        <div class="iphone-case">
-                            <div class="iphone-buttons left-btns"><span></span><span></span></div>
-                            <div class="iphone-buttons right-btn"></div>
-                            <div class="iphone-screen">
-                                <div class="iphone-notch"></div>
-                                <img src="img/02. search.png" alt="메인 검색">
-                            </div>
-                        </div>
-                        <span class="mockup-label-tag">홈 대시보드</span>
-                    </div>
-
-                    <!-- 화면 3 -->
-                    <div class="iphone-device side">
-                        <div class="iphone-case">
-                            <div class="iphone-buttons left-btns"><span></span><span></span></div>
-                            <div class="iphone-buttons right-btn"></div>
-                            <div class="iphone-screen">
-                                <div class="iphone-notch"></div>
-                                <img src="img/05. ai_result.png" alt="분석 결과">
-                            </div>
-                        </div>
-                        <span class="mockup-label-tag">진료과 추천</span>
-                    </div>
+                    <span class="mockup-label-tag" id="sliderLabel"
+                        style="display:block; margin-top:20px; font-weight:bold; color:#ff823a;">01. 검색 화면</span>
                 </div>
             </div>
         </div>
     </section>
-
-
-
 
 
     <!-- 주요 기능 섹션 -->
@@ -645,6 +610,7 @@
                 </span>
             </h2>
             <p class="copyright">COPYRIGHT © SHIN MIN-HA. ALL RIGHTS RESERVED. 2026</p>
+            <p class="email">minha86ibo@gmail.com</p>
         </div>
     </footer>
     <script>
@@ -664,18 +630,18 @@
         const typedEl = document.getElementById('typed-symptom');
 
         const phoneTypedEl = document.getElementById('phoneTyped');
-        const tagActiveEl  = document.getElementById('tagActive');
+        const tagActiveEl = document.getElementById('tagActive');
 
         /* 증상별 태그·추천 병원 매핑 */
         const SYMPTOM_MAP = {
-            '두통이 심해요':       { tag:'두통',  results:[['🏥','신경과 추천','신경과 · 1.2km'],['💊','내과 상담','내과 · 0.9km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '열이 나요':           { tag:'발열',  results:[['🏥','내과 추천','내과 · 0.7km'],['💊','소아과 상담','소아과 · 1.1km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '기침이 멈추질 않아요':{ tag:'기침',  results:[['🏥','호흡기내과','호흡기내과 · 0.5km'],['💊','이비인후과','이비인후과 · 1.3km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '배가 아파요':         { tag:'복통',  results:[['🏥','소화기내과','소화기내과 · 0.8km'],['💊','가정의학과','가정의학과 · 1.0km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '어지러워요':          { tag:'어지럼',results:[['🏥','신경과 추천','신경과 · 1.2km'],['💊','이비인후과','이비인후과 · 0.9km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '피부가 가려워요':     { tag:'피부',  results:[['🏥','피부과 추천','피부과 · 0.6km'],['💊','알레르기과','알레르기과 · 1.5km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '목이 붓고 아파요':    { tag:'목통증',results:[['🏥','이비인후과','이비인후과 · 0.4km'],['💊','내과 상담','내과 · 0.9km'],['🌙','야간 진료','응급 · 2.4km']] },
-            '관절이 쑤셔요':       { tag:'관절',  results:[['🏥','정형외과','정형외과 · 1.0km'],['💊','한의원 추천','한의원 · 0.7km'],['🌙','야간 진료','응급 · 2.4km']] },
+            '두통이 심해요': { tag: '두통', results: [['🏥', '신경과 추천', '신경과 · 1.2km'], ['💊', '내과 상담', '내과 · 0.9km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '열이 나요': { tag: '발열', results: [['🏥', '내과 추천', '내과 · 0.7km'], ['💊', '소아과 상담', '소아과 · 1.1km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '기침이 멈추질 않아요': { tag: '기침', results: [['🏥', '호흡기내과', '호흡기내과 · 0.5km'], ['💊', '이비인후과', '이비인후과 · 1.3km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '배가 아파요': { tag: '복통', results: [['🏥', '소화기내과', '소화기내과 · 0.8km'], ['💊', '가정의학과', '가정의학과 · 1.0km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '어지러워요': { tag: '어지럼', results: [['🏥', '신경과 추천', '신경과 · 1.2km'], ['💊', '이비인후과', '이비인후과 · 0.9km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '피부가 가려워요': { tag: '피부', results: [['🏥', '피부과 추천', '피부과 · 0.6km'], ['💊', '알레르기과', '알레르기과 · 1.5km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '목이 붓고 아파요': { tag: '목통증', results: [['🏥', '이비인후과', '이비인후과 · 0.4km'], ['💊', '내과 상담', '내과 · 0.9km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
+            '관절이 쑤셔요': { tag: '관절', results: [['🏥', '정형외과', '정형외과 · 1.0km'], ['💊', '한의원 추천', '한의원 · 0.7km'], ['🌙', '야간 진료', '응급 · 2.4km']] },
         };
         const resultListEl = document.getElementById('appResultList');
 
@@ -812,6 +778,35 @@
             }
             animate();
         })();
+        const slides = [
+            { src: 'img/02. search.png', label: '01. 검색 화면' },
+            { src: 'img/03. 신체 부위 선택 (사진 제외).png', label: '02. 신체부위 선택' },
+            { src: 'img/04.ai_symptom_check.png', label: '03. 증상 체크' },
+            { src: 'img/5-1. ai_loading.png', label: '04. AI 분석 중' },
+            { src: 'img/05. ai_result.png', label: '05. AI 추천 결과' },
+            { src: 'img/5-2. 진료과 상세.png', label: '06. 진료과 상세' }
+        ];
+
+        let idx = 0;
+        const imgEl = document.getElementById('autoSliderImg');
+        const labelEl = document.getElementById('sliderLabel');
+
+        function updateSlide() {
+            if (imgEl) {
+                imgEl.style.opacity = 0;
+                setTimeout(() => {
+                    imgEl.src = slides[idx].src;
+                    labelEl.innerText = slides[idx].label;
+                    imgEl.style.opacity = 1;
+                }, 300);
+            }
+        }
+
+        // 2. 3초마다 자동으로 다음 단계로 넘어가는 자동 슬라이드 로직
+        setInterval(() => {
+            idx = (idx + 1) % slides.length;
+            updateSlide();
+        }, 3000);
     </script>
 </body>
 
