@@ -765,7 +765,7 @@ button,
     position: absolute;
     top: 50%;
     /* 세로 기준 가운데 */
-    left: 50%;
+    left: 38%;
     /* 가로 기준 가운데 (텍스트와 목업 경계선) */
     transform: translate(-50%, -50%);
     /* 이미지 자체 중심을 정중앙으로 보정 */
@@ -966,7 +966,7 @@ iphone-device {
 .mockup-label-tag {
     position: absolute;
     /* 💡 늘어난 핸드폰 길이에 맞춰 둥둥 떠다니도록 변경 */
-    bottom: -40px;
+    bottom: 35px;
     /* 💡 늘어난 핸드폰 하단 면에서 정확히 40px 밑에 상시 대기 */
     left: 50%;
     transform: translateX(-50%);
@@ -990,6 +990,10 @@ iphone-device {
     .preview-container {
         flex-direction: column;
         padding: 0 20px;
+    }
+
+    .poka-character {
+        display: none;
     }
 
     .preview-mockup-area {
