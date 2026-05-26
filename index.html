@@ -27,7 +27,9 @@
             <div class="container nav-wrapper">
                 <!-- 1번 포카(인사) 캐릭터를 로고 옆에 배치 -->
                 <div class="logo-group">
-                    <img src="img/logo.png" alt="어디아파 로고" class="nav-poca">
+                    <div class="nav-poca">
+                        <img src="img/logo03.png" alt="어디아파 로고">
+                    </div>
                     <div class="logo">어디아파?</div>
                 </div>
 
@@ -67,14 +69,12 @@
                     진료과 추천부터 개인 의료 기록 관리까지 한 번에.</p>
 
                 <!-- 23번 포카(응원) 캐릭터와 말풍선 추가 -->
-                <div class="poca-message-container"
-                    style="display: flex; align-items: center; gap: 15px; margin-top: 35px;">
+                <div class="poca-message-container">
                     <div class="poca-avatar">
-                        <img src="img/poca23re.png" alt="응원하는 포카"
-                            style="width: 70px; height: 70px; object-fit: cover; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                        <img src="img/poca23re.png" alt="응원하는 포카">
                     </div>
-
-
+                    <!-- 스크롤 연동 말풍선 (stepLabel) -->
+                    <div class="step-label" id="stepLabel"></div>
                 </div>
             </div>
 
@@ -87,8 +87,6 @@
                     <div class="scroll-step-dot active" id="dot0"></div>
                     <div class="scroll-step-dot" id="dot1"></div>
                 </div>
-                <!-- 스텝 라벨 -->
-                <div class="step-label" id="stepLabel"></div>
 
                 <div class="iphone-frame phone-left">
                     <div class="notch"></div>
@@ -220,7 +218,8 @@
                         </div>
                     </div>
                 </div>
-                <span class="mockup-label-tag" id="sliderLabel" style="display:block; margin-top:20px; font-weight:bold; color:#ff823a;">02. 신체부위 선택</span>
+                <span class="mockup-label-tag" id="sliderLabel"
+                    style="display:block; margin-top:20px; font-weight:bold; color:#ff823a;">02. 신체부위 선택</span>
             </div>
         </div>
     </section>
@@ -695,13 +694,11 @@
         }
         setTimeout(typeLoop, 1200);
 
-        /* ── 스크롤 연동 목업 ── */
+        /* ── 스크롤 연동 목업 (목업 펼치기만) ── */
         const container = document.getElementById('mockupContainer');
         const stepLabel = document.getElementById('stepLabel');
         const dots = [document.getElementById('dot0'), document.getElementById('dot1')];
-        const LABELS = ['증상을 입력하세요', 'AI가 병원을 추천해드려요'];
-
-        let currentStep = 0;
+        const LABELS = ['증상을 입력하세요!', 'AI가 병원을 추천해 드려요!'];
 
         function getScrollProgress() {
             const heroH = document.querySelector('.hero').offsetHeight;
@@ -709,37 +706,38 @@
             return Math.max(0, Math.min(1, scrolled / (window.innerHeight * 0.8)));
         }
 
-        function goToStep(step) {
-            if (step === currentStep) return;
-            currentStep = step;
-            dots.forEach((d, i) => d.classList.toggle('active', i === step));
-            stepLabel.classList.remove('show');
-            setTimeout(() => {
-                stepLabel.textContent = LABELS[step];
-                stepLabel.classList.add('show');
-            }, 120);
-        }
-
         function onScroll() {
             const p = getScrollProgress();
-
             if (p > 0.05) {
                 container.classList.add('spread');
-                stepLabel.classList.add('show');
+                dots[0].classList.toggle('active', p < 0.5);
+                dots[1].classList.toggle('active', p >= 0.5);
             } else {
                 container.classList.remove('spread');
-                stepLabel.classList.remove('show');
             }
-
-            goToStep(p < 0.5 ? 0 : 1);
         }
 
         window.addEventListener('scroll', onScroll, { passive: true });
 
-        setTimeout(() => {
-            stepLabel.textContent = LABELS[0];
-            stepLabel.classList.add('show');
-        }, 2000);
+        /* ── 포카 클릭 → 말풍선 토글 ── */
+        let pocaClickStep = -1; // -1: 숨김, 0: 첫번째, 1: 두번째
+
+        const pocaAvatar = document.querySelector('.poca-avatar');
+        if (pocaAvatar) {
+            pocaAvatar.addEventListener('click', () => {
+                pocaClickStep = (pocaClickStep + 1) % 3; // 0 → 1 → 2(숨김) → 0 …
+
+                if (pocaClickStep < 2) {
+                    stepLabel.classList.remove('show');
+                    setTimeout(() => {
+                        stepLabel.textContent = LABELS[pocaClickStep];
+                        stepLabel.classList.add('show');
+                    }, 100);
+                } else {
+                    stepLabel.classList.remove('show');
+                }
+            });
+        }
 
         /* ── 포카 커서 팔로워 (Cursor Follower Effect) ── */
         (function () {
