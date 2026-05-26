@@ -2460,7 +2460,7 @@ html {
 /* 스텝 라벨 */
 .step-label {
     position: absolute;
-    bottom: -44px;
+    bottom: -100px;
     left: 50%;
     transform: translateX(-50%) translateY(6px);
     white-space: nowrap;
