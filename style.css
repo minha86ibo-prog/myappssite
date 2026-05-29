@@ -2500,7 +2500,8 @@ html {
 .step-label {
     position: absolute;
     top: 0px;
-    left: 165px;   /* 포카 180px 기준 비례 조정 */
+    left: 165px;
+    /* 포카 180px 기준 비례 조정 */
     display: inline-block;
     background: #fff;
     color: #26A69A;
@@ -2561,4 +2562,362 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   📱 MOCKUP SECTION V2 — 프리미엄 SaaS 앱 미리보기 섹션
+   기존 색상 시스템 유지, 레이아웃만 전면 개선
+══════════════════════════════════════════════════════════ */
+
+.mockup-section-v2 {
+    background-color: #f4f1ea;
+    /* 기존 mockup-section 배경색 유지 */
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+/* 전체 2컬럼 레이아웃 */
+.mockup-v2-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+/* ── 좌측 텍스트 영역 ── */
+.mockup-v2-text {
+    flex: 0 0 45%;
+}
+
+.mockup-v2-eyebrow {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ff8a65;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.mockup-v2-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.18;
+    color: #26A69A;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+}
+
+.mockup-v2-accent {
+    color: #333;
+}
+
+.mockup-v2-divider {
+    width: 44px;
+    height: 3px;
+    background: #ff8a65;
+    border-radius: 2px;
+    margin-bottom: 22px;
+}
+
+.mockup-v2-desc {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #666;
+    word-break: keep-all;
+    margin-bottom: 32px;
+}
+
+/* 핵심 기능 리스트 */
+.mockup-v2-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.mockup-v2-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.feat-check {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    background: #26A69A;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-top: 1px;
+}
+
+.mockup-v2-features li div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mockup-v2-features li strong {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.mockup-v2-features li span {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* 배지 */
+.mockup-v2-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mv2-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    background: #fff;
+    color: #555;
+    border: 1.5px solid #ddd;
+}
+
+.mv2-badge.accent {
+    background: #26A69A;
+    color: #fff;
+    border-color: #26A69A;
+}
+
+
+/* ── 우측: 입체 폰 그룹 ── */
+/*
+ =====================================================
+ [📱 위치 조절 가이드]
+ 각 .mv2-phone-X 클래스에서:
+   left / right     : 좌우 위치 (%) — 기준: .mockup-v2-phones
+   top / bottom     : 상하 위치 (%) — 기준: .mockup-v2-phones
+   transform        : rotate(Xdeg) 기울기, translateX/Y 미세조정
+   z-index          : 앞/뒤 레이어 순서 (높을수록 앞)
+ .mv2-phone-frame 내 height: 로 각 폰 높이 조절
+ (width는 자동으로 비율 유지)
+ =====================================================
+*/
+.mockup-v2-phones {
+    flex: 0 0 45%;
+    position: relative;
+    height: 700px;
+    /* ★ 세로 길이를 대폭 늘려 화면이 더 잘 보이도록 함 */
+}
+
+/* 공통 폰 래퍼 */
+.mv2-phone {
+    position: absolute;
+}
+
+/* 공통 폰 프레임 */
+.mv2-phone-frame {
+    position: relative;
+    background: #111;
+    border-radius: 32px;
+    border: 2px solid #222;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 9 / 19.5;
+    /* perfect smartphone viewport scale */
+}
+
+/* 메인(가운데) 프레임 강조 */
+.mv2-main-frame {
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.28),
+        0 0 0 3px rgba(38, 166, 154, 0.35);
+}
+
+/* 노치 */
+.mv2-phone-notch {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 18px;
+    background: #111;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    z-index: 10;
+}
+
+/* 화면 영역 */
+.mv2-phone-screen {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #fff;
+}
+
+/* 스크롤 인터랙션용 이미지 — 아래 호버 CSS와 연동됨 */
+.mv2-phone-screen img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    transform: translateY(0%);
+    transition: transform 7.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* 👈 속도를 기존 2.4초에서 4.5초로 부드럽게 늦춤 */
+    will-change: transform;
+}
+
+/* ──────────────────────────────────────────
+   📱 폰 A (왼쪽) · 폰 C (오른쪽 메인) — 2개 배치
+   비율을 텍스트 영역에 맞게 더 스마트하게 조절
+────────────────────────────────────────── */
+
+/* 뒤에 있는 날씬한 목업 A */
+.mv2-phone-A {
+    position: absolute;
+    width: 55%;
+    /* 부모 너비 안에서 적정 비율 유지 */
+    left: 0;
+    bottom: 0;
+    z-index: 3;
+}
+
+.mv2-phone-A .mv2-phone-frame {
+    transform: rotate(-5deg);
+    border-radius: 28px;
+}
+
+/* 앞에 있는 메인 목업 C */
+.mv2-phone-C {
+    position: absolute;
+    width: 55%;
+    /* 목업 A보다 넓은 가로 폭 유지 */
+    right: -5%;
+    /* 오른쪽으로 살짝 붙여서 균형 조절 */
+    top: 5%;
+    z-index: 5;
+}
+
+.mv2-phone-C .mv2-phone-frame {
+    transform: rotate(4deg);
+    border-radius: 30px;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   📱 MOCKUP HOVER SCROLL INTERACTION
+   마우스를 올리면 이미지가 위로 흘러 앱 내용 확인
+══════════════════════════════════════════════════════════ */
+
+/* 폰 전체 hover 공통 — 살짝 떠오르는 효과 */
+.mv2-phone {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        filter 0.4s ease;
+}
+
+/* 폰 A 호버 — 위로 스크롤 */
+.mv2-phone-A:hover .mv2-phone-screen img {
+    transform: translateY(-55%);
+}
+
+.mv2-phone-A:hover {
+    transform: translateY(-14px);
+    filter: drop-shadow(0 28px 40px rgba(0, 0, 0, 0.22));
+    z-index: 10;
+}
+
+/* 폰 C 호버 — 위로 스크롤 */
+.mv2-phone-C:hover .mv2-phone-screen img {
+    transform: translateY(-60%);
+}
+
+.mv2-phone-C:hover {
+    transform: rotate(4deg) translateY(-14px);
+    filter: drop-shadow(0 40px 60px rgba(38, 166, 154, 0.3));
+    z-index: 10;
+}
+
+/* 호버된 폰 외 나머지 살짝 흐리게 */
+.mockup-v2-phones:hover .mv2-phone:not(:hover) {
+    filter: brightness(0.85) saturate(0.8);
+    transition: filter 0.3s ease;
+}
+
+
+/* ── 반응형 ── */
+@media (max-width: 1024px) {
+    .mockup-v2-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+    .mockup-v2-text {
+        flex: none;
+        max-width: 100%;
+    }
+
+    .mockup-v2-phones {
+        width: 100%;
+        min-width: 0;
+        height: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mockup-v2-title {
+        font-size: 2.4rem;
+    }
+
+    .mockup-v2-phones {
+        height: 420px;
+    }
+
+    .mv2-phone-C .mv2-phone-frame {
+        height: 400px;
+    }
+
+    .mv2-phone-A .mv2-phone-frame {
+        height: 320px;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════
+   ⌨️ TEXT TYPING CURSOR INTERACTION
+   왼쪽 특징 리스트 순차 타이핑용 커서 및 애니메이션
+══════════════════════════════════════════════════════════ */
+.typing-active {
+    position: relative;
+    display: inline-block;
+}
+.typing-active::after {
+    content: '|';
+    position: absolute;
+    right: -8px;
+    top: -1px;
+    color: #26A69A;
+    font-weight: 300;
+    animation: typingBlink 0.6s infinite steps(2, start);
+}
+
+@keyframes typingBlink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
 }

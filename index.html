@@ -191,36 +191,88 @@
 
 
 
-    <section id="mockup" class="section mockup-section">
-        <div class="container preview-container">
-            <div class="preview-text-area">
-                <span class="preview-subtitle">MAIN SCREENS</span>
-                <h2 class="preview-main-title">어디아파? 앱<br> 미리보기</h2>
-                <div class="orange-line"></div>
-                <p class="preview-desc">
-                    증상 검색을 통해 정확한 진료과를 추천받고,<br>
-                    AI 분석으로 상세 증상을 체크합니다.<br>
-                    나의 모든 진료 기록을 히스토리로 관리하여<br> 체계적인 건강 관리를 진행합니다.
+    <!-- 앱 미리보기 섹션 (프리미엄 SaaS 스타일) -->
+    <section id="mockup" class="section mockup-section-v2">
+        <div class="container mockup-v2-container">
+
+            <!-- ▌LEFT: 텍스트 영역 -->
+            <div class="mockup-v2-text">
+                <span class="mockup-v2-eyebrow">MAIN SCREENS</span>
+                <h2 class="mockup-v2-title">어디아파?<br><span class="mockup-v2-accent">앱 미리보기</span></h2>
+                <div class="mockup-v2-divider"></div>
+                <p class="mockup-v2-desc">
+                    증상을 입력하면 AI가 건강 상태를 쉽고 빠르게 분석해
+                    사용자에게 이해하기 쉬운 건강 인사이트를 제공해드려요.
                 </p>
 
-                <div class="preview-badges">
-                    <span class="p-badge highlight">List View — 직관적인 정보 <br>AI Analysis — 정밀 분석</span>
+                <!-- 핵심 기능 3가지 -->
+                <ul class="mockup-v2-features">
+                    <li>
+                        <span class="feat-check">✓</span>
+                        <div>
+                            <strong>증상 분석</strong>
+                            <span>AI가 증상을 파악해 진료과를 추천</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="feat-check">✓</span>
+                        <div>
+                            <strong>건강 기록</strong>
+                            <span>나의 진료 히스토리를 한눈에 관리</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="feat-check">✓</span>
+                        <div>
+                            <strong>병원 연결</strong>
+                            <span>주변 추천 병원 바로 연결</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="mockup-v2-badges">
+                    <span class="mv2-badge">List View</span>
+                    <span class="mv2-badge accent">AI Analysis</span>
                 </div>
             </div>
 
-            <img src="img/pokacallre_01.png" alt="포카 캐릭터" class="poka-character">
+            <!-- ▌RIGHT: 입체 앱 화면 그룹 -->
+            <!--
+            =====================================================
+            [📱 앱 화면 위치 가이드 — 원하는 대로 조절하세요]
+            =====================================================
+            각 폰 이미지를 바꾸려면 src="" 안의 경로를 수정하세요.
+            위치는 style.css > .mv2-phone-N 클래스에서 조절합니다:
+              - left / right : 좌우 위치 (%)
+              - top / bottom : 상하 위치 (%)
+              - rotate(Xdeg) : 기울기 (양수=오른쪽, 음수=왼쪽)
+              - z-index : 앞/뒤 레이어 순서 (높을수록 앞)
+              - height: 높이 기준 크기 (width는 auto)
+            =====================================================
+            -->
+            <div class="mockup-v2-phones">
 
-            <div class="preview-mockup-area">
-                <div class="iphone-device main-center">
-                    <div class="iphone-case">
-                        <div class="iphone-screen">
-                            <img id="autoSliderImg" src="img/02. search.png" style="width:100%; transition:0.5s;">
+                <!-- 폰 A: 왼쪽 (살짝 기울어짐) -->
+                <div class="mv2-phone mv2-phone-A">
+                    <div class="mv2-phone-frame">
+                        <div class="mv2-phone-notch"></div>
+                        <div class="mv2-phone-screen">
+                            <img src="img/02. search.png" alt="검색 화면">
                         </div>
                     </div>
                 </div>
-                <span class="mockup-label-tag" id="sliderLabel"
-                    style="display:block; margin-top:20px; font-weight:bold; color:#ff823a;">02. 신체부위 선택</span>
-            </div>
+
+                <!-- 폰 C: 메인 (가장 크고 앞에) -->
+                <div class="mv2-phone mv2-phone-C">
+                    <div class="mv2-phone-frame mv2-main-frame">
+                        <div class="mv2-phone-notch"></div>
+                        <div class="mv2-phone-screen">
+                            <img src="img/05. ai_result.png" alt="AI 분석 결과">
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /mockup-v2-phones -->
         </div>
     </section>
 
@@ -804,6 +856,102 @@
             idx = (idx + 1) % slides.length;
             updateSlide();
         }, 3000);
+
+        // ══════════════════════════════════════════════════════════
+        // ⌨️ AUTOMATIC TEXT TYPING ANIMATION (Immediate + IntersectionObserver)
+        // ══════════════════════════════════════════════════════════
+        function initTypingAnimation() {
+            const featureItems = document.querySelectorAll(".mockup-v2-features li");
+            if (featureItems.length === 0) return;
+            
+            // 기존 마크업에서 원본 텍스트 및 요소 정보 가져오기
+            const textData = Array.from(featureItems).map(li => {
+                const strongEl = li.querySelector("strong");
+                const spanEl = li.querySelector("span");
+                const checkEl = li.querySelector(".feat-check");
+                return {
+                    strongEl,
+                    spanEl,
+                    checkEl,
+                    strongText: strongEl.innerText.trim(),
+                    spanText: spanEl.innerText.trim()
+                };
+            });
+
+            // 초기화: 스크롤 도달 전까지 텍스트 숨김 및 체크마크 감추기
+            textData.forEach(data => {
+                data.strongEl.innerHTML = "";
+                data.spanEl.innerHTML = "";
+                data.checkEl.style.opacity = "0";
+                data.checkEl.style.transform = "scale(0.5)";
+                data.checkEl.style.transition = "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
+            });
+
+            // 텍스트 타이핑 실행 헬퍼
+            function typeText(element, text, speed = 60) {
+                return new Promise((resolve) => {
+                    let index = 0;
+                    element.classList.add("typing-active");
+                    
+                    function nextChar() {
+                        if (index < text.length) {
+                            element.innerHTML = text.slice(0, index + 1);
+                            index++;
+                            setTimeout(nextChar, speed);
+                        } else {
+                            element.classList.remove("typing-active");
+                            resolve();
+                        }
+                    }
+                    nextChar();
+                });
+            }
+
+            // 순차적 타이핑 실행 시퀀스
+            async function startTypingAnimation() {
+                for (let i = 0; i < textData.length; i++) {
+                    const data = textData[i];
+                    
+                    // A. 체크 아이콘 팝업 등장
+                    data.checkEl.style.opacity = "1";
+                    data.checkEl.style.transform = "scale(1)";
+                    await new Promise(r => setTimeout(r, 300));
+
+                    // B. 타이틀 (strong) 타이핑 시작
+                    await typeText(data.strongEl, data.strongText, 70);
+                    await new Promise(r => setTimeout(r, 150));
+
+                    // C. 설명 (span) 타이핑 시작
+                    await typeText(data.spanEl, data.spanText, 40);
+                    await new Promise(r => setTimeout(r, 400)); // 다음 리스트 시작 전 딜레이
+                }
+            }
+
+            // 스크롤 감지 트리거 (목업 섹션 진입 시점 - 모바일 및 소형 화면 대응 0.1로 완화)
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startTypingAnimation();
+                        obs.disconnect(); // 한 번 실행 후 해제
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const mockupSection = document.getElementById("mockup");
+            if (mockupSection) {
+                observer.observe(mockupSection);
+            } else {
+                // 혹시 모를 대비로 즉시 실행 폴백
+                startTypingAnimation();
+            }
+        }
+
+        // DOM 로드 완료 상태 확인 후 안전하게 즉시 실행
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initTypingAnimation);
+        } else {
+            initTypingAnimation();
+        }
     </script>
 </body>
 
