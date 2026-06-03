@@ -11,9 +11,9 @@
 
 <body>
 
-    <!-- 🐻 커스텀 커서 팔로워 (포카 캐릭터) -->
-    <div id="poca-cursor" aria-hidden="true">
-        <img src="img/poka01re.png" alt="포카 커서" id="poca-cursor-img">
+    <!-- 🩺 커스텀 커서 팔로워 (의료 진단 커서) -->
+    <div id="medical-cursor" aria-hidden="true">
+        <img src="img/medical-cursor.png" alt="의료 진단 커서" id="medical-cursor-img">
     </div>
 
     <!-- 헤더 영역 (히어로 섹션) -->
@@ -25,11 +25,7 @@
 
         <nav class="navbar">
             <div class="container nav-wrapper">
-                <!-- 1번 포카(인사) 캐릭터를 로고 옆에 배치 -->
                 <div class="logo-group">
-                    <div class="nav-poca">
-                        <img src="img/logo03.png" alt="어디아파 로고">
-                    </div>
                     <div class="logo">어디아파?</div>
                 </div>
 
@@ -41,6 +37,9 @@
                     <li><a href="#ai-utilization">AI 활용현황</a></li>
                     <li><a href="#process">작업 과정</a></li>
                 </ul>
+
+                <!-- Mobile Menu Button -->
+                <div class="mobile-menu-btn" aria-label="메뉴 열기">≡</div>
             </div>
         </nav>
 
@@ -68,14 +67,7 @@
                 <p>막막한 병원 선택, 이제 AI가 답해드립니다.<br>
                     진료과 추천부터 개인 의료 기록 관리까지 한 번에.</p>
 
-                <!-- 23번 포카(응원) 캐릭터와 말풍선 추가 -->
-                <div class="poca-message-container">
-                    <div class="poca-avatar">
-                        <img src="img/poca23re.png" alt="응원하는 포카">
-                    </div>
-                    <!-- 스크롤 연동 말풍선 (stepLabel) -->
-                    <div class="step-label" id="stepLabel"></div>
-                </div>
+                <!-- 포카(응원) 캐릭터 영역 제거됨 -->
             </div>
 
 
@@ -146,57 +138,159 @@
 
 
     <!-- 문제 제기 섹션 -->
+    <!-- ── PROBLEM SECTION: Interactive Phone Mockup Layout ── -->
     <section id="problem" class="section problem-section">
-        <div class="container problem-container">
-            <div class="problem-left">
-                <span class="problem-number">01</span>
-                <!-- 포카 캐릭터와 제목을 묶어주는 래퍼 추가 -->
-                <div class="problem-title-wrapper">
-                    <span class="problem-subtitle">PROBLEM</span>
-                    <img src="img/poca17re.png" alt="고민하는 포카" class="problem-poca">
-                </div>
-                <h2 class="problem-main-title">병원은 많은데,<br>내가 갈 곳은<br>어디인지 모를 때</h2>
-                <div class="orange-line-short"></div>
+        <div class="container problem-new-container">
+
+            <!-- LEFT: Header + Interactive Tabs -->
+            <div class="prob-left">
+                <span class="problem-subtitle">PROBLEM</span>
+                <h2 class="problem-main-title">병원은 많은데,<br><span style="color: #222;">내가 갈 곳은<br>어디인지 모를 때</span></h2>
+                <div class="orange-line-short" style="background-color: #26a69a;"></div>
                 <p class="problem-desc">
                     증상이 나타나도 어느 병원을 가야 할지, 나의 과거 기록은 어떠했는지 매번 막막하셨나요?
                     어디아파?는 이 막막함을 데이터와 AI로 해결합니다.
                 </p>
+
+                <!-- Interactive Menu Tabs -->
+                <div class="prob-tabs">
+                    <div class="prob-tab active" data-tab="1">
+                        <span class="tab-num">01</span>
+                        <div class="tab-text">
+                            <strong>어느 병원을 가야 할지 헷갈릴 때</strong>
+                            <p>오른쪽 무릎이 아플 때 정형외과를 가야 할까? 아니면 한의원을 가야 할까?</p>
+                        </div>
+                        <span class="tab-arrow">→</span>
+                    </div>
+                    <div class="prob-tab" data-tab="2">
+                        <span class="tab-num">02</span>
+                        <div class="tab-text">
+                            <strong>증상에 맞는 진료과가 고민될 때</strong>
+                            <p>입술이 찢어졌는데, 피부과를 가야 할까? 내과를 가야 할까?</p>
+                        </div>
+                        <span class="tab-arrow">→</span>
+                    </div>
+                    <div class="prob-tab" data-tab="3">
+                        <span class="tab-num">03</span>
+                        <div class="tab-text">
+                            <strong>과거 수술/진료 기록이 기억나지 않을 때</strong>
+                            <p>맹장 수술을 했는데, 3년 전에 했는지 5년 전에 했는지 기억이 나지 않을 때</p>
+                        </div>
+                        <span class="tab-arrow">→</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="problem-right">
-                <div class="problem-card">
-                    <span class="card-num">01</span>
-                    <div class="card-content">
-                        <h3>어느 병원을 가야 할지 헷갈릴 때</h3>
-                        <p>오른쪽 무릎이 아플 때 정형외과를 가야 할까? 아니면 한의원을 가야 할까?</p>
-                    </div>
-                </div>
-                <div class="problem-card">
-                    <span class="card-num">02</span>
-                    <div class="card-content">
-                        <h3>증상에 맞는 진료과가 고민될 때</h3>
-                        <p>입술이 찢어졌는데, 피부과를 가야 할까? 내과를 가야 할까?</p>
-                    </div>
-                </div>
-                <div class="problem-card">
-                    <span class="card-num">03</span>
-                    <div class="card-content">
-                        <h3>과거 수술/진료 기록이 기억나지 않을 때</h3>
-                        <p>맹장 수술을 했는데, 3년 전에 했는지 5년 전에 했는지 기억이 나지 않을 때</p>
-                    </div>
-                </div>
+            <!-- RIGHT: CSS Phone Mockup with Switching Screens -->
+            <div class="prob-right">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+
+                        <!-- Screen 1: Orthopedics vs. Oriental Medicine -->
+                        <div class="phone-slide active" id="slide-1">
+                            <div class="slide-topbar">
+                                <span class="slide-logo">어디아파?</span>
+                                <span class="slide-ai-badge">AI 추천</span>
+                            </div>
+                            <div class="slide-symptom-tag">🦵 오른쪽 무릎 통증</div>
+                            <p class="slide-question">어느 병원을 가야 할까요?</p>
+                            <div class="slide-choice-row">
+                                <div class="slide-choice-card choice-a">
+                                    <div class="choice-icon">🦴</div>
+                                    <strong>정형외과</strong>
+                                    <span>뼈·관절 전문</span>
+                                </div>
+                                <div class="slide-choice-vs">vs</div>
+                                <div class="slide-choice-card choice-b">
+                                    <div class="choice-icon">🌿</div>
+                                    <strong>한의원</strong>
+                                    <span>침·한방 치료</span>
+                                </div>
+                            </div>
+                            <div class="slide-ai-answer">
+                                <span class="ai-dot"></span>
+                                AI가 최적의 진료과를 분석 중...
+                            </div>
+                        </div>
+
+                        <!-- Screen 2: Dermatology vs. Internal Medicine -->
+                        <div class="phone-slide" id="slide-2">
+                            <div class="slide-topbar">
+                                <span class="slide-logo">어디아파?</span>
+                                <span class="slide-ai-badge">AI 추천</span>
+                            </div>
+                            <div class="slide-symptom-tag">💋 입술 찢어짐</div>
+                            <p class="slide-question">어느 과에서 진료받을까요?</p>
+                            <div class="slide-choice-row">
+                                <div class="slide-choice-card choice-a">
+                                    <div class="choice-icon">✨</div>
+                                    <strong>피부과</strong>
+                                    <span>피부·미용 전문</span>
+                                </div>
+                                <div class="slide-choice-vs">vs</div>
+                                <div class="slide-choice-card choice-b">
+                                    <div class="choice-icon">🏥</div>
+                                    <strong>내과</strong>
+                                    <span>내부 질환 전문</span>
+                                </div>
+                            </div>
+                            <div class="slide-ai-answer">
+                                <span class="ai-dot"></span>
+                                AI가 증상을 분석하고 있어요...
+                            </div>
+                        </div>
+
+                        <!-- Screen 3: Medical History Dashboard -->
+                        <div class="phone-slide" id="slide-3">
+                            <div class="slide-topbar">
+                                <span class="slide-logo">어디아파?</span>
+                                <span class="slide-ai-badge">기록</span>
+                            </div>
+                            <p class="slide-question" style="margin-bottom:10px;">📋 나의 진료 기록</p>
+                            <div class="slide-history">
+                                <div class="history-row">
+                                    <span class="hist-date">2021. 03</span>
+                                    <span class="hist-tag tag-green">맹장 수술</span>
+                                    <span class="hist-dept">외과</span>
+                                </div>
+                                <div class="history-row">
+                                    <span class="hist-date">2022. 11</span>
+                                    <span class="hist-tag tag-blue">독감 치료</span>
+                                    <span class="hist-dept">내과</span>
+                                </div>
+                                <div class="history-row">
+                                    <span class="hist-date">2024. 07</span>
+                                    <span class="hist-tag tag-orange">무릎 통증</span>
+                                    <span class="hist-dept">정형외과</span>
+                                </div>
+                                <div class="history-row">
+                                    <span class="hist-date">2025. 02</span>
+                                    <span class="hist-tag tag-pink">피부 발진</span>
+                                    <span class="hist-dept">피부과</span>
+                                </div>
+                            </div>
+                            <div class="slide-ai-answer">
+                                <span class="ai-dot"></span>
+                                AI가 기록을 분석하고 패턴을 파악 중...
+                            </div>
+                        </div>
+
+                    </div><!-- /phone-screen -->
+                </div><!-- /phone-mockup -->
             </div>
+
         </div>
     </section>
 
 
 
-    <!-- 앱 미리보기 섹션 (프리미엄 SaaS 스타일) -->
-    <section id="mockup" class="section mockup-section-v2">
-        <div class="container mockup-v2-container">
+    <!-- ── MAIN SCREENS: Parallax Phone Showcase ── -->
+    <section id="mockup" class="section mockup-parallax-section">
+        <div class="container mockup-parallax-container">
 
-            <!-- ▌LEFT: 텍스트 영역 -->
-            <div class="mockup-v2-text">
+            <!-- ▌LEFT: Sticky Text Column -->
+            <div class="mockup-sticky-text">
                 <span class="mockup-v2-eyebrow">MAIN SCREENS</span>
                 <h2 class="mockup-v2-title">어디아파?<br><span class="mockup-v2-accent">앱 미리보기</span></h2>
                 <div class="mockup-v2-divider"></div>
@@ -205,23 +299,23 @@
                     사용자에게 이해하기 쉬운 건강 인사이트를 제공해드려요.
                 </p>
 
-                <!-- 핵심 기능 3가지 -->
+                <!-- Feature checklist with teal glow highlights -->
                 <ul class="mockup-v2-features">
-                    <li>
+                    <li class="feat-item" data-feat="1">
                         <span class="feat-check">✓</span>
                         <div>
                             <strong>증상 분석</strong>
                             <span>AI가 증상을 파악해 진료과를 추천</span>
                         </div>
                     </li>
-                    <li>
+                    <li class="feat-item" data-feat="2">
                         <span class="feat-check">✓</span>
                         <div>
                             <strong>건강 기록</strong>
                             <span>나의 진료 히스토리를 한눈에 관리</span>
                         </div>
                     </li>
-                    <li>
+                    <li class="feat-item" data-feat="3">
                         <span class="feat-check">✓</span>
                         <div>
                             <strong>병원 연결</strong>
@@ -236,286 +330,632 @@
                 </div>
             </div>
 
-            <!-- ▌RIGHT: 입체 앱 화면 그룹 -->
-            <!--
-            =====================================================
-            [📱 앱 화면 위치 가이드 — 원하는 대로 조절하세요]
-            =====================================================
-            각 폰 이미지를 바꾸려면 src="" 안의 경로를 수정하세요.
-            위치는 style.css > .mv2-phone-N 클래스에서 조절합니다:
-              - left / right : 좌우 위치 (%)
-              - top / bottom : 상하 위치 (%)
-              - rotate(Xdeg) : 기울기 (양수=오른쪽, 음수=왼쪽)
-              - z-index : 앞/뒤 레이어 순서 (높을수록 앞)
-              - height: 높이 기준 크기 (width는 auto)
-            =====================================================
-            -->
-            <div class="mockup-v2-phones">
-
-                <!-- 폰 A: 왼쪽 (살짝 기울어짐) -->
-                <div class="mv2-phone mv2-phone-A">
-                    <div class="mv2-phone-frame">
-                        <div class="mv2-phone-notch"></div>
-                        <div class="mv2-phone-screen">
-                            <img src="img/02. search.png" alt="검색 화면">
-                        </div>
-                    </div>
+            <!-- ▌RIGHT: Deconstructed Layer UI Showcase -->
+            <div class="deconstructed-ui-container">
+                <!-- Background Layer (검색 흐름) -->
+                <div class="ui-layer layer-back">
+                    <img src="img/02. search.png" alt="어디아파 검색 흐름 레이어">
                 </div>
 
-                <!-- 폰 C: 메인 (가장 크고 앞에) -->
-                <div class="mv2-phone mv2-phone-C">
-                    <div class="mv2-phone-frame mv2-main-frame">
-                        <div class="mv2-phone-notch"></div>
-                        <div class="mv2-phone-screen">
-                            <img src="img/05. ai_result.png" alt="AI 분석 결과">
-                        </div>
-                    </div>
+                <!-- Foreground Layer (AI 결과 진단) -->
+                <div class="ui-layer layer-front">
+                    <img src="img/05. ai_result.png" alt="결과 진단 레이어">
                 </div>
-
-            </div><!-- /mockup-v2-phones -->
+            </div><!-- /deconstructed-ui-container -->
         </div>
     </section>
 
 
-    <!-- 주요 기능 섹션 -->
+    <!-- ── KEY FEATURES SECTION: 3D Flip Card System ── -->
     <section id="features" class="section key-features">
         <div class="container feature-container">
             <div class="feature-title-area">
                 <span class="feature-subtitle">KEY FEATURES</span>
                 <h2 class="feature-main-title">
-                    어디아파<span class="stetho-question-container">
-                        <svg class="stetho-svg" viewBox="0 0 100 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M80 50C80 10 20 10 20 50C20 75 50 85 50 110" stroke="#26a69a" stroke-width="10"
-                                stroke-linecap="round" />
-                            <circle cx="80" cy="50" r="6" fill="#d1d9e6" />
-                            <circle cx="50" cy="132" r="14" stroke="#26a69a" stroke-width="4" fill="white" />
-                            <circle cx="50" cy="132" r="6" fill="#26a69a" />
-                        </svg>
-                    </span><br>주요 기능
+                    어디아파<br>
+                    <span class="feature-accent"><span class="feature-syllable">핵</span>심 기능</span>
                 </h2>
-                <div class="green-line"></div>
-                <p class="feature-desc">
-                    증상 분석부터 진료과 추천, 개인 맞춤형 기록까지. 병원 방문 전후의 모든 단계를 하나의 앱으로 해결합니다.
-                </p>
+                <p class="feature-desc-short">증상 분석부터 복약 알림까지, 한 권의 디지털 의료 비서.</p>
             </div>
 
-            <div class="feature-grid">
-                <!-- FEATURE 01 -->
-                <div class="feature-card">
-                    <img src="img/04.png" alt="챙겨주는 포카" class="poca-card-icon">
-                    <div class="icon-box">🔍</div>
-                    <span class="feature-number">FEATURE 01</span>
-                    <h3>AI 증상 분석</h3>
-                    <p>주관적인 통증 표현을 AI가 분석하여 가장 연관성 높은 질환 가능성을 제시합니다.</p>
-                </div>
-                <!-- FEATURE 02 -->
-                <div class="feature-card">
-                    <img src="img/poca05re.png" alt="챙겨주는 포카" class="poca-card-icon">
-                    <div class="icon-box">🏥</div>
-                    <span class="feature-number">FEATURE 02</span>
-                    <h3>맞춤 진료과 추천</h3>
-                    <p>증상에 최적화된 전문 진료과를 우선순위별로 추천하여 헛걸음을 방지합니다.</p>
-                </div>
-                <!-- FEATURE 03 -->
-                <div class="feature-card">
-                    <!-- 아래 한 줄이 빠져있을 가능성이 높습니다. 똑같이 넣어주세요! -->
-                    <img src="img/09.png" alt="챙겨주는 포카" class="poca-card-icon">
+            <!-- FLIP CARD GRID -->
+            <div class="flip-card-grid">
 
-                    <div class="icon-box">📊</div>
-                    <span class="feature-number">FEATURE 03</span>
-                    <h3>진료 히스토리 관리</h3>
-                    <p>과거 진료 기록과 증상 변화를 시각화하여 체계적인 건강 자산을 구축합니다.</p>
+                <!-- ── FEATURE 01: AI 증상 분석 ── -->
+                <div class="flip-card" tabindex="0">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            <div class="icon-box">🔍</div>
+                            <span class="feature-number">FEATURE 01</span>
+                            <h3>AI 증상 분석</h3>
+                            <p>주관적인 통증 표현을 AI가 분석하여 가장 연관성 높은 질환 가능성을 제시합니다.</p>
+                            <span class="flip-hint">hover →</span>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <div class="fb-header">
+                                <span class="fb-logo">어디아파?</span>
+                                <span class="fb-badge">AI 분석</span>
+                            </div>
+                            <p class="fb-label">🔍 증상 분석 중...</p>
+                            <div class="fb-progress-wrap">
+                                <div class="fb-progress-bar">
+                                    <div class="fb-progress-fill"></div>
+                                </div>
+                                <span class="fb-progress-pct">100%</span>
+                            </div>
+                            <div class="fb-status-wrap">
+                                <span class="fb-status-dot"></span>
+                                <span class="fb-status-txt" id="feat1-status">증상 분석 중...</span>
+                            </div>
+                            <div class="fb-result-box">
+                                <span class="fb-result-icon">✅</span>
+                                <span class="fb-result-txt">분석 완료!</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- FEATURE 04 -->
-                <div class="feature-card">
-                    <img src="img/pock06re.png" alt=" 챙겨주는 포카" class="poca-card-icon">
-                    <div class="icon-box">🔔</div>
-                    <span class="feature-number">FEATURE 04</span>
-                    <h3>복약 및 내원 알림</h3>
-                    <p>처방에 따른 약 복용 시간과 병원 재방문 일정을 스마트하게 리마인드합니다.</p>
+
+                <!-- ── FEATURE 02: 맞춤 진료과 추천 ── -->
+                <div class="flip-card" tabindex="0">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            <div class="icon-box">🏥</div>
+                            <span class="feature-number">FEATURE 02</span>
+                            <h3>맞춤 진료과 추천</h3>
+                            <p>증상에 최적화된 전문 진료과를 우선순위별로 추천하여 헛걸음을 방지합니다.</p>
+                            <span class="flip-hint">hover →</span>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <div class="fb-header">
+                                <span class="fb-logo">어디아파?</span>
+                                <span class="fb-badge">추천</span>
+                            </div>
+                            <p class="fb-label">🏥 AI 추천 결과</p>
+                            <div class="fb-rank-list">
+                                <div class="fb-rank-item rank-1">
+                                    <span class="rank-badge">1순위</span>
+                                    <span class="rank-name">정형외과</span>
+                                    <span class="rank-pct">94%</span>
+                                </div>
+                                <div class="fb-rank-item rank-2">
+                                    <span class="rank-badge">2순위</span>
+                                    <span class="rank-name">내과</span>
+                                    <span class="rank-pct">82%</span>
+                                </div>
+                                <div class="fb-rank-item rank-3">
+                                    <span class="rank-badge">3순위</span>
+                                    <span class="rank-name">한의원</span>
+                                    <span class="rank-pct">71%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <!-- ── FEATURE 03: 진료 히스토리 관리 ── -->
+                <div class="flip-card" tabindex="0">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            <div class="icon-box">📊</div>
+                            <span class="feature-number">FEATURE 03</span>
+                            <h3>진료 히스토리 관리</h3>
+                            <p>과거 진료 기록과 증상 변화를 시각화하여 체계적인 건강 자산을 구축합니다.</p>
+                            <span class="flip-hint">hover →</span>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <div class="fb-header">
+                                <span class="fb-logo">어디아파?</span>
+                                <span class="fb-badge">기록</span>
+                            </div>
+                            <p class="fb-label">📈 건강 데이터 자산</p>
+                            <div class="fb-chart">
+                                <div class="chart-grid">
+                                    <div class="chart-bar" style="--h:55%; --delay:0s;">
+                                        <span class="bar-label">1월</span>
+                                    </div>
+                                    <div class="chart-bar" style="--h:75%; --delay:0.1s;">
+                                        <span class="bar-label">2월</span>
+                                    </div>
+                                    <div class="chart-bar" style="--h:45%; --delay:0.2s;">
+                                        <span class="bar-label">3월</span>
+                                    </div>
+                                    <div class="chart-bar" style="--h:90%; --delay:0.3s;">
+                                        <span class="bar-label">4월</span>
+                                    </div>
+                                    <div class="chart-bar" style="--h:65%; --delay:0.4s;">
+                                        <span class="bar-label">5월</span>
+                                    </div>
+                                    <div class="chart-bar" style="--h:80%; --delay:0.5s;">
+                                        <span class="bar-label">6월</span>
+                                    </div>
+                                </div>
+                                <div class="chart-caption">진료 방문 빈도 추이</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── FEATURE 04: 복약 및 내원 알림 ── -->
+                <div class="flip-card" tabindex="0">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            <div class="icon-box">🔔</div>
+                            <span class="feature-number">FEATURE 04</span>
+                            <h3>복약 및 내원 알림</h3>
+                            <p>처방에 따른 약 복용 시간과 병원 재방문 일정을 스마트하게 리마인드합니다.</p>
+                            <span class="flip-hint">hover →</span>
+                        </div>
+                        <!-- BACK -->
+                        <div class="flip-card-back">
+                            <div class="fb-header">
+                                <span class="fb-logo">어디아파?</span>
+                                <span class="fb-badge">알림</span>
+                            </div>
+                            <p class="fb-label">🔔 스마트 알림</p>
+                            <div class="fb-notification">
+                                <div class="notif-bar">
+                                    <div class="notif-icon">💊</div>
+                                    <div class="notif-body">
+                                        <strong>[어디아파 알림]</strong>
+                                        <p>저녁 약 복용 시간입니다.<br>내일 병원 내원 일정을 확인하세요.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fb-notif-sub">
+                                <div class="notif-sub-row">
+                                    <span>📅 내일 오전 10:00</span>
+                                    <span class="notif-sub-tag">내과 예약</span>
+                                </div>
+                                <div class="notif-sub-row">
+                                    <span>⏰ 오후 9:00</span>
+                                    <span class="notif-sub-tag">저녁약 복용</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /flip-card-grid -->
         </div>
     </section>
 
 
 
-    <!-- 타겟 페르소나 섹션 -->
-    <section id="persona" class="section persona">
-        <div class="container persona-left-container">
-            <div class="persona-footer-title">
-                <span class="p-sub">PERSONA</span>
-                <h2 class="p-main">이런 고민, <br>혹시 당신의 이야기인가요?</h2>
+    <!-- 타겟 페르소나 섹션 (UX Research Dashboard) -->
+    <section id="persona" class="section persona-ux-section">
+        <div class="container persona-ux-container">
+            <div class="persona-header-title">
+                <span class="p-sub">UX RESEARCH</span>
+                <h2 class="p-main">이런 고민,<br>혹시 당신의 이야기인가요?</h2>
                 <div class="short-line"></div>
-                <p class="p-desc">병원 선택의 기로에서 고민하는 다양한 사용자를 인터뷰해 3명의 대표 페르소나를 도출했습니다.</p>
+                <p class="p-desc">병원 선택의 기로에서 고민하는 다양한 사용자를 인터뷰해 대표 페르소나를 도출했습니다.</p>
             </div>
 
-            <div class="persona-column">
-                <!-- 최수진: 17번 포카 (고민) -->
-                <div class="persona-row-card">
-                    <div class="persona-img-box"><img src="img/lady30.jpg" alt="최수진"></div>
-                    <div class="persona-text-box">
-                        <h3>최수진 (32세, 직장인)</h3>
-                        <p class="role">대기업 마케터 · 효율 중심 · 스마트 유저</p>
-                        <p class="quote">"오진과 헛걸음으로 인한 시간 낭비를 극도로 싫어해요. <strong>정확한 가이드</strong>가 필요합니다."</p>
-                    </div>
-                    <img src="img/poca17re.png" alt="고민하는 포카" class="persona-poca-peek">
-                </div>
-
-                <!-- 박민정: 5번 포카 (확신/OK) -->
-                <div class="persona-row-card">
-                    <div class="persona-img-box"><img src="img/woman40.jpg" alt="박민정"></div>
-                    <div class="persona-text-box">
-                        <h3>박민정 (45세, 교사)</h3>
-                        <p class="role">초등학교 교사 · 세심한 수호자 · 엄마</p>
-                        <p class="quote">"아이 증상에 실수를 줄이고 싶어요. <strong>신뢰할 수 있는 정보</strong>를 확인하고 싶습니다."</p>
-                    </div>
-                    <img src="img/poca05re.png" alt="확신을 주는 포카" class="persona-poca-peek">
-                </div>
-
-                <!-- 정태수: 23번 포카 (진심/간절) -->
-                <div class="persona-row-card">
-                    <div class="persona-img-box"><img src="img/man50.jpg" alt="정태수"></div>
-                    <div class="persona-text-box">
-                        <h3>정태수 (53세, 임원)</h3>
-                        <p class="role">대기업 임원 · 효심 깊은 아들 · 가족 케어</p>
-                        <p class="quote">"멀리 계신 부모님께 <strong>정확한 의료 가이드</strong>를 제공하고 싶은 마음이 큽니다."</p>
-                    </div>
-                    <img src="img/poca02re.png" alt="진심 어린 포카" class="persona-poca-peek">
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <!-- 실제 사용한 AI 프롬프트 섹션 -->
-    <section class="prompt-section">
-        <div class="container prompt-container">
-            <!-- 디자인이 바뀐 대화창 영역 -->
-            <div class="chat-window-new">
-                <!-- [추가] 야근하며 열일하는 14번 포카 빼꼼 배치 -->
-                <img src="img/poka14re.png" class="prompt-poca-peek" alt="작업중인 포카">
-
-                <div class="chat-header">
-                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-                    <span class="header-title">AI 협업 히스토리</span>
-                </div>
-
-                <div class="chat-content">
-                    <!-- 질문 카드 -->
-                    <div class="message user-msg">
-                        <div class="msg-label">User Prompt</div>
-                        <p>헬스케어 앱 기획 중이야. 타겟 사용자의 Pain Point 3가지를 정리해줘.</p>
-                    </div>
-
-                    <!-- 답변 카드 -->
-                    <div class="message ai-msg">
-                        <div class="msg-label ai">AI Analysis</div>
-                        <div class="ai-content">
-                            <span class="tag">기획</span>
-                            <ul>
-                                <li>① 자신의 정확한 증상을 파악하기 어려운 문제</li>
-                                <li>② 어떤 진료과를 가야 할지 판단하지 못하는 문제</li>
-                                <li>③ 과거 진료 기록을 체계적으로 관리하기 어려운 문제</li>
-                            </ul>
+            <div class="ux-dashboard-grid">
+                <!-- 페르소나 1: 마케터 김민지 -->
+                <div class="ux-card">
+                    <div class="ux-card-bg-grid"></div>
+                    <div class="ux-card-header">
+                        <div class="ux-avatar bg-mint">M</div>
+                        <div class="ux-profile">
+                            <h3>김민지 (32세)</h3>
+                            <p>대기업 마케터 · 효율 중심 · 스마트 유저</p>
                         </div>
                     </div>
 
-                    <!-- 두 번째 질문 카드 -->
-                    <div class="message user-msg">
-                        <div class="msg-label">User Prompt</div>
-                        <p>페르소나 3명 만들어줘. 이름, 나이, 직업, 한마디 인용구 포함해서.</p>
+                    <div class="ux-card-body">
+                        <div class="ux-data-block">
+                            <span class="ux-badge badge-pain">PAIN POINT</span>
+                            <p>"오진과 헛걸음으로 인한 시간 낭비를 극도로 싫어해요. 정확한 가이드가 필요합니다."</p>
+                        </div>
+                        <div class="ux-data-block">
+                            <span class="ux-badge badge-goal">USER GOALS</span>
+                            <p>빠르고 정확한 병원 및 진료과 매칭으로 아까운 시간 절약</p>
+                        </div>
+                        <div class="ux-data-block">
+                            <span class="ux-badge badge-behavior">BEHAVIOR</span>
+                            <p>객관적인 데이터와 리뷰를 꼼꼼히 비교 분석 후 의사결정</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 페르소나 2: 서비스 기획자 이준영 -->
+                <div class="ux-card">
+                    <div class="ux-card-bg-lines"></div>
+                    <div class="ux-card-header">
+                        <div class="ux-avatar bg-blue">J</div>
+                        <div class="ux-profile">
+                            <h3>이준영 (35세)</h3>
+                            <p>서비스 기획자 · 정보 신뢰성 중시 · 가족 케어</p>
+                        </div>
+                    </div>
+
+                    <div class="ux-card-body">
+                        <div class="ux-data-block">
+                            <span class="ux-badge badge-pain">PAIN POINT</span>
+                            <p>"아이 증상에 실수를 줄이고 싶어요. 신뢰할 수 있는 정보를 확인하고 싶습니다."</p>
+                        </div>
+                        <div class="ux-data-block">
+                            <span class="ux-badge badge-goal">USER GOALS</span>
+                            <p>어려운 의학 정보를 쉽게 이해하고 가족을 위해 안전한 결정</p>
+                        </div>
+                        <div class="ux-data-block">
+                            <span class="ux-badge badge-behavior">BEHAVIOR</span>
+                            <p>다양한 출처의 정보를 교차 검증하며 전문가의 확실한 의견 선호</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- 실제 사용한 AI 프롬프트 섹션 (Dark-Mode Chat Interface) -->
+    <section class="prompt-section" id="promptSection">
+        <div class="container prompt-container">
 
             <!-- 텍스트 설명 영역 -->
             <div class="prompt-text-area">
                 <span class="small-title">AI PROMPT</span>
-                <h2 class="main-title">실제로 사용한<br>AI 프롬프트</h2>
+                <h2 class="main-title">실제로 사용한<br><span style="color: #26a69a;">AI 프롬프트</span></h2>
                 <div class="line"></div>
                 <p class="desc">
                     기획 단계부터 개발, 발표 자료까지 AI와 나눈 실제 대화 예시입니다.
                     AI를 협업 파트너로 활용해 혼자서도 완성도 높은 프로젝트를 완성할 수 있었습니다.
                 </p>
             </div>
+
+            <!-- 다크 모드 대화창 영역 -->
+            <div class="chat-window-new dark-chat-ui" id="aiChatWindow">
+                <div class="chat-header">
+                    <span class="status-dot">●</span>
+                    <span class="header-title">AI Assistant (Online)</span>
+                </div>
+
+                <div class="chat-content" id="aiChatContent">
+                    <!-- 질문 카드 -->
+                    <div class="chat-bubble user-bubble" id="chatUser1" style="display: none;">
+                        <div class="msg-label">USER</div>
+                        <p class="typing-target"></p>
+                    </div>
+
+                    <!-- 답변 카드 -->
+                    <div class="chat-bubble ai-bubble" id="chatAi1" style="display: none;">
+                        <div class="msg-label ai">AI ASSISTANT</div>
+                        <div class="ai-content">
+                            <span class="tag ai-badge-blink" style="opacity: 0;">기획 분석 완료</span>
+                            <ul>
+                                <li class="ai-list-item" style="opacity: 0; transform: translateY(15px);">
+                                    <strong>1.</strong> 자신의 정확한 증상을 파악하기 어려운 문제</li>
+                                <li class="ai-list-item" style="opacity: 0; transform: translateY(15px);">
+                                    <strong>2.</strong> 어떤 진료과를 가야 할지 판단하지 못하는 문제</li>
+                                <li class="ai-list-item" style="opacity: 0; transform: translateY(15px);">
+                                    <strong>3.</strong> 과거 진료 기록을 체계적으로 관리하기 어려운 문제</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 두 번째 질문 카드 -->
+                    <div class="chat-bubble user-bubble" id="chatUser2" style="display: none;">
+                        <div class="msg-label">USER</div>
+                        <p class="typing-target"></p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
+    <!-- Chat Animation Logic -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const chatSection = document.getElementById("promptSection");
+            const chatContent = document.getElementById("aiChatContent");
+
+            const user1 = document.getElementById("chatUser1");
+            const ai1 = document.getElementById("chatAi1");
+            const user2 = document.getElementById("chatUser2");
+
+            const text1 = "헬스케어 앱 기획 중이야. 타겟 사용자의 Pain Point 3가지를 정리해줘.";
+            const text2 = "페르소나 3명 만들어줘. 이름, 나이, 직업, 한마디 인용구 포함해서.";
+
+            let animated = false;
+
+            function typeChat(element, text, speed = 40) {
+                return new Promise(resolve => {
+                    let i = 0;
+                    element.innerHTML = "";
+                    element.classList.add("typing-caret");
+                    function typeNext() {
+                        if (i < text.length) {
+                            element.innerHTML += text.charAt(i);
+                            i++;
+                            chatContent.scrollTop = chatContent.scrollHeight;
+                            setTimeout(typeNext, speed);
+                        } else {
+                            setTimeout(() => {
+                                element.classList.remove("typing-caret");
+                                resolve();
+                            }, 400);
+                        }
+                    }
+                    typeNext();
+                });
+            }
+
+            async function startChatAnimation() {
+                if (window.innerWidth <= 768) {
+                    // Mobile: static immediate display
+                    user1.style.display = "block";
+                    user1.querySelector(".typing-target").innerHTML = text1;
+                    ai1.style.display = "block";
+                    ai1.querySelector(".ai-badge-blink").style.opacity = "1";
+                    ai1.querySelectorAll(".ai-list-item").forEach(li => {
+                        li.style.opacity = "1";
+                        li.style.transform = "translateY(0)";
+                    });
+                    user2.style.display = "block";
+                    user2.querySelector(".typing-target").innerHTML = text2;
+                    return;
+                }
+
+                // Desktop Animation Sequence
+                user1.style.display = "block";
+                await typeChat(user1.querySelector(".typing-target"), text1, 40);
+
+                await new Promise(r => setTimeout(r, 400));
+
+                ai1.style.display = "block";
+                chatContent.scrollTop = chatContent.scrollHeight;
+                const badge = ai1.querySelector(".ai-badge-blink");
+                badge.style.transition = "opacity 0.4s ease";
+                badge.style.opacity = "1";
+                badge.classList.add("pulse-anim");
+
+                await new Promise(r => setTimeout(r, 500));
+
+                const listItems = ai1.querySelectorAll(".ai-list-item");
+                for (let i = 0; i < listItems.length; i++) {
+                    listItems[i].style.transition = "all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)";
+                    listItems[i].style.opacity = "1";
+                    listItems[i].style.transform = "translateY(0)";
+                    chatContent.scrollTop = chatContent.scrollHeight;
+                    await new Promise(r => setTimeout(r, 300));
+                }
+
+                await new Promise(r => setTimeout(r, 800));
+
+                user2.style.display = "block";
+                chatContent.scrollTop = chatContent.scrollHeight;
+                await typeChat(user2.querySelector(".typing-target"), text2, 40);
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !animated) {
+                    animated = true;
+                    startChatAnimation();
+                }
+            }, { threshold: 0.3 });
+
+            if (chatSection) {
+                observer.observe(chatSection);
+            }
+        });
+    </script>
 
 
 
-    <!-- 섹션 1: AI 활용 현황 -->
+
+    <!-- 섹션 1: AI 활용 현황 (Visual Infographic Timeline) -->
     <section id="ai-utilization" class="section ai-utilization-section">
         <div class="container utilization-wrapper">
-            <!-- 왼쪽: 타이틀 영역 -->
-            <div class="util-title-area">
+            <!-- 상단 중앙 타이틀 영역 -->
+            <div class="util-title-area text-center">
                 <span class="util-subtitle">AI UTILIZATION</span>
                 <h2 class="util-main-title">AI 활용 범위</h2>
-                <div class="brand-line"></div>
+                <div class="brand-line center-line"></div>
                 <p class="util-desc">
                     단순 검색을 넘어 기획부터 개발까지 AI와 협업했습니다.<br>
                     실제 프로젝트 전 단계에 활용된 도구와 목적을 정리했습니다.
                 </p>
-                <!-- (8)번 커피 포카 배치 -->
-                <div class="character-point">
-                    <img src="img/poca08re.png" alt="Work with Coffee Poca">
-                </div>
             </div>
 
-            <!-- 오른쪽: 활용 현황 테이블 -->
-            <div class="util-table-area">
-                <div class="util-table-header">
-                    <span>단계</span>
-                    <span>활용 목적</span>
-                    <span>도구</span>
-                    <span>빈도</span>
-                </div>
+            <!-- 타임라인 인포그래픽 영역 -->
+            <div class="ai-process-timeline">
+                <div class="timeline-connector"></div>
 
-                <div class="util-row">
-                    <div class="util-tag plan">기획</div>
-                    <div class="util-purpose">아이디어 구체화, 페르소나 설계,<br> 기획서 초안</div>
-                    <div class="util-tools">
-                        <span class="tool-badge">Claude</span>
-                        <span class="tool-badge">Perplexity</span>
+                <!-- 기획 단계 -->
+                <div class="process-card">
+                    <div class="card-header">
+                        <div class="step-dot">1</div>
+                        <h3 class="util-tag plan">기획</h3>
                     </div>
-                    <div class="util-frequency">
-                        <div class="freq-bar high"></div>
-                        <span class="freq-text">매일</span>
-                    </div>
-                </div>
-
-                <div class="util-row">
-                    <div class="util-tag design">디자인</div>
-                    <div class="util-purpose">UI 레이아웃 제안, 컬러 시스템,<br> 발표 자료</div>
-                    <div class="util-tools">
-                        <span class="tool-badge">Figma</span>
-                        <span class="tool-badge">Gamma</span>
-                    </div>
-                    <div class="util-frequency">
-                        <div class="freq-bar mid"></div>
-                        <span class="freq-text">자주</span>
+                    <div class="card-body">
+                        <p class="util-purpose">아이디어 구체화, 페르소나 설계, 기획서 초안</p>
+                        <div class="util-tools">
+                            <span class="tool-badge claude">Claude</span>
+                            <span class="tool-badge perplexity">Perplexity</span>
+                        </div>
+                        <div class="util-frequency">
+                            <span class="freq-label">활용 빈도:</span>
+                            <div class="freq-bar-track">
+                                <div class="freq-bar-fill gauge-fill-1"></div>
+                            </div>
+                            <span class="freq-text text-pulse-1">매일</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="util-row">
-                    <div class="util-tag dev">개발</div>
-                    <div class="util-purpose">Firebase 연동, API 설계, 오류 해결</div>
-                    <div class="util-tools">
-                        <span class="tool-badge">Claude</span>
-                        <span class="tool-badge">Copilot</span>
+                <!-- 디자인 단계 -->
+                <div class="process-card">
+                    <div class="card-header">
+                        <div class="step-dot">2</div>
+                        <h3 class="util-tag design">디자인</h3>
                     </div>
-                    <div class="util-frequency">
-                        <div class="freq-bar mid"></div>
-                        <span class="freq-text">자주</span>
+                    <div class="card-body">
+                        <p class="util-purpose">UI 레이아웃 제안, 컬러 시스템, 발표 자료</p>
+                        <div class="util-tools">
+                            <span class="tool-badge figma">Figma</span>
+                            <span class="tool-badge gamma">Gamma</span>
+                        </div>
+                        <div class="util-frequency">
+                            <span class="freq-label">활용 빈도:</span>
+                            <div class="freq-bar-track">
+                                <div class="freq-bar-fill gauge-fill-2"></div>
+                            </div>
+                            <span class="freq-text text-pulse-2">자주</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 개발 단계 -->
+                <div class="process-card">
+                    <div class="card-header">
+                        <div class="step-dot">3</div>
+                        <h3 class="util-tag dev">개발</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="util-purpose">Firebase 연동, API 설계, 오류 해결</p>
+                        <div class="util-tools">
+                            <span class="tool-badge claude">Claude</span>
+                            <span class="tool-badge copilot">Copilot</span>
+                        </div>
+                        <div class="util-frequency">
+                            <span class="freq-label">활용 빈도:</span>
+                            <div class="freq-bar-track">
+                                <div class="freq-bar-fill gauge-fill-3"></div>
+                            </div>
+                            <span class="freq-text text-pulse-3">자주</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 작업 과정 섹션 (Infinite Marquee Track) -->
+    <section id="process" class="section process-marquee-section">
+        <div class="marquee-header text-center">
+            <span class="process-subtitle">PROCESS</span>
+            <h2 class="process-main-title">4주간의 작업 과정</h2>
+            <div class="brand-line center-line"></div>
+            <div class="duration-main justify-center">
+                <span class="weeks">4 Weeks</span>
+                <span class="dates">2026.03.30 — 06.25</span>
+            </div>
+        </div>
+
+        <div class="marquee-track-container">
+            <div class="marquee-track">
+                <!-- Original Set (4 Cards) -->
+                <div class="marquee-card">
+                    <div class="week-num">01</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 01</span>
+                        <h3>기획 · 리서치</h3>
+                        <p>사용자 인터뷰, 페르소나 설정, 플로우차트 작성</p>
+                        <div class="card-tools">
+                            <span class="tool-badge notion">Notion</span>
+                            <span class="tool-badge perplexity">Perplexity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <div class="week-num">02</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 02</span>
+                        <h3>UI 디자인</h3>
+                        <p>와이어프레임, 프로토타입, 디자인 시스템 구성</p>
+                        <div class="card-tools">
+                            <span class="tool-badge figma">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <div class="week-num">03</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 03</span>
+                        <h3>개발 · 구현</h3>
+                        <p>Firebase 연동, AI 분석 API, 루틴 알림 개발</p>
+                        <div class="card-tools">
+                            <span class="tool-badge claude">Claude</span>
+                            <span class="tool-badge firebase">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <div class="week-num">04</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 04</span>
+                        <h3>테스트 · 발표</h3>
+                        <p>사용자 테스트, 버그 수정, 포트폴리오 완성</p>
+                        <div class="card-tools">
+                            <span class="tool-badge gamma">Gamma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duplicated Set for Seamless Infinite Loop -->
+                <div class="marquee-card">
+                    <div class="week-num">01</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 01</span>
+                        <h3>기획 · 리서치</h3>
+                        <p>사용자 인터뷰, 페르소나 설정, 플로우차트 작성</p>
+                        <div class="card-tools">
+                            <span class="tool-badge notion">Notion</span>
+                            <span class="tool-badge perplexity">Perplexity</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <div class="week-num">02</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 02</span>
+                        <h3>UI 디자인</h3>
+                        <p>와이어프레임, 프로토타입, 디자인 시스템 구성</p>
+                        <div class="card-tools">
+                            <span class="tool-badge figma">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <div class="week-num">03</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 03</span>
+                        <h3>개발 · 구현</h3>
+                        <p>Firebase 연동, AI 분석 API, 루틴 알림 개발</p>
+                        <div class="card-tools">
+                            <span class="tool-badge claude">Claude</span>
+                            <span class="tool-badge firebase">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="marquee-card">
+                    <div class="week-num">04</div>
+                    <div class="card-content">
+                        <span class="week-label">WEEK 04</span>
+                        <h3>테스트 · 발표</h3>
+                        <p>사용자 테스트, 버그 수정, 포트폴리오 완성</p>
+                        <div class="card-tools">
+                            <span class="tool-badge gamma">Gamma</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <!-- 섹션 2: 프로젝트 마무리 및 결론 -->
     <section class="section conclusion-section">
@@ -529,108 +969,21 @@
                     코딩이 낯선 순간에도 AI라는 든든한 파트너가 있었기에<br>
                     상상을 현실로 만드는 즐거움을 경험할 수 있었습니다.
                 </p>
-                <div class="conclusion-tags">
-                    <span class="tag-badge highlight">어디아파</span>
-                    <span class="tag-badge">AI 헬스케어</span>
-                    <span class="tag-badge">2026</span>
 
-                    <!-- (12)번 드디어 주말! 캐릭터 추가 -->
-                    <div class="ending-character">
-                        <img src="img/poca12re.png" alt="Success Poca">
-                    </div>
+                <p class="thanks-message">
+                    마지막까지 저의 헬스케어 프로젝트 여정을 함께해 주셔서 진심으로 감사드립니다. <br>
+                    기술의 한계를 AI와의 긴밀한 협업으로 극복하며, 상상을 현실로 구현하는 값진 즐거움을 배웠습니다. <br>
+                    단순히 화면을 그리는 것을 넘어, 사용자의 아픔을 먼저 공감하고 솔루션을 치열하게 고민하는 인재로 성장하겠습니다. <br>
+                    귀한 시간 내어 검토해 주셔서 감사드립니다.
+                </p>
+                <div class="signature">- 기획/개발자 민하 올림 -</div>
+
+                <div class="conclusion-tags">
+                    <span class="tag-badge animated-gauge">AI 헬스케어</span>
+                    <span class="tag-badge animated-gauge">2026</span>
                 </div>
             </div>
         </div>
-    </section>
-
-
-
-
-    <!-- 작업 과정 섹션 -->
-    <section id="process" class="section process">
-        <div class="container process-container">
-
-            <!-- 왼쪽: 작업 기간 및 사용 도구 -->
-            <div class="process-left">
-                <div class="content-box duration-box">
-                    <span class="box-label">작업 기간</span>
-                    <div class="duration-main">
-                        <span class="weeks">4 Weeks</span>
-                        <span class="dates">2025.09.01 — 09.28</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar"></div>
-                        <div class="progress-labels">
-                            <span>기획</span>
-                            <span>디자인</span>
-                            <span>개발</span>
-                            <span>발표</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tool-section">
-                    <span class="box-label">사용 도구</span>
-                    <div class="tool-grid">
-                        <div class="tool-item">
-                            <div class="tool-icon poka-icon"><img src="img/pack16re.png" alt="Figma Poka"></div>
-                            <div class="tool-info"><strong>Figma</strong><span>UI / 프로토타입</span></div>
-                        </div>
-                        <div class="tool-item">
-                            <div class="tool-icon poka-icon"><img src="img/poca17re.png" alt="Claude Poka"></div>
-                            <div class="tool-info"><strong>Claude</strong><span>기획 · 개발</span></div>
-                        </div>
-                        <div class="tool-item">
-                            <div class="tool-icon poka-icon"><img src="img/poca05re.png" alt="Firebase Poka"></div>
-                            <div class="tool-info"><strong>Firebase</strong><span>DB · 백엔드</span></div>
-                        </div>
-                        <div class="tool-item">
-                            <div class="tool-icon poka-icon"><img src="img/poka14re.png" alt="Notion Poka"></div>
-                            <div class="tool-info"><strong>Notion</strong><span>기획 · 일정</span></div>
-                        </div>
-                        <div class="tool-item">
-                            <div class="tool-icon poka-icon"><img src="img/poca02re.png" alt="Gamma Poka"></div>
-                            <div class="tool-info"><strong>Gamma</strong><span>발표 자료</span></div>
-                        </div>
-                        <div class="tool-item">
-                            <div class="tool-icon poka-icon"><img src="img/09.png" alt="Perplexity Poka"></div>
-                            <div class="tool-info"><strong>Perplexity</strong><span>시장 리서치</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 오른쪽: 주차별 상세 리스트 -->
-            <div class="process-right">
-                <span class="process-subtitle">PROCESS</span>
-                <h2 class="process-main-title">4주간의<br>작업 과정</h2>
-                <div class="orange-line"></div>
-
-                <div class="week-list">
-                    <div class="week-item">
-                        <span class="week-label">WEEK 01</span>
-                        <h3>기획 · 리서치</h3>
-                        <p>사용자 인터뷰, 페르소나 설정, 플로우차트 작성</p>
-                    </div>
-                    <div class="week-item">
-                        <span class="week-label">WEEK 02</span>
-                        <h3>UI 디자인</h3>
-                        <p>와이어프레임, 프로토타입, 디자인 시스템 구성</p>
-                    </div>
-                    <div class="week-item">
-                        <span class="week-label">WEEK 03</span>
-                        <h3>개발 · 구현</h3>
-                        <p>Firebase 연동, AI 분석 API, 루틴 알림 개발</p>
-                    </div>
-                    <div class="week-item">
-                        <span class="week-label">WEEK 04</span>
-                        <h3>테스트 · 발표</h3>
-                        <p>사용자 테스트, 버그 수정, 포트폴리오 완성</p>
-                    </div>
-                </div>
-            </div>
-
-        </div> <!-- container 끝 -->
     </section>
 
 
@@ -653,19 +1006,43 @@
                             <circle cx="50" cy="132" r="6" fill="#26a69a" />
                         </svg>
                     </span>
-                    <!-- 포카 캐릭터 추가 (23번 추천) -->
-                    <span class="poka-footer-wrapper">
-                        <img src="img/pock24re.png" alt="응원하는 포카" class="footer-poka">
+                    <span class="pulse-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#26a69a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
                     </span>
                 </span>
             </h2>
             <p class="copyright">COPYRIGHT © SHIN MIN-HA. ALL RIGHTS RESERVED. 2026</p>
             <p class="email">minha86ibo@gmail.com</p>
+            <button class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">▲ TOP</button>
         </div>
     </footer>
     <script>
+        /* ── PROBLEM SECTION: Tab ↔ Phone Screen Switcher ── */
+        (function () {
+            const tabs = document.querySelectorAll('.prob-tab');
+            const slides = document.querySelectorAll('.phone-slide');
+
+            function switchTo(tabNum) {
+                tabs.forEach(t => t.classList.remove('active'));
+                slides.forEach(s => s.classList.remove('active'));
+
+                const activeTab = document.querySelector(`.prob-tab[data-tab="${tabNum}"]`);
+                const activeSlide = document.getElementById(`slide-${tabNum}`);
+                if (activeTab) activeTab.classList.add('active');
+                if (activeSlide) activeSlide.classList.add('active');
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => switchTo(tab.dataset.tab));
+                tab.addEventListener('mouseenter', () => switchTo(tab.dataset.tab));
+            });
+        })();
+
         /* ── 타이핑 애니메이션 ── */
         const SYMPTOMS = [
+
             '두통이 심해요',
             '열이 나요',
             '기침이 멈추질 않아요',
@@ -791,41 +1168,43 @@
             });
         }
 
-        /* ── 포카 커서 팔로워 (Cursor Follower Effect) ── */
+        /* ── 의료 진단 커서 팔로워 (Cursor Follower Effect) ── */
         (function () {
-            const cursor = document.getElementById('poca-cursor');
+            const cursor = document.getElementById('medical-cursor');
             let mouseX = -200, mouseY = -200;
             let curX = -200, curY = -200;
-            const LERP = 0.13; // 부드러움 계수 (0~1, 낮을수록 더 느리게 따라옴)
+            const LERP = 0.13; // 부드러움 계수
 
-            /* 기본 커서 숨김 */
-            document.body.style.cursor = 'none';
+            /* 모바일이 아닐 때만 커서 로직 실행 */
+            if (window.innerWidth > 768) {
+                document.body.style.cursor = 'none';
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursor.style.opacity = '1';
-            });
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    if (cursor) cursor.style.opacity = '1';
+                });
 
-            document.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '0';
-            });
+                document.addEventListener('mouseleave', () => {
+                    if (cursor) cursor.style.opacity = '0';
+                });
 
-            /* 링크/버튼 위에서 약간 커지는 효과 */
-            document.querySelectorAll('a, button, [role="button"]').forEach(el => {
-                el.style.cursor = 'none';
-                el.addEventListener('mouseenter', () => cursor.classList.add('poca-hover'));
-                el.addEventListener('mouseleave', () => cursor.classList.remove('poca-hover'));
-            });
+                /* 링크/버튼 위에서 약간 커지는 효과 */
+                document.querySelectorAll('a, button, [role="button"]').forEach(el => {
+                    el.style.cursor = 'none';
+                    el.addEventListener('mouseenter', () => { if (cursor) cursor.classList.add('medical-hover'); });
+                    el.addEventListener('mouseleave', () => { if (cursor) cursor.classList.remove('medical-hover'); });
+                });
 
-            /* RAF 기반 부드러운 이동 (Lerp) */
-            function animate() {
-                curX += (mouseX - curX) * LERP;
-                curY += (mouseY - curY) * LERP;
-                cursor.style.transform = `translate(${curX}px, ${curY}px)`;
-                requestAnimationFrame(animate);
+                /* RAF 기반 부드러운 이동 (Lerp) */
+                function animate() {
+                    curX += (mouseX - curX) * LERP;
+                    curY += (mouseY - curY) * LERP;
+                    if (cursor) cursor.style.transform = `translate(${curX}px, ${curY}px)`;
+                    requestAnimationFrame(animate);
+                }
+                animate();
             }
-            animate();
         })();
         const slides = [
             { src: 'img/02. search.png', label: '01. 검색 화면' },
@@ -863,7 +1242,7 @@
         function initTypingAnimation() {
             const featureItems = document.querySelectorAll(".mockup-v2-features li");
             if (featureItems.length === 0) return;
-            
+
             // 기존 마크업에서 원본 텍스트 및 요소 정보 가져오기
             const textData = Array.from(featureItems).map(li => {
                 const strongEl = li.querySelector("strong");
@@ -892,7 +1271,7 @@
                 return new Promise((resolve) => {
                     let index = 0;
                     element.classList.add("typing-active");
-                    
+
                     function nextChar() {
                         if (index < text.length) {
                             element.innerHTML = text.slice(0, index + 1);
@@ -911,7 +1290,7 @@
             async function startTypingAnimation() {
                 for (let i = 0; i < textData.length; i++) {
                     const data = textData[i];
-                    
+
                     // A. 체크 아이콘 팝업 등장
                     data.checkEl.style.opacity = "1";
                     data.checkEl.style.transform = "scale(1)";
@@ -952,6 +1331,40 @@
         } else {
             initTypingAnimation();
         }
+
+        // ══════════════════════════════════════════════════════════
+        // 🔮 3D GYROSCOPE CARD TILT INTERACTION (Persona Cards)
+        // ══════════════════════════════════════════════════════════
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll(".ux-card");
+            if (!cards.length) return;
+
+            cards.forEach(card => {
+                card.addEventListener("mousemove", (e) => {
+                    // Disable on mobile/touch interfaces
+                    if (window.innerWidth <= 768) return;
+
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    // Calculate tilt angles (capped at approx 10-15 degrees)
+                    const rotateX = ((y - centerY) / centerY) * -12;
+                    const rotateY = ((x - centerX) / centerX) * 12;
+
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    if (window.innerWidth <= 768) return;
+                    // Reset to flat/hover state smoothly
+                    card.style.transform = `rotateX(0deg) rotateY(0deg) translateY(0)`;
+                });
+            });
+        });
     </script>
 </body>
 

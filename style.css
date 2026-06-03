@@ -14,48 +14,51 @@ body {
 }
 
 /* ══════════════════════════════════════════════════
-   🐻 포카 커서 팔로워 (Custom Cursor Follower)
-   이 효과를 "커서 팔로워(Cursor Follower Effect)" 또는
-   "커스텀 커서(Custom Cursor Effect)"라고 부릅니다.
-   마우스 위치를 Lerp(선형 보간)으로 부드럽게 추적합니다.
+   🩺 커스텀 커서 팔로워 (의료 진단 커서)
 ══════════════════════════════════════════════════ */
-#poca-cursor {
+#medical-cursor {
     position: fixed;
     top: 0;
     left: 0;
-    width: 80px;
-    height: 80px;
+    width: 75px !important;
+    height: auto !important;
     pointer-events: none;
-    /* 클릭 이벤트 방해 금지 */
     z-index: 99999;
     opacity: 0;
     transform: translate(-200px, -200px);
-    /* JS가 이동 제어 */
     transition: opacity 0.3s ease;
-    /* translate는 JS의 RAF 루프가 직접 갱신하므로 transition 제외 */
     will-change: transform;
 }
 
-#poca-cursor-img {
+#medical-cursor-img {
     width: 100%;
-    height: 100%;
-    object-fit: contain;
-    /* 배경 제거된 PNG를 위한 drop-shadow */
-    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
-    /* 귀여운 좌우 흔들기 */
-    animation: pocaCursorWiggle 1.8s ease-in-out infinite;
-    transform-origin: bottom center;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+    /* Exact offset so pointer matches click hotspot */
+    transform: translate(-10px, -10px);
+    transform-origin: top left;
 }
 
-/* 링크/버튼 호버 시: 포카가 살짝 더 커짐 */
-#poca-cursor.poca-hover {
-    width: 100px;
-    height: 100px;
+#medical-cursor.medical-hover {
+    width: 85px !important;
 }
 
-#poca-cursor.poca-hover #poca-cursor-img {
-    filter: drop-shadow(0 6px 18px rgba(38, 166, 154, 0.35));
-    animation: pocaCursorWiggleFast 0.8s ease-in-out infinite;
+/* Hide custom cursor on mobile touch devices */
+@media screen and (max-width: 768px) {
+    #medical-cursor {
+        display: none !important;
+    }
+}
+
+#medical-cursor.medical-hover #medical-cursor-img {
+    filter: drop-shadow(0 6px 18px rgba(38, 166, 154, 0.4));
+}
+
+@media screen and (max-width: 768px) {
+    #medical-cursor {
+        display: none !important;
+    }
 }
 
 @keyframes pocaCursorWiggle {
@@ -1233,141 +1236,220 @@ iphone-device {
 
 
 
-/* 페르소나 섹션 레이아웃 */
-.persona {
+/* =======================================================
+   UX RESEARCH DASHBOARD SECTION
+   ======================================================= */
+.persona-ux-section {
     background-color: #FAF9F6;
-    padding: 100px 0;
+    padding: 120px 0;
 }
 
-.persona-left-container {
+.persona-ux-container {
     max-width: 1100px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
 }
 
-.persona-footer-title {
-    margin-bottom: 40px;
+.persona-header-title {
+    margin-bottom: 50px;
     text-align: left;
 }
 
 .p-sub {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #ff8a65;
-    letter-spacing: 1px;
+    color: #26a69a;
+    letter-spacing: 1.5px;
     display: block;
 }
 
 .p-main {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     font-weight: 800;
-    line-height: 1.2;
-    margin: 10px 0;
-    color: #26A69A;
+    line-height: 1.25;
+    margin: 12px 0;
+    color: #1a1a1a;
 }
 
 .short-line {
-    width: 30px;
-    height: 3px;
-    background-color: #ff8a65;
-    margin-bottom: 8px;
+    width: 40px;
+    height: 4px;
+    background-color: #26a69a;
+    margin-bottom: 12px;
+    border-radius: 2px;
 }
 
 .p-desc {
-    color: #777;
-    font-size: 1rem;
-    margin-top: -2px;
+    color: #666;
+    font-size: 1.05rem;
     line-height: 1.6;
 }
 
-/* 카드 리스트 스타일 */
-.persona-column {
-    width: 100%;
+/* UX Dashboard Grid */
+.ux-dashboard-grid {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+    perspective: 1200px; /* 3D Perspective Context */
 }
 
-.persona-row-card {
+.ux-card {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.04);
     position: relative;
-    /* 포카 배치를 위한 기준점 */
-    background: #fff;
-    padding: 25px 40px;
-    border-radius: 30px;
+    overflow: visible; /* Changed from hidden to allow 3D floating layers */
     display: flex;
-    align-items: center;
-    gap: 30px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.02);
-    overflow: visible;
-    /* 포카가 밖으로 튀어나올 수 있게 함 */
+    flex-direction: column;
+    gap: 24px;
+    
+    /* 3D Gyroscope Transforms */
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+}
+
+.ux-card:hover {
+    box-shadow: 0 35px 60px rgba(0,0,0,0.12); /* Maximized depth shadow on hover */
+}
+
+/* Abstract Background Decorations */
+.ux-card-bg-grid {
+    position: absolute;
+    top: 0; right: 0;
+    width: 150px; height: 150px;
+    background-image: radial-gradient(#e0e0e0 1.5px, transparent 1.5px);
+    background-size: 15px 15px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+    border-bottom-left-radius: 100%;
+    /* Delay or decouple background shift for parallax */
+    transform: translateZ(5px);
     transition: transform 0.3s ease;
 }
 
-.persona-row-card:hover {
-    transform: translateY(-5px);
-}
-
-/* [추가] 페르소나 포카 캐릭터 스타일 */
-.persona-poca-peek {
+.ux-card-bg-lines {
     position: absolute;
-    width: 85px;
-    bottom: -12px;
-    /* 하단 경계선에 걸치기 */
-    right: 25px;
-    z-index: 10;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+    bottom: 0; right: 0;
+    width: 150px; height: 150px;
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(38,166,154,0.05) 10px, rgba(38,166,154,0.05) 12px);
     pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 0;
+    transform: translateZ(10px);
 }
 
-.persona-row-card:hover .persona-poca-peek {
-    transform: translateY(-8px) rotate(-3deg) scale(1.05);
+/* Card Header (Avatar + Info) */
+.ux-card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+    /* 3D Internal Parallax Lift */
+    transform: translateZ(35px);
+    transition: transform 0.3s ease;
 }
 
-.persona-img-box {
-    width: 90px;
-    height: 90px;
+.ux-avatar {
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
     flex-shrink: 0;
 }
 
-.persona-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+.bg-mint { background: #26a69a; }
+.bg-blue { background: #4a90e2; }
 
-.persona-text-box h3 {
-    font-size: 1.25rem;
-    color: #333;
+.ux-profile h3 {
+    font-size: 1.4rem;
+    color: #222;
     margin-bottom: 4px;
+    font-weight: 800;
 }
 
-.persona-text-box .role {
+.ux-profile p {
     font-size: 0.85rem;
-    color: #ff8a65;
+    color: #888;
     font-weight: 600;
-    margin-bottom: 8px;
 }
 
-.persona-text-box .quote {
-    font-size: 1rem;
-    color: #666;
+/* Card Body (Data Blocks) */
+.ux-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+    /* 3D Internal Parallax Lift */
+    transform: translateZ(35px);
+    transition: transform 0.3s ease;
+}
+
+.ux-data-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    background: #fcfcfc;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #f0f0f0;
+}
+
+.ux-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+.badge-pain { background: #fff3e0; color: #e65100; }
+.badge-goal { background: #e3f2fd; color: #1565c0; }
+.badge-behavior { background: #e8f5e9; color: #2e7d32; }
+
+.ux-data-block p {
+    font-size: 0.95rem;
+    color: #555;
     line-height: 1.5;
-    max-width: 85%;
-    /* 포카와 겹치지 않도록 텍스트 가로폭 조절 */
+    word-break: keep-all;
 }
 
-/* 섹션 배경 및 기본 레이아웃 */
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    .ux-dashboard-grid {
+        flex-direction: column;
+        gap: 40px; /* Generous vertical padding between cards */
+    }
+
+    .ux-card {
+        width: 100%;
+        box-sizing: border-box;
+        /* Mobile Touch Protection - Reset 3D */
+        transform: none !important;
+    }
+
+    .ux-card *, .ux-card-header, .ux-card-body {
+        transform: none !important;
+    }
+}
+
+/* =======================================================
+   AI PROMPT SECTION (DARK MODE CHAT UI)
+   ======================================================= */
 .prompt-section {
-    background-color: #f4f1ea;
-    padding: 100px 0;
-    overflow: visible;
-    /* 포카가 튀어나오게 설정 */
+    background-color: #FAF9F6;
+    padding: 120px 0;
+    overflow: hidden;
 }
 
 .prompt-container {
@@ -1377,185 +1459,233 @@ iphone-device {
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
-    position: relative;
 }
 
-/* 대화창 윈도우 디자인 */
-.chat-window-new {
-    flex: 1;
-    max-width: 550px;
-    background: #ffffff;
+/* 텍스트 설명 영역 (데스크탑: 좌측/우측 배치 융통성, 모바일: 상단) */
+.prompt-text-area {
+    flex: 0.8;
+}
+
+.small-title {
+    color: #26a69a;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: block;
+    letter-spacing: 1px;
+}
+
+.main-title {
+    font-size: 2.8rem;
+    color: #1a1a1a;
+    margin: 15px 0;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.line {
+    width: 50px;
+    height: 4px;
+    background: #26a69a;
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
+.desc {
+    color: #666;
+    line-height: 1.7;
+    word-break: keep-all;
+    font-size: 1.05rem;
+}
+
+/* 다크 모드 대화창 */
+.dark-chat-ui {
+    flex: 1.2;
+    background: #1e1e24; /* Dark sleek background */
     border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    border: 1px solid #e0e0e0;
-    position: relative;
-    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* 상단 윈도우 헤더 (점 3개) */
 .chat-header {
-    background: #f8f9fa;
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
+    background: #18181c;
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
 }
 
-.dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 6px;
-}
-
-.red {
-    background: #ff5f56;
-}
-
-.yellow {
-    background: #ffbd2e;
-}
-
-.green {
-    background: #27c93f;
+.status-dot {
+    color: #27c93f;
+    font-size: 1.2rem;
+    margin-right: 8px;
+    text-shadow: 0 0 8px rgba(39, 201, 63, 0.6);
 }
 
 .header-title {
-    margin-left: 10px;
-    font-size: 0.85rem;
-    color: #888;
+    font-size: 0.9rem;
+    color: #e0e0e0;
     font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
-/* 메세지 카드 내부 스타일 */
 .chat-content {
     padding: 30px;
-    max-height: 500px;
-    /* 너무 길어지면 스크롤 */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-height: 550px;
     overflow-y: auto;
 }
 
-.message {
-    margin-bottom: 25px;
-    padding: 18px;
-    border-radius: 12px;
-    position: relative;
+/* 스크롤바 커스텀 */
+.chat-content::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
 }
 
-/* 사용자 질문 (유저 프롬프트) */
-.user-msg {
-    background: #e0f2f1;
-    border-left: 5px solid #26a69a;
+/* 채팅 말풍선 기본 설정 */
+.chat-bubble {
+    padding: 18px 24px;
+    border-radius: 16px;
+    transition: transform 0.4s ease;
+    max-width: 90%;
 }
 
-/* AI 답변 (분석 내용) */
-.ai-msg {
-    background: #fdfdfd;
-    border: 1px solid #eee;
+.dark-chat-ui:hover .chat-bubble {
+    transform: translateY(-3px);
 }
 
 .msg-label {
     font-size: 0.75rem;
     font-weight: 800;
     margin-bottom: 8px;
-    color: #26a69a;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.msg-label.ai {
-    color: #555;
+/* 유저 말풍선 */
+.user-bubble {
+    align-self: flex-end;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    border-bottom-right-radius: 4px;
 }
 
-
-
-/* AI 프롬프트 섹션 레이아웃 */
-.prompt-section {
-    background-color: #f4f1ea;
-    padding: 100px 0;
+.user-bubble .msg-label {
+    color: #aaa;
+    text-align: right;
 }
 
-.prompt-container {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    justify-content: center;
-    max-width: 1200px;
-    margin: 0 auto;
+.user-bubble p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
-/* 대화창 윈도우 */
-.chat-window-new {
-    position: relative;
-    /* 포카 배치를 위한 기준 */
-    flex: 1;
-    max-width: 550px;
+/* AI 말풍선 */
+.ai-bubble {
+    align-self: flex-start;
     background: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    overflow: visible;
-    /* 포카가 경계 밖으로 빼꼼 나오도록 설정 */
-    border: 1px solid #e0e0e0;
+    color: #333;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* AI 프롬프트 섹션의 포카 캐릭터 (빼꼼) */
-.prompt-poca-peek {
-    position: absolute;
-    width: 110px;
-    top: -55px;
-    /* 대화창 위로 더 빼꼼 올라오게 조정 */
-    left: -35px;
-    /* 왼쪽으로 살짝 더 나가게 조정 */
-    z-index: 3;
-    /* 둥둥 떠있는 느낌의 애니메이션 */
-    animation: floatingPoca 3.5s infinite ease-in-out;
-}
-
-@keyframes floatingPoca {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-10px) rotate(5deg);
-    }
-}
-
-/* 헤더 및 메시지 스타일 생략 (기존 코드 유지) */
-
-/* 우측 텍스트 설명 영역 */
-.prompt-text-area {
-    flex: 0.8;
-}
-
-.small-title {
-    color: #ff5f56;
-    font-weight: 700;
-    font-size: 0.9rem;
-    display: block;
-}
-
-.main-title {
-    font-size: 3rem;
+.ai-bubble .msg-label {
     color: #26a69a;
-    margin: 15px 0;
+}
+
+.ai-content .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 4px 10px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.ai-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ai-content li {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #444;
+}
+
+.ai-content strong {
+    color: #26a69a;
     font-weight: 800;
+    margin-right: 4px;
 }
 
-.line {
-    width: 50px;
-    height: 3px;
-    background: #ff5f56;
-    /* 포인트 컬러 유지 */
-    margin-bottom: 25px;
+/* Chat Animation Utils */
+.typing-caret::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background-color: #fff;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+    animation: blink-caret 0.7s step-end infinite;
 }
 
-.desc {
-    color: #666;
-    line-height: 1.8;
-    word-break: keep-all;
+@keyframes blink-caret {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.pulse-anim {
+    animation: badge-pulse 1.5s infinite;
+}
+
+@keyframes badge-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(38, 166, 154, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(38, 166, 154, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(38, 166, 154, 0); }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    .prompt-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    /* 텍스트 설명이 위로 올라가게 설정 */
+    .prompt-text-area {
+        order: -1;
+        width: 100%;
+        text-align: center;
+    }
+
+    .line {
+        margin: 0 auto 25px auto;
+    }
+
+    .dark-chat-ui {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .chat-bubble {
+        max-width: 100%;
+    }
 }
 
 
@@ -1569,203 +1699,497 @@ iphone-device {
 
 
 
-/* 섹션 1: AI 활용 현황 상세 스타일 */
-
-/* 캐릭터 포인트 스타일 추가 */
-.character-point {
-    margin-top: 30px;
-    /* 설명글과의 간격 */
-    text-align: left;
-}
-
-.character-point img {
-    width: 180px;
-    /* 포카 캐릭터 크기 조절 */
-    height: auto;
-    /* 8번 캐릭터가 전체 시트 안에 있다면 object-fit과 clip-path로 잘라내거나, 
-       개별 파일일 경우 바로 사용합니다. */
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-.character-point img:hover {
-    transform: scale(1.05) rotate(-3deg);
-    /* 마우스 올리면 살짝 움직이는 효과 */
+/* =======================================================
+   AI UTILIZATION (INFOGRAPHIC TIMELINE)
+   ======================================================= */
+.ai-utilization-section {
+    background-color: #f8fcfb; /* Very light mint/white */
+    padding: 140px 0;
+    position: relative;
+    overflow: hidden;
 }
 
 .utilization-wrapper {
     display: flex;
-    gap: 80px;
-    /* 요소 간 간격을 넓힘 */
-    align-items: center;
-    max-width: 1300px;
-    /* 전체적인 가로 폭 확장 */
+    flex-direction: column;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .util-title-area {
-    flex: 0.7;
-}
-
-.util-table-area {
-    flex: 1.3;
-    background: #fff;
-    padding: 50px;
-    /* 내부 여백 확장 */
-    border-radius: 30px;
-    /* 라운드 크기 확장 */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    margin-bottom: 80px;
 }
 
 .util-subtitle {
-    color: #ff5f56;
+    color: #26a69a;
     font-weight: 700;
     font-size: 1.1rem;
-    /* 크기 확대 */
     letter-spacing: 2px;
 }
 
 .util-main-title {
-    font-size: 3.5rem;
-    /* 타이틀 크기 대폭 확대 */
-    margin: 20px 0;
-    color: #26a69a;
-    line-height: 1.2;
+    font-size: 3.2rem;
+    margin: 15px 0;
+    color: #1a1a1a;
+    font-weight: 800;
 }
 
-.brand-line {
+.brand-line.center-line {
+    margin: 0 auto 30px auto;
     width: 60px;
-    /* 라인 길이 확장 */
     height: 4px;
-    background: #ff5f56;
-    margin-bottom: 30px;
+    background: #26a69a;
+    border-radius: 2px;
 }
 
 .util-desc {
-    font-size: 1.2rem;
-    /* 설명 텍스트 확대 */
+    font-size: 1.15rem;
     line-height: 1.7;
-    color: #555;
+    color: #666;
 }
 
-.util-table-header {
-    display: grid;
-    grid-template-columns: 0.7fr 1.5fr 1fr 0.6fr;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #eee;
-    font-size: 1.1rem;
-    /* 헤더 폰트 확대 */
+/* Timeline Layout */
+.ai-process-timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* Horizontal Connector Line */
+.timeline-connector {
+    position: absolute;
+    top: 30px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: #e0e0e0;
+    z-index: 0;
+}
+
+/* Process Cards */
+.process-card {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 35px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.02);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.process-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.step-dot {
+    width: 40px;
+    height: 40px;
+    background: #26a69a;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    box-shadow: 0 0 0 6px #f8fcfb;
+}
+
+.util-tag {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #222;
+    margin: 0;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.util-purpose {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    word-break: keep-all;
+    min-height: 50px;
+}
+
+.util-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Elegant Pill Badges */
+.tool-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.tool-badge.claude { background: #fdf2f0; color: #d85c45; }
+.tool-badge.perplexity { background: #eef6f8; color: #008fa6; }
+.tool-badge.figma { background: #f9f0ff; color: #a259ff; }
+.tool-badge.gamma { background: #f4f4f4; color: #444; }
+.tool-badge.copilot { background: #f0f7ff; color: #1a73e8; }
+
+.util-frequency {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 15px;
+    border-top: 1px dashed #eee;
+}
+
+.freq-label {
+    font-size: 0.85rem;
     color: #888;
     font-weight: 600;
 }
 
-.util-row {
-    display: grid;
-    grid-template-columns: 0.7fr 1.5fr 1fr 0.6fr;
-    align-items: center;
-    padding: 30px 0;
-    /* 행 간격 확대 */
-    border-bottom: 1px solid #f0f0f0;
+.freq-bar {
+    flex: 1;
+    height: 6px;
+    background: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
 }
 
-.util-tag {
-    padding: 6px 16px;
-    border-radius: 25px;
-    font-size: 1rem;
-    /* 태그 폰트 확대 */
-    font-weight: 700;
+.freq-bar::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    background: #26a69a;
 }
 
-.util-purpose {
-    font-size: 1.1rem;
-    /* 내용 폰트 확대 */
-    padding-right: 15px;
-}
-
-/* 도구 박스(Badge) 색상 수정 부분 */
-.tool-badge {
-    background: #ff5f56;
-    /* 배경색 변경 */
-    color: #ffffff;
-    /* 글씨색 흰색으로 변경 */
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    /* 도구 뱃지 확대 */
-    margin-right: 5px;
-    font-weight: 500;
-    /* 흰색 글씨 가독성을 위해 두께 약간 추가 */
-}
+.freq-bar.high::after { width: 90%; }
+.freq-bar.mid::after { width: 60%; background: #4a90e2; }
 
 .freq-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #444;
 }
 
+/* Mobile Fluidity */
+@media screen and (max-width: 768px) {
+    .ai-process-timeline {
+        flex-direction: column;
+        gap: 20px;
+    }
 
+    /* Hide horizontal line on mobile */
+    .timeline-connector {
+        display: none;
+    }
 
+    .process-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
 
+    .util-purpose {
+        min-height: auto;
+    }
+}
 
-
-/* 섹션 2: 결론 상세 스타일 보완 */
-.summary-conclusion {
-    text-align: center;
-    max-width: 1000px;
-    margin: 0 auto;
+/* =======================================================
+   PROCESS (INFINITE MARQUEE TRACK)
+   ======================================================= */
+.process-marquee-section {
+    background-color: #f8fcfb;
     padding: 120px 0;
-    /* 상하 여백을 충분히 주어 마무리 느낌 강조 */
+    overflow: hidden;
 }
 
-.conclusion-tags {
-    display: inline-flex;
-    /* 버튼과 캐릭터를 가로로 정렬 */
+.marquee-header {
+    margin: 0 auto 60px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    word-break: keep-all;
+}
+
+.process-subtitle {
+    color: #ff5f56;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.process-main-title {
+    font-size: 3.5rem;
+    color: #26a69a;
+    line-height: 1.2;
+    margin: 15px 0;
+    font-weight: 800;
+}
+
+.brand-line.center-line {
+    width: 60px;
+    height: 4px;
+    background-color: #26a69a;
+    margin: 15px 0;
+}
+
+.duration-main.justify-center {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.duration-main .weeks {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #222;
+}
+
+.duration-main .dates {
+    font-size: 1.1rem;
+    color: #888;
+}
+
+.marquee-track-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0; /* space for hover shadow/lift */
+}
+
+.marquee-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollMarquee 20s linear infinite;
+}
+
+.marquee-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); } /* Shift by half width minus half gap */
+}
+
+.marquee-card {
+    width: 350px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
     position: relative;
-    /* 캐릭터 배치를 위한 기준점 */
-    padding: 0 50px;
-}
-
-.ending-character {
-    position: absolute;
-    right: -100px;
-    /* 버튼 오른쪽 여백에 배치 */
-    bottom: -10px;
-}
-
-.ending-character img {
-    width: 140px;
-    /* 캐릭터 크기 */
-    height: auto;
-    /* 12번 캐릭터 추출을 위해 object-fit 등을 활용하거나 개별 이미지 사용 */
     transition: all 0.3s ease;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+    border: 1px solid rgba(0,0,0,0.03);
 }
 
-/* 마우스 올렸을 때 더 신나게 춤추는 효과 */
-.ending-character img:hover {
-    transform: translateY(-10px) rotate(5deg);
+.marquee-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
 }
 
-/* 모바일 대응 (화면이 좁아지면 캐릭터 위치 조정) */
-@media (max-width: 768px) {
-    .ending-character {
-        position: static;
-        margin-top: 30px;
-        display: block;
+.week-num {
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(38, 166, 154, 0.15); /* Sleek premium medical mint tint */
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    line-height: 1;
+}
+
+.marquee-card .week-label {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #26a69a;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.marquee-card h3 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.marquee-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    word-break: keep-all;
+    flex-grow: 1;
+}
+
+.card-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+/* Tool Badges matching previous design */
+.card-tools .tool-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+.card-tools .notion { background: #f0f0f0; color: #333; }
+.card-tools .perplexity { background: #eef6f8; color: #008fa6; }
+.card-tools .figma { background: #f9f0ff; color: #a259ff; }
+.card-tools .claude { background: #fdf2f0; color: #d85c45; }
+.card-tools .firebase { background: #fff3e0; color: #f57c00; }
+.card-tools .gamma { background: #f4f4f4; color: #444; }
+
+/* Mobile Viewport Adaptability */
+@media screen and (max-width: 768px) {
+    .marquee-track {
+        animation: none !important;
+        transform: none !important;
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+    
+    .marquee-card {
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    .conclusion-tags {
-        display: block;
-        padding: 0;
+    /* Hide the duplicated cards on mobile to prevent redundancy */
+    .marquee-card:nth-child(n+5) {
+        display: none;
     }
 }
 
-/* 기존 스타일 유지 */
+/* =======================================================
+   OUTRO / EPILOGUE SECTION (Letter to Viewer)
+   ======================================================= */
+.summary-conclusion {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 120px 20px; /* added horizontal padding for safety */
+    box-sizing: border-box;
+}
+
 .conclusion-title {
     font-size: 3.2rem;
     color: #222;
     margin-bottom: 30px;
     line-height: 1.3;
+}
+
+.conclusion-desc {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Thank You Letter Styles */
+.thanks-message {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin: 25px 0 15px 0;
+    word-break: keep-all;
+}
+
+.signature {
+    font-size: 1rem;
+    font-style: italic;
+    color: #26a69a;
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+/* Capsule Badges container */
+.conclusion-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Tag overrides for clean minimalist look */
+.conclusion-tags .tag-badge {
+    border: 1px solid #ddd;
+    background: transparent; /* changed from #fff to transparent for gauge */
+    color: #666;
+    font-weight: 600;
+    padding: 8px 20px;
+    border-radius: 25px;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1; /* ensure text is above gauge */
+}
+
+/* Infinite Looping Green Progress Gauge */
+.conclusion-tags .tag-badge.animated-gauge::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    background: rgba(38, 166, 154, 0.2); /* Soft mint tint */
+    z-index: -1;
+    animation: progressFill 3s linear infinite;
+}
+
+@keyframes progressFill {
+    0% { width: 0%; opacity: 1; }
+    80% { width: 100%; opacity: 1; }
+    95% { width: 100%; opacity: 0; }
+    100% { width: 0%; opacity: 0; }
+}
+
+/* Mobile Adaptability */
+@media screen and (max-width: 768px) {
+    .summary-conclusion {
+        padding: 80px 20px;
+    }
+    
+    .conclusion-title {
+        font-size: 2.5rem;
+    }
+    
+    .thanks-message {
+        font-size: 1rem;
+    }
 }
 
 .conclusion-title span {
@@ -2920,4 +3344,1577 @@ html {
 @keyframes typingBlink {
     0%, 100% { opacity: 0; }
     50% { opacity: 1; }
+}
+
+/* =======================================================
+   📱 MOBILE RESPONSIVE OPTIMIZATION (MAX-WIDTH: 768px)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+  /* 1. Fluid Layout & General Padding */
+  * { box-sizing: border-box; }
+  body, html { width: 100%; overflow-x: hidden; }
+  .section, .hero { padding-left: 20px; padding-right: 20px; }
+  
+  /* 2. Typography Adjustments */
+  h1, h2 { word-break: keep-all; }
+  .hero-text h1 { font-size: 2.2rem; line-height: 1.3; }
+  .feature-main-title, .util-main-title, .process-main-title, .conclusion-title { font-size: 2.2rem; }
+  .problem-main-title { font-size: 2rem; }
+  .p-main { font-size: 2rem; }
+  
+  /* 3. Hero Section Stack */
+  .hero-wrapper { flex-direction: column; text-align: center; gap: 40px; padding-top: 100px; }
+  .hero-mockup-container { width: 100%; margin-top: 20px; transform: scale(0.9); }
+  .hero-text { margin: 0 auto; text-align: center; align-items: center; display: flex; flex-direction: column; }
+  .hero-text p { text-align: center; }
+  
+  /* 4. Problem Section */
+  .problem-container { flex-direction: column; gap: 40px; text-align: center; }
+  .problem-left .orange-line-short { margin: 20px auto; }
+  
+  /* 5. Mockup Section */
+  .mockup-v2-container { flex-direction: column; text-align: center; align-items: center; }
+  .mockup-v2-features li { justify-content: center; text-align: left; }
+  .mockup-v2-badges { justify-content: center; }
+  
+  /* 6. Feature Grids */
+  .feature-grid { grid-template-columns: 1fr; gap: 20px; }
+  .feature-card { padding: 30px; text-align: center; }
+  
+  /* 7. Persona Layout */
+  .persona-row-card { flex-direction: column; text-align: center; gap: 15px; }
+  .persona-img-box { margin: 0 auto; }
+  .persona-poca-peek { position: relative; display: block; margin: 10px auto; right: auto; bottom: auto; }
+  
+  /* 8. Prompt/Chat Section */
+  .prompt-container { flex-direction: column-reverse; gap: 40px; }
+  .prompt-text-area { text-align: center; }
+  .prompt-text-area .line { margin: 20px auto; }
+  
+  /* 9. AI Utilization Table -> Card Layout */
+  .utilization-wrapper { flex-direction: column; gap: 30px; }
+  .util-table-area { padding: 20px; border-radius: 15px; }
+  .util-table-header { display: none; /* hide headers on mobile */ }
+  .util-row { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 10px; 
+    padding: 20px 10px;
+    background: #fafafa;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+  }
+  .util-row > div { width: 100%; text-align: left; padding: 0; }
+  .util-tools { display: flex; flex-wrap: wrap; gap: 5px; }
+  
+  /* 10. Process Section */
+  .process-container { flex-direction: column; gap: 40px; }
+  .process-left, .process-right { width: 100%; }
+  
+  /* 11. Conclusion & Footer */
+  .summary-conclusion { padding: 60px 0; text-align: center; }
+  .conclusion-tags { flex-direction: column; gap: 15px; }
+  .ending-character { position: relative; margin-top: 30px; right: auto; bottom: auto; }
+  .thank-you { padding: 60px 20px; }
+  .thank-you h2 { font-size: 1.5rem; }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-text h1 { font-size: 1.8rem; }
+  .feature-main-title, .problem-main-title { font-size: 1.8rem; }
+  .mockup-v2-phones { height: 350px; }
+}
+
+/* =======================================================
+   🩺 PROBLEM SECTION — Interactive Phone Mockup Layout
+   ======================================================= */
+
+/* Section outer container */
+.problem-new-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* ── Left Column ── */
+.prob-left {
+    flex: 0 1 560px; /* Constrain max width so tabs don't overlap the phone */
+    min-width: 0;
+    margin-right: auto; /* Push phone to the right */
+}
+
+.prob-left .problem-subtitle {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #ff5f56;
+    margin-bottom: 20px;
+}
+
+.prob-left .problem-main-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #26a69a;
+    line-height: 1.3;
+    margin: 0 0 20px;
+    word-break: keep-all;
+}
+
+.prob-left .orange-line-short {
+    width: 44px;
+    height: 4px;
+    background: #ff5f56;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.prob-left .problem-desc {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.75;
+    margin-bottom: 36px;
+    word-break: keep-all;
+}
+
+/* ── Interactive Tabs ── */
+.prob-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.prob-tab {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.prob-tab:hover {
+    background: #e8f5f4;
+    border-color: #80cbc4;
+    transform: translateX(4px);
+}
+
+.prob-tab.active {
+    background: #ffffff;
+    border-color: #26a69a;
+    box-shadow: 0 6px 20px rgba(38, 166, 154, 0.15);
+    transform: translateX(6px);
+}
+
+.tab-num {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #e0e0e0;
+    min-width: 36px;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.prob-tab.active .tab-num,
+.prob-tab:hover .tab-num {
+    color: #26a69a;
+}
+
+.tab-text {
+    flex: 1;
+}
+
+.tab-text strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.tab-text p {
+    font-size: 0.82rem;
+    color: #888;
+    margin: 0;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+.tab-arrow {
+    font-size: 1.1rem;
+    color: #ccc;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.prob-tab.active .tab-arrow,
+.prob-tab:hover .tab-arrow {
+    opacity: 1;
+    color: #26a69a;
+}
+
+/* ── Right Column — Phone Mockup ── */
+.prob-right {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px; /* Safe clearing space */
+}
+
+.phone-mockup {
+    width: 280px;
+    height: 560px;
+    border-radius: 44px;
+    border: 8px solid #2a2a2a;
+    box-shadow:
+        0 30px 60px rgba(0, 0, 0, 0.2),
+        0 0 0 2px #555 inset,
+        0 8px 20px rgba(0,0,0,0.1);
+    background: #1a1a1a;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.phone-notch {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 22px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    z-index: 10;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 36px;
+    background: #f8fffe;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ── Phone Slides ── */
+.phone-slide {
+    position: absolute;
+    inset: 0;
+    padding: 50px 18px 20px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.phone-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.slide-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.slide-logo {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #26a69a;
+}
+
+.slide-ai-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fff;
+    background: #26a69a;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.slide-symptom-tag {
+    display: inline-block;
+    background: #e8f5f4;
+    color: #26a69a;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+.slide-question {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+/* Choice Cards (Tab 01 & 02) */
+.slide-choice-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.slide-choice-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 8px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.choice-a {
+    background: #e3f2fd;
+}
+
+.choice-b {
+    background: #f3e5f5;
+}
+
+.choice-icon {
+    font-size: 1.8rem;
+}
+
+.slide-choice-card strong {
+    font-size: 0.8rem;
+    color: #222;
+    display: block;
+}
+
+.slide-choice-card span {
+    font-size: 0.68rem;
+    color: #888;
+}
+
+.slide-choice-vs {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #bbb;
+}
+
+/* AI answer bar at bottom */
+.slide-ai-answer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: #888;
+    background: #f0fffe;
+    border: 1px solid #b2dfdb;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-top: auto;
+}
+
+.ai-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #26a69a;
+    animation: aiPulse 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes aiPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* History rows (Tab 03) */
+.slide-history {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.history-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.hist-date {
+    font-size: 0.68rem;
+    color: #aaa;
+    min-width: 54px;
+}
+
+.hist-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 12px;
+    flex: 1;
+    text-align: center;
+}
+
+.tag-green { background: #e8f5e9; color: #2e7d32; }
+.tag-blue  { background: #e3f2fd; color: #1565c0; }
+.tag-orange{ background: #fff3e0; color: #e65100; }
+.tag-pink  { background: #fce4ec; color: #c62828; }
+
+.hist-dept {
+    font-size: 0.68rem;
+    color: #999;
+    min-width: 44px;
+    text-align: right;
+}
+
+/* =======================================================
+   PROBLEM SECTION — MOBILE RESPONSIVE (768px and below)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    .problem-new-container {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .prob-left .problem-main-title {
+        font-size: 2rem;
+    }
+
+    .prob-tab {
+        transform: none !important;
+    }
+
+    .prob-right {
+        width: 100%;
+    }
+
+    .phone-mockup {
+        width: 240px;
+        height: 460px;
+        border-radius: 36px;
+        border-width: 6px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .prob-left .problem-main-title {
+        font-size: 1.7rem;
+    }
+
+    .phone-mockup {
+        width: 210px;
+        height: 400px;
+    }
+}
+
+/* =======================================================
+   🃏 KEY FEATURES — 3D FLIP CARD SYSTEM
+   ======================================================= */
+
+/* Grid container with perspective */
+.flip-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    perspective: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Individual flip card wrapper */
+.flip-card {
+    height: 300px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Inner — the thing that rotates */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/* Trigger flip on hover AND keyboard focus */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Shared front + back styles */
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* ── FRONT FACE ── */
+.flip-card-front {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flip-card-front .icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #f0faf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.flip-card-front .feature-number {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #26a69a;
+}
+
+.flip-card-front h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #222;
+    margin: 0;
+}
+
+.flip-card-front p {
+    font-size: 0.88rem;
+    color: #777;
+    line-height: 1.6;
+    margin: 0;
+    word-break: keep-all;
+}
+
+.flip-hint {
+    margin-top: auto;
+    font-size: 0.72rem;
+    color: #bbb;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ── BACK FACE ── */
+.flip-card-back {
+    background: linear-gradient(145deg, #f8fffe 0%, #e8f5f4 100%);
+    border: 2px solid #b2dfdb;
+    box-shadow: 0 12px 40px rgba(38, 166, 154, 0.15);
+    padding: 22px 20px;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Back header bar */
+.fb-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b2dfdb;
+}
+
+.fb-logo {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: #26a69a;
+}
+
+.fb-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    background: #26a69a;
+    color: #fff;
+    padding: 3px 9px;
+    border-radius: 20px;
+}
+
+.fb-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+/* ────────────────────────────────────
+   FEATURE 01 BACK: AI Progress Bar
+──────────────────────────────────── */
+.fb-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fb-progress-bar {
+    flex: 1;
+    height: 10px;
+    background: #daf0ee;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.fb-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #26a69a, #80cbc4);
+    border-radius: 20px;
+    /* Activates on card-back visible state */
+    .flip-card:hover & {
+        animation: fillBar 1.4s ease forwards 0.3s;
+    }
+}
+
+/* Fallback for older syntax */
+.flip-card:hover .fb-progress-fill,
+.flip-card:focus .fb-progress-fill {
+    animation: fillBar 1.4s ease forwards 0.3s;
+}
+
+@keyframes fillBar {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+.fb-progress-pct {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #26a69a;
+    min-width: 36px;
+    text-align: right;
+}
+
+.fb-status-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.fb-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #26a69a;
+    animation: aiPulse 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.fb-result-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1px solid #b2dfdb;
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-top: auto;
+    opacity: 0;
+}
+
+.flip-card:hover .fb-result-box,
+.flip-card:focus .fb-result-box {
+    animation: fadeInUp 0.5s ease forwards 1.5s;
+}
+
+.fb-result-icon { font-size: 1.1rem; }
+
+.fb-result-txt {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #26a69a;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ────────────────────────────────────
+   FEATURE 02 BACK: Ranking List
+──────────────────────────────────── */
+.fb-rank-list {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+}
+
+.fb-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #fff;
+    border-left: 4px solid transparent;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.rank-1 { border-left-color: #26a69a; }
+.rank-2 { border-left-color: #80cbc4; }
+.rank-3 { border-left-color: #b2dfdb; }
+
+.flip-card:hover .rank-1,
+.flip-card:focus .rank-1 { animation: slideRank 0.4s ease forwards 0.3s; }
+.flip-card:hover .rank-2,
+.flip-card:focus .rank-2 { animation: slideRank 0.4s ease forwards 0.55s; }
+.flip-card:hover .rank-3,
+.flip-card:focus .rank-3 { animation: slideRank 0.4s ease forwards 0.8s; }
+
+@keyframes slideRank {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.rank-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    background: #e8f5f4;
+    color: #26a69a;
+    padding: 2px 8px;
+    border-radius: 10px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.rank-name {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.rank-pct {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #26a69a;
+}
+
+/* ────────────────────────────────────
+   FEATURE 03 BACK: Bar Chart
+──────────────────────────────────── */
+.fb-chart {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.chart-grid {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    padding: 10px 0 0;
+    border-bottom: 2px solid #b2dfdb;
+    border-left: 2px solid #b2dfdb;
+    min-height: 100px;
+}
+
+.chart-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    height: 0;
+    background: linear-gradient(180deg, #26a69a, #80cbc4);
+    border-radius: 4px 4px 0 0;
+}
+
+.flip-card:hover .chart-bar,
+.flip-card:focus .chart-bar {
+    animation: growBar 0.6s ease forwards;
+    animation-delay: var(--delay, 0s);
+}
+
+@keyframes growBar {
+    from { height: 0; }
+    to   { height: var(--h, 60%); }
+}
+
+.bar-label {
+    font-size: 0.58rem;
+    color: #888;
+    margin-top: 4px;
+    white-space: nowrap;
+    position: absolute;
+    bottom: -18px;
+}
+
+.chart-bar { position: relative; }
+
+.chart-caption {
+    font-size: 0.68rem;
+    color: #999;
+    text-align: center;
+    padding-top: 4px;
+}
+
+/* ────────────────────────────────────
+   FEATURE 04 BACK: Notification
+──────────────────────────────────── */
+.fb-notification {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transform: translateY(-20px);
+    opacity: 0;
+}
+
+.flip-card:hover .fb-notification,
+.flip-card:focus .fb-notification {
+    animation: slideNotif 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.3s;
+}
+
+@keyframes slideNotif {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.notif-bar {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px;
+}
+
+.notif-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.notif-body strong {
+    font-size: 0.78rem;
+    color: #26a69a;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.notif-body p {
+    font-size: 0.75rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
+    word-break: keep-all;
+}
+
+.fb-notif-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
+}
+
+.notif-sub-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #777;
+    background: #fff;
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 1px solid #e0f0ee;
+}
+
+.notif-sub-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    background: #e8f5f4;
+    color: #26a69a;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* =======================================================
+   FLIP CARD — MOBILE RESPONSIVE (768px and below)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    .flip-card-grid {
+        grid-template-columns: 1fr;
+        perspective: none;
+        gap: 20px;
+    }
+
+    .flip-card {
+        height: auto;
+    }
+
+    /* On mobile: disable 3D flip, stack front + back vertically */
+    .flip-card-inner {
+        transform: none !important;
+        transform-style: flat;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        position: static;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+        transform: none !important;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .flip-card-front {
+        border-radius: 20px 20px 0 0;
+        border-bottom: none;
+    }
+
+    .flip-card-back {
+        border-radius: 0 0 20px 20px;
+        border-top: none;
+    }
+
+    .flip-hint { display: none; }
+
+    /* Trigger animations on mobile (no hover) */
+    .fb-progress-fill { animation: fillBar 1.4s ease forwards 0.3s; }
+    .fb-result-box    { animation: fadeInUp 0.5s ease forwards 1.5s; }
+    .rank-1           { animation: slideRank 0.4s ease forwards 0.3s; }
+    .rank-2           { animation: slideRank 0.4s ease forwards 0.55s; }
+    .rank-3           { animation: slideRank 0.4s ease forwards 0.8s; }
+    .chart-bar        { animation: growBar 0.6s ease forwards; animation-delay: var(--delay, 0s); }
+    .fb-notification  { animation: slideNotif 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 0.3s; }
+}
+
+/* =======================================================
+   KEY FEATURES — Section Layout & Typography
+   ======================================================= */
+
+/* Section overall layout: title left, cards right */
+.key-features {
+    background: #fafaf9;
+}
+
+.feature-container {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* ── Left: Title Column ── */
+.feature-title-area {
+    flex: 0 0 260px;
+    position: sticky;
+    top: 120px;   /* stays visible while scrolling past the cards */
+}
+
+.feature-subtitle {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #26a69a;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+/* Clean horizontal title — no vertical letter stacking */
+.feature-main-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #222;
+    line-height: 1.25;
+    margin: 0 0 16px;
+    word-break: keep-all;    /* prevents single-letter wrap in Korean */
+    white-space: normal;     /* never force nowrap */
+    writing-mode: horizontal-tb;   /* ensure horizontal rendering */
+}
+
+/* Concise subtitle description */
+.feature-desc-short {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #666;
+    margin-top: 15px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+
+/* ── Right: Flip Card Grid expands ── */
+.flip-card-grid {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =======================================================
+   KEY FEATURES — MOBILE RESPONSIVE (768px and below)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    .feature-container {
+        flex-direction: column;
+        gap: 36px;
+        padding: 0 20px;
+    }
+
+    .feature-title-area {
+        flex: none;
+        width: 100%;
+        position: static;   /* remove sticky on mobile */
+        text-align: center;
+    }
+
+    .feature-main-title {
+        font-size: 1.75rem;
+    }
+
+    .feature-desc-short {
+        font-size: 0.95rem;
+        margin-top: 10px;
+    }
+
+    .flip-card-grid {
+        width: 100%;
+    }
+}
+
+/* =======================================================
+   📱 MAIN SCREENS — Parallax Phone Showcase
+   ======================================================= */
+
+.mockup-parallax-section {
+    background: linear-gradient(160deg, #f0faf8 0%, #ffffff 60%, #f5f5f0 100%);
+    overflow: hidden;
+}
+
+/* ── Outer container: two-column flex ── */
+.mockup-parallax-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+    min-height: 640px;
+}
+
+/* ── LEFT: Sticky text column ── */
+.mockup-sticky-text {
+    flex: 0 0 380px;
+    position: sticky;
+    top: 15%;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+/* Re-use existing eyebrow / title / accent / divider / desc classes */
+.mockup-v2-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #26a69a;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+.mockup-v2-title {
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: #222;
+    margin: 0 0 16px;
+}
+
+.mockup-v2-accent {
+    color: #26a69a;
+}
+
+.mockup-v2-divider {
+    width: 40px;
+    height: 4px;
+    background: #26a69a;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.mockup-v2-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 28px;
+    word-break: keep-all;
+}
+
+/* ── Checklist with hover glow ── */
+.mockup-v2-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.feat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1.5px solid transparent;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.feat-item:hover,
+.feat-item.active {
+    background: #e8f5f4;
+    border-color: #80cbc4;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.1);
+}
+
+.feat-item:hover .feat-check,
+.feat-item.active .feat-check {
+    background: #26a69a;
+    color: #fff;
+    box-shadow: 0 0 12px rgba(38, 166, 154, 0.5);
+}
+
+.feat-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e8f5f4;
+    color: #26a69a;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.feat-item div strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 2px;
+}
+
+.feat-item div span {
+    font-size: 0.82rem;
+    color: #888;
+}
+
+/* ── Badges ── */
+.mockup-v2-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mv2-badge {
+    padding: 8px 20px;
+    border-radius: 24px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border: 2px solid #ccc;
+    color: #555;
+    background: #fff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.mv2-badge:hover {
+    border-color: #26a69a;
+    color: #26a69a;
+}
+
+.mv2-badge.accent {
+    background: #26a69a;
+    border-color: #26a69a;
+    color: #fff;
+}
+
+.mv2-badge.accent:hover {
+    background: #1e8e83;
+    border-color: #1e8e83;
+}
+
+/* ── RIGHT: Phone parallax container ── */
+/* ── RIGHT: Deconstructed Layer UI Showcase ── */
+.deconstructed-ui-container {
+    flex: 1;
+    position: relative;
+    height: 600px;
+    min-width: 0;
+    perspective: 1000px;
+}
+
+/* Layer Base */
+.ui-layer {
+    position: absolute;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.6s ease;
+    box-sizing: border-box;
+}
+
+.ui-layer img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Back Layer */
+.layer-back {
+    width: 260px;
+    top: 60px;
+    left: 10%;
+    z-index: 1;
+    transform: rotateY(-15deg) rotateX(5deg) scale(0.9);
+}
+
+/* Front Layer */
+.layer-front {
+    width: 290px;
+    top: 0;
+    right: 5%;
+    z-index: 2;
+    transform: rotateY(-5deg) rotateX(2deg);
+}
+
+/* Hover Effects on Container */
+.mockup-parallax-container:hover .layer-front {
+    transform: translateY(-30px) translateX(20px) scale(1.05) rotateY(0deg) rotateX(0deg);
+    box-shadow: 0 45px 80px rgba(0,0,0,0.15);
+}
+
+.mockup-parallax-container:hover .layer-back {
+    transform: translateY(20px) translateX(-20px) scale(0.85) rotateY(-20deg) rotateX(10deg);
+    filter: brightness(0.9);
+}
+
+/* =======================================================
+   MAIN SCREENS — MOBILE RESPONSIVE (768px and below)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    .mockup-parallax-container {
+        flex-direction: column;
+        gap: 40px;
+        padding: 60px 20px 20px 20px; /* Generous top padding to clear overlaps */
+        min-height: auto;
+        align-items: center;
+        clear: both;
+    }
+
+    .mockup-sticky-text {
+        flex: none;
+        width: 100%;
+        position: static;   /* disable sticky */
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .mockup-v2-title {
+        font-size: 2rem;
+    }
+
+    .mockup-v2-features {
+        text-align: left;
+    }
+
+    .mockup-v2-badges {
+        justify-content: center;
+    }
+
+    /* Stack deconstructed layers on mobile */
+    .deconstructed-ui-container {
+        width: 100%;
+        height: auto;
+        perspective: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding-bottom: 20px;
+    }
+
+    .ui-layer {
+        position: static;
+        width: 85%;
+        max-width: 100%;
+        transform: none !important;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        border-radius: 16px;
+    }
+
+    /* Disable hover effects on touch devices */
+    .mockup-parallax-container:hover .layer-front,
+    .mockup-parallax-container:hover .layer-back {
+        transform: none;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        filter: none;
+    }
+}
+
+/* ── Header Mobile Button Base ── */
+.mobile-menu-btn {
+    display: none;
+}
+
+/* =======================================================
+   HEADER & HERO — MOBILE RESPONSIVE (768px and below)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    /* Navbar */
+    .nav-menu {
+        display: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #26a69a;
+        line-height: 1;
+        margin-left: auto;
+    }
+
+    /* Hero Wrapper */
+    .hero {
+        padding: 100px 0 60px 0;
+    }
+
+    .hero-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 60px;
+    }
+
+    .hero-text {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+    }
+
+    .hero-text h1 {
+        font-size: 2.5rem;
+        word-break: keep-all;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+
+    /* Mockup Container */
+    .hero-mockup-container {
+        height: auto;
+        min-height: 520px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        position: relative;
+        margin-top: 20px;
+        z-index: 1;
+    }
+
+    /* Reset absolute overlap constraints */
+    .iphone-frame {
+        position: absolute;
+        width: 230px;
+        height: 480px;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    .phone-left {
+        z-index: 2;
+        left: 50%;
+        transform: translateX(-50%) !important;
+        top: 0;
+    }
+
+    .phone-right {
+        z-index: 1;
+        left: 50%;
+        transform: translateX(-35%) translateY(40px) scale(0.9) !important;
+        top: 0;
+    }
+}
+
+/* =======================================================
+   KEY FEATURES - HEADING STYLES
+   ======================================================= */
+.feature-main-title {
+    font-size: 3rem;
+    color: #222; /* Deep charcoal/black */
+    line-height: 1.3;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.feature-accent {
+    color: #26a69a; /* Premium medical mint/green */
+}
+
+.feature-syllable {
+    position: relative;
+    display: inline-block;
+}
+
+.feature-syllable::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Position directly underneath */
+    width: 100%;
+    height: 6px; /* Thick horizontal line */
+    background-color: #26a69a; /* Matching green tint */
+    border-radius: 4px; /* Rounded ends */
+}
+
+@media screen and (max-width: 768px) {
+    .feature-main-title {
+        font-size: 2.2rem;
+        word-break: keep-all; /* Prevent awkward word breaks */
+    }
+}
+
+/* =======================================================
+   AI UTILIZATION - FREQUENCY GAUGE ANIMATIONS
+   ======================================================= */
+.util-frequency {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.freq-label {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.freq-bar-track {
+    flex-grow: 1;
+    height: 6px;
+    background-color: #eaeaea; /* Gray placeholder track */
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.freq-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    width: 0%; /* Default start */
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+/* Card 1: 매일 (Mint Green) */
+.gauge-fill-1 {
+    background-color: #26a69a;
+    animation: fillGaugeMax 2.5s infinite alternate ease-in-out;
+}
+
+/* Card 2 & 3: 자주 (Blue tint) */
+.gauge-fill-2, .gauge-fill-3 {
+    background-color: #4a90e2; 
+    animation: fillGaugeMid 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes fillGaugeMax {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+@keyframes fillGaugeMid {
+    0% { width: 0%; }
+    100% { width: 65%; } /* Maxes out at 65% for '자주' */
+}
+
+/* Text Pulses Synchronized */
+.freq-text {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #444;
+    white-space: nowrap;
+}
+
+.text-pulse-1, .text-pulse-2, .text-pulse-3 {
+    animation: textPulse 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes textPulse {
+    0% { opacity: 0.4; transform: scale(0.95); color: #888; }
+    100% { opacity: 1; transform: scale(1); color: #222; }
+}
+
+@media screen and (max-width: 768px) {
+    .util-frequency {
+        box-sizing: border-box;
+    }
 }
