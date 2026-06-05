@@ -352,6 +352,10 @@ button,
     gap: 40px;
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    padding: 0 24px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .hero-text {
@@ -391,7 +395,8 @@ button,
 
 /* 아이폰 목업 컨테이너 및 애니메이션 */
 .hero-mockup-container {
-    flex: 1;
+    flex: none;
+    width: 400px;
     position: relative;
     height: 550px;
     display: flex;
@@ -3434,7 +3439,7 @@ html {
 /* Section outer container */
 .problem-new-container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 60px;
     max-width: 1200px;
     margin: 0 auto;
@@ -3569,7 +3574,7 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-bottom: 40px; /* Safe clearing space */
+    padding-bottom: 0; /* Safe clearing space removed for baseline alignment */
 }
 
 .phone-mockup {
@@ -3799,6 +3804,7 @@ html {
 @media screen and (max-width: 768px) {
     .problem-new-container {
         flex-direction: column;
+        align-items: center;
         gap: 40px;
         padding: 0 20px;
     }

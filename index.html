@@ -7,6 +7,7 @@
     <title>어디아파? - AI 기반 병원 진료과 추천 서비스</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -197,13 +198,15 @@
                             <p class="slide-question">어느 병원을 가야 할까요?</p>
                             <div class="slide-choice-row">
                                 <div class="slide-choice-card choice-a">
-                                    <div class="choice-icon">🦴</div>
+                                    <div class="choice-icon"><i class="fa-solid fa-bone"
+                                            style="color: #1976d2; font-size: 24px; margin-bottom: 8px;"></i></div>
                                     <strong>정형외과</strong>
                                     <span>뼈·관절 전문</span>
                                 </div>
                                 <div class="slide-choice-vs">vs</div>
                                 <div class="slide-choice-card choice-b">
-                                    <div class="choice-icon">🌿</div>
+                                    <div class="choice-icon"><i class="fa-solid fa-leaf"
+                                            style="color: #2e7d32; font-size: 24px; margin-bottom: 8px;"></i></div>
                                     <strong>한의원</strong>
                                     <span>침·한방 치료</span>
                                 </div>
@@ -298,7 +301,7 @@
                     갑작스러운 통증이나 증상으로 당황하셨나요? '어디아파'는 AI 기반의 정밀한 증상 분석을 통해 가장 적합한 진료과를 추천하고, 내 주변의 신뢰할 수 있는 병원 매칭부터 예약까지 한
                     번에 해결해 드립니다.
                 </p>
-                <a href="https://eodi-kpxwu0bia-minha86ibo-progs-projects.vercel.app/" target="_blank" class="secondary-cta-btn">
+                <a href="https://eodi-apa.vercel.app/" target="_blank" class="secondary-cta-btn">
                     베타버전 시연하기 ↗
                 </a>
             </div>
@@ -510,57 +513,334 @@
                 <p class="p-desc">병원 선택의 기로에서 고민하는 다양한 사용자를 인터뷰해 대표 페르소나를 도출했습니다.</p>
             </div>
 
-            <div class="ux-dashboard-grid">
-                <!-- 페르소나 1: 마케터 김민지 -->
-                <div class="ux-card">
-                    <div class="ux-card-bg-grid"></div>
-                    <div class="ux-card-header">
-                        <div class="ux-avatar bg-mint">M</div>
-                        <div class="ux-profile">
-                            <h3>김민지 (32세)</h3>
-                            <p>대기업 마케터 · 효율 중심 · 스마트 유저</p>
-                        </div>
-                    </div>
+            <style>
+                .ux-dashboard-grid-v2 {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 20px;
+                    width: 100%;
+                    margin-top: 40px;
+                }
 
-                    <div class="ux-card-body">
-                        <div class="ux-data-block">
-                            <span class="ux-badge badge-pain">PAIN POINT</span>
-                            <p>"오진과 헛걸음으로 인한 시간 낭비를 극도로 싫어해요. 정확한 가이드가 필요합니다."</p>
+                @media screen and (max-width: 992px) {
+                    .ux-dashboard-grid-v2 {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                }
+
+                @media screen and (max-width: 768px) {
+                    .ux-dashboard-grid-v2 {
+                        grid-template-columns: 1fr;
+                    }
+                }
+
+                .ux-card-v2 {
+                    background-color: transparent;
+                    perspective: 1200px;
+                    cursor: pointer;
+                    height: 480px;
+                    border-radius: 20px;
+                }
+
+                .ux-card-v2-inner {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    text-align: center;
+                    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    transform-style: preserve-3d;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+                }
+
+                .ux-card-v2.is-flipped .ux-card-v2-inner {
+                    transform: rotateY(180deg);
+                }
+
+                .ux-card-v2-front,
+                .ux-card-v2-back {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    backface-visibility: hidden;
+                    -webkit-backface-visibility: hidden;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    box-sizing: border-box;
+                }
+
+                /* Front Styling */
+                .ux-card-v2-front {
+                    background-color: #fff;
+                    border: 1px solid #f0f0f0;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding: 0;
+                }
+
+                .ux-card-v2-front .ux-avatar {
+                    width: 100%;
+                    height: 280px;
+                    border-radius: 20px 20px 0 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 48px;
+                    color: white;
+                    overflow: hidden;
+                    margin-bottom: 25px;
+                }
+
+                .ux-card-v2-front .ux-avatar img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .ux-card-v2-front h3 {
+                    font-size: 1.4rem;
+                    font-weight: 800;
+                    color: #222;
+                    margin-bottom: 8px;
+                }
+
+                .ux-card-v2-front .job-title {
+                    font-size: 0.95rem;
+                    color: #666;
+                    font-weight: 500;
+                    margin-bottom: 20px;
+                }
+
+                .hover-summary {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    background: linear-gradient(to top, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0.9) 70%, transparent);
+                    padding: 30px 20px 20px;
+                    box-sizing: border-box;
+                    transform: translateY(100%);
+                    opacity: 0;
+                    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    border-radius: 0 0 20px 20px;
+                }
+
+                .ux-card-v2-front:hover .hover-summary {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+
+                .hover-summary p {
+                    font-size: 0.95rem;
+                    color: #333;
+                    font-weight: 700;
+                    line-height: 1.4;
+                    margin-bottom: 12px;
+                }
+
+                .click-hint {
+                    display: inline-block;
+                    font-size: 0.8rem;
+                    color: #26a69a;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+
+                /* Back Styling (Solid Border, White Inside) */
+                .ux-card-v2-back {
+                    transform: rotateY(180deg);
+                    padding: 12px;
+                    background: #fff;
+                }
+
+                .bg-mint-border {
+                    border: 10px solid #138877;
+                }
+
+                .bg-blue-border {
+                    border: 10px solid #4a7ab5;
+                }
+
+                .bg-orange-border {
+                    border: 10px solid #ef8e13;
+                }
+
+                .back-inner-container {
+                    background: #fff;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 8px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: stretch;
+                    gap: 12px;
+                    padding: 10px;
+                    box-sizing: border-box;
+                }
+
+                .back-title-bar {
+                    text-align: center;
+                    margin-bottom: 5px;
+                    font-weight: 800;
+                    font-size: 0.95rem;
+                    color: #222;
+                    border-bottom: 1px solid #eee;
+                    padding-bottom: 10px;
+                }
+
+                .ux-card-v2-back .ux-data-block {
+                    background: #fff;
+                    border-radius: 8px;
+                    padding: 14px;
+                    margin: 0;
+                    text-align: left;
+                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+                    border: 1px solid #f6f6f6;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .ux-card-v2-back .ux-badge {
+                    display: inline-block;
+                    padding: 4px 10px;
+                    font-size: 0.72rem;
+                    border-radius: 4px;
+                    font-weight: 800;
+                    margin-bottom: 8px;
+                    letter-spacing: 0.5px;
+                }
+
+                .ux-card-v2-back p {
+                    font-size: 0.85rem;
+                    line-height: 1.45;
+                    color: #555;
+                    font-weight: 500;
+                    word-break: keep-all;
+                    margin: 0;
+                }
+            </style>
+
+            <div class="ux-dashboard-grid-v2">
+                <!-- 페르소나 1: 마케터 김민지 -->
+                <div class="ux-card-v2" onclick="this.classList.toggle('is-flipped')">
+                    <div class="ux-card-v2-inner">
+                        <!-- FRONT -->
+                        <div class="ux-card-v2-front">
+                            <div class="ux-avatar" style="background-color: transparent;">
+                                <img src="img/avatar-minji.png" alt="김민지 마케터"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>김민지 (32세)</h3>
+                            <p class="job-title">대기업 마케터 · 효율 중심</p>
+
+                            <div class="hover-summary">
+                                <p>정확한 매칭 가이드로<br>아까운 시간 낭비를 막고 싶어요.</p>
+                                <span class="click-hint">클릭해서 상세 보기 ↗</span>
+                            </div>
                         </div>
-                        <div class="ux-data-block">
-                            <span class="ux-badge badge-goal">USER GOALS</span>
-                            <p>빠르고 정확한 병원 및 진료과 매칭으로 아까운 시간 절약</p>
-                        </div>
-                        <div class="ux-data-block">
-                            <span class="ux-badge badge-behavior">BEHAVIOR</span>
-                            <p>객관적인 데이터와 리뷰를 꼼꼼히 비교 분석 후 의사결정</p>
+                        <!-- BACK -->
+                        <div class="ux-card-v2-back bg-mint-border">
+                            <div class="back-inner-container">
+                                <div class="back-title-bar">김민지 (32세) / 대기업 마케터</div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-pain" style="color: #138877; background: #e2f2ef;">PAIN
+                                        POINT</span>
+                                    <p>"오진과 헛걸음으로 인한 시간 낭비를 극도로 싫어해요. 정확한 가이드가 필요합니다."</p>
+                                </div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-goal" style="color: #138877; background: #e2f2ef;">USER
+                                        GOALS</span>
+                                    <p>빠르고 정확한 병원 및 진료과 매칭으로 아까운 시간 절약</p>
+                                </div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-behavior"
+                                        style="color: #138877; background: #e2f2ef;">BEHAVIOR</span>
+                                    <p>객관적인 데이터와 리뷰를 꼼꼼히 비교<br>분석 후 의사결정</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 페르소나 2: 서비스 기획자 이준영 -->
-                <div class="ux-card">
-                    <div class="ux-card-bg-lines"></div>
-                    <div class="ux-card-header">
-                        <div class="ux-avatar bg-blue">J</div>
-                        <div class="ux-profile">
+                <div class="ux-card-v2" onclick="this.classList.toggle('is-flipped')">
+                    <div class="ux-card-v2-inner">
+                        <div class="ux-card-v2-front">
+                            <div class="ux-avatar" style="background-color: transparent;">
+                                <img src="img/avatar-junyoung.png" alt="이준영 기획자"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
                             <h3>이준영 (35세)</h3>
-                            <p>서비스 기획자 · 정보 신뢰성 중시 · 가족 케어</p>
+                            <p class="job-title">서비스 기획자 · 가족 케어</p>
+
+                            <div class="hover-summary">
+                                <p>아이 증상에 실수를 줄이고<br>신뢰할 수 있는 정보를 원해요.</p>
+                                <span class="click-hint">클릭해서 상세 보기 ↗</span>
+                            </div>
+                        </div>
+                        <div class="ux-card-v2-back bg-blue-border">
+                            <div class="back-inner-container">
+                                <div class="back-title-bar">이준영 (35세) / 서비스 기획자</div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-pain" style="color: #4a7ab5; background: #e6f0fa;">PAIN
+                                        POINT</span>
+                                    <p>"아이 증상에 실수를 줄이고 싶어요.<br> 신뢰할 수 있는 정보를 확인하고 싶습니다."</p>
+                                </div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-goal" style="color: #4a7ab5; background: #e6f0fa;">USER
+                                        GOALS</span>
+                                    <p>어려운 의학 정보를 쉽게 이해하고<br>가족을 위해 안전한 결정</p>
+                                </div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-behavior"
+                                        style="color: #4a7ab5; background: #e6f0fa;">BEHAVIOR</span>
+                                    <p>다양한 출처의 정보를 교차 검증하며 전문가의 확실한 의견 선호</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="ux-card-body">
-                        <div class="ux-data-block">
-                            <span class="ux-badge badge-pain">PAIN POINT</span>
-                            <p>"아이 증상에 실수를 줄이고 싶어요. 신뢰할 수 있는 정보를 확인하고 싶습니다."</p>
+                <!-- 페르소나 3: 대기업 팀장 박현우 -->
+                <div class="ux-card-v2" onclick="this.classList.toggle('is-flipped')">
+                    <div class="ux-card-v2-inner">
+                        <div class="ux-card-v2-front">
+                            <div class="ux-avatar" style="background-color: transparent;">
+                                <img src="img/avatar-hyunwoo.png" alt="박현우 팀장"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>박현우 (41세)</h3>
+                            <p class="job-title">대기업 팀장 · 노부모 케어</p>
+
+                            <div class="hover-summary">
+                                <p>70대 부모님의 복합적인 증상에 맞는<br>전문 진료과 매칭이 절실해요.</p>
+                                <span class="click-hint">클릭해서 상세 보기 ↗</span>
+                            </div>
                         </div>
-                        <div class="ux-data-block">
-                            <span class="ux-badge badge-goal">USER GOALS</span>
-                            <p>어려운 의학 정보를 쉽게 이해하고 가족을 위해 안전한 결정</p>
-                        </div>
-                        <div class="ux-data-block">
-                            <span class="ux-badge badge-behavior">BEHAVIOR</span>
-                            <p>다양한 출처의 정보를 교차 검증하며 전문가의 확실한 의견 선호</p>
+                        <div class="ux-card-v2-back bg-orange-border">
+                            <div class="back-inner-container">
+                                <div class="back-title-bar">박현우 (41세) / 대기업 팀장</div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-pain" style="color: #ef8e13; background: #fdf3e7;">PAIN
+                                        POINT</span>
+                                    <p>"70대 노부모님의 과거 수술/진료 기록이 기억나지 않아 위급 상황 시 매번 당황합니다."</p>
+                                </div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-goal" style="color: #ef8e13; background: #fdf3e7;">USER
+                                        GOALS</span>
+                                    <p>부모님의 과거 의료 기록 통합 및 맞춤형 전문 진료과 매칭</p>
+                                </div>
+                                <div class="ux-data-block">
+                                    <span class="ux-badge badge-behavior"
+                                        style="color: #ef8e13; background: #fdf3e7;">BEHAVIOR</span>
+                                    <p>부모님의 메디컬 히스토리를 주기적으로 확인하며 직관적인 UI 선호</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -582,7 +862,7 @@
                 <div class="line"></div>
                 <p class="desc">
                     기획 단계부터 개발, 발표 자료까지 AI와 나눈 실제 대화 예시입니다.
-                    AI를 협업 파트너로 활용해 혼자서도 완성도 높은 프로젝트를 완성할 수 있었습니다.
+                    AI를 협업 파트너로 활용해 혼자서도 완성도<br> 높은 프로젝트를 완성할 수 있었습니다.
                 </p>
             </div>
 
@@ -821,13 +1101,18 @@
 
     <!-- 작업 과정 섹션 (Infinite Marquee Track) -->
     <section id="process" class="section process-marquee-section">
-        <div class="marquee-header text-center">
-            <span class="process-subtitle">PROCESS</span>
-            <h2 class="process-main-title">4주간의 작업 과정</h2>
-            <div class="brand-line center-line"></div>
-            <div class="duration-main justify-center">
-                <span class="weeks">4 Weeks</span>
-                <span class="dates">2026.03.30 — 06.25</span>
+        <div class="container">
+            <div class="marquee-header"
+                style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding-left: 0;">
+                <span class="process-subtitle">PROCESS</span>
+                <h2 class="process-main-title">4주간의 작업 과정</h2>
+                <div class="brand-line" style="margin: 20px 0;"></div>
+                <div class="duration-main"
+                    style="display: flex; justify-content: flex-start; align-items: center; gap: 12px; margin-top: 20px;">
+                    <span class="weeks" style="font-size: 1.5rem; font-weight: 800; color: #222;">4 Weeks</span>
+                    <span class="dates" style="font-size: 1rem; color: #888; font-weight: 500;">2026.03.30 —
+                        06.25</span>
+                </div>
             </div>
         </div>
 
@@ -934,28 +1219,165 @@
 
     <!-- 섹션 2: 프로젝트 마무리 및 결론 -->
     <section class="section conclusion-section">
-        <div class="container">
-            <div class="summary-conclusion">
-                <h3 class="conclusion-title">
-                    AI 바이브 코딩으로<br>
-                    <span>나만의 헬스케어 앱을 완성하다</span>
-                </h3>
-                <p class="conclusion-desc">
-                    코딩이 낯선 순간에도 AI라는 든든한 파트너가 있었기에<br>
-                    상상을 현실로 만드는 즐거움을 경험할 수 있었습니다.
-                </p>
+        <style>
+            .conclusion-split {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                justify-content: space-between;
+                gap: 40px;
+                margin: 0 auto 50px;
+                text-align: left;
+                width: 100%;
+                max-width: 1200px;
+            }
 
-                <p class="thanks-message">
-                    마지막까지 저의 헬스케어 프로젝트 여정을 함께해 주셔서 진심으로 감사드립니다. <br>
-                    기술의 한계를 AI와의 긴밀한 협업으로 극복하며, 상상을 현실로 구현하는 값진 즐거움을 배웠습니다. <br>
-                    단순히 화면을 그리는 것을 넘어, 사용자의 아픔을 먼저 공감하고 솔루션을 치열하게 고민하는 인재로 성장하겠습니다. <br>
-                    귀한 시간 내어 검토해 주셔서 감사드립니다.
-                </p>
-                <div class="signature">- 기획/개발자 민하 올림 -</div>
+            .conclusion-text-col {
+                width: calc(55% - 20px);
+                min-width: 320px;
+            }
 
-                <div class="conclusion-tags">
-                    <span class="tag-badge animated-gauge">AI 헬스케어</span>
-                    <span class="tag-badge animated-gauge">2026</span>
+            .conclusion-img-col {
+                width: calc(45% - 20px);
+                display: flex;
+                justify-content: flex-end;
+            }
+
+            .conclusion-split .conclusion-title {
+                font-size: 2.2rem;
+                font-weight: 800;
+                color: #222;
+                margin-bottom: 24px;
+                line-height: 1.4;
+                text-align: left;
+                letter-spacing: -0.5px;
+            }
+
+            .conclusion-split .conclusion-title span {
+                color: #26a69a;
+            }
+
+            .conclusion-split .conclusion-desc {
+                font-size: 1.15rem;
+                line-height: 1.7;
+                color: #555;
+                margin-bottom: 24px;
+                word-break: keep-all;
+                font-weight: 500;
+            }
+
+            .conclusion-split .conclusion-sign {
+                font-size: 1rem;
+                font-weight: 700;
+                color: #138877;
+                font-style: normal;
+                margin-top: 10px;
+            }
+
+            .conclusion-tags-wrapper {
+                text-align: left;
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                gap: 12px;
+            }
+
+            @keyframes boxPulse {
+                0% {
+                    background-position: 100% 0;
+                    color: #26a69a;
+                    border-color: #26a69a;
+                }
+
+                50% {
+                    background-position: 0 0;
+                    color: #ffffff;
+                    border-color: #26a69a;
+                }
+
+                100% {
+                    background-position: 100% 0;
+                    color: #26a69a;
+                    border-color: #26a69a;
+                }
+            }
+
+            .pulse-bg-tag {
+                background: linear-gradient(to right, #26a69a 50%, transparent 50%);
+                background-size: 200% 100%;
+                background-position: 100% 0;
+                animation: boxPulse 5s infinite ease-in-out;
+                border: 1px solid #26a69a;
+                width: 130px;
+                height: 42px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                box-sizing: border-box;
+                padding: 0;
+            }
+
+            .pulse-delay {
+                animation-delay: 2.5s;
+            }
+
+            @media (max-width: 992px) {
+                .conclusion-split {
+                    justify-content: center;
+                    gap: 30px;
+                }
+
+                .conclusion-img-col {
+                    justify-content: center;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .conclusion-split {
+                    text-align: center;
+                    flex-direction: column-reverse;
+                    gap: 30px;
+                }
+
+                .conclusion-split .conclusion-title {
+                    text-align: center;
+                    font-size: 1.8rem;
+                }
+            }
+        </style>
+        <div class="container" style="max-width: 1200px;">
+            <div class="summary-conclusion"
+                style="padding: 0; max-width: 1200px; margin: 0 auto; width: 100%; box-shadow: none; background: transparent; border: none;">
+                <div class="conclusion-split">
+                    <div class="conclusion-text-col">
+                        <h3 class="conclusion-title">
+                            AI 바이브 코딩으로<br>
+                            <span>나만의 헬스케어 앱을<br>완성하다</span>
+                        </h3>
+                        <p class="conclusion-desc">
+                            사용자의 아픔을 먼저 공감하고, 기술의 한계를 AI와의 긴밀한 협업으로<br> 극복하며 상상을 현실로 구현해 냈습니다. 단순히 화면을 그리는 것을 넘어 비즈니스
+                            솔루션을
+                            치열하게 고민하는 인재로 성장하겠습니다.
+                        </p>
+                        <p class="conclusion-sign">
+                            귀한 시간 내어 검토해 주셔서 진심으로 감사합니다. - 기획/개발자 민하 올림 -
+                        </p>
+                        <div class="conclusion-tags-wrapper" style="margin-top: 30px;">
+                            <span class="tag-badge pulse-bg-tag">AI 헬스케어</span>
+                            <span class="tag-badge pulse-bg-tag pulse-delay">2026</span>
+                        </div>
+                    </div>
+                    <div class="conclusion-img-col">
+                        <div class="conclusion-image-card"
+                            style="background-color: #ffffff; padding: 15px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; width: 100%; box-sizing: border-box;">
+                            <img src="./img/footer-object.png" alt="3D Object"
+                                style="width: 100%; height: 350px; object-fit: cover; border-radius: 12px; display: block;">
+                            <div class="conclusion-caption"
+                                style="padding-top: 15px; padding-bottom: 5px; font-size: 0.9rem; color: #333333; line-height: 1.5; text-align: left; word-break: keep-all;">
+                                3D 가상 하트 오브제: '어디아파' 프로젝트의 핵심 아이덴티티와 AI와의 기술적 결합을 상징합니다.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1346,8 +1768,10 @@
     <div id="featureModal" class="feature-modal">
         <div class="modal-overlay" onclick="closeModal()"></div>
         <div class="modal-content">
-            <button type="button" class="modal-close-btn" onclick="closeModal()" style="cursor: pointer !important; pointer-events: auto !important; z-index: 999999 !important;">
-                <svg style="pointer-events: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <button type="button" class="modal-close-btn" onclick="closeModal()"
+                style="cursor: pointer !important; pointer-events: auto !important; z-index: 999999 !important;">
+                <svg style="pointer-events: none;" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -1385,6 +1809,116 @@
         function closeModal() {
             document.getElementById('featureModal').classList.remove('active');
             document.body.style.overflow = '';
+        }
+    </script>
+    <!-- 로그인 게이트키퍼 모달 (타임아웃 및 데모 자동입력 포함) -->
+    <div class="modal-overlay" id="loginGatekeeperModal"
+        style="display: none; background: rgba(0,0,0,0.85); z-index: 100000; position: fixed; top: 0; left: 0; width: 100%; height: 100%; align-items: center; justify-content: center;">
+        <div class="modal-content"
+            style="max-width: 400px; width: 90%; background: #fff; padding: 20px; border-radius: 12px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+            <button id="closeLoginModal"
+                style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 28px; color: #999; cursor: pointer; line-height: 1; transition: color 0.2s;"
+                onmouseover="this.style.color='#333'" onmouseout="this.style.color='#999'">&times;</button>
+            <div class="modal-header"
+                style="justify-content: center; border-bottom: none; padding-bottom: 0; padding-top: 10px; text-align: center;">
+                <h2
+                    style="font-size: 22px; color: #a44f47; letter-spacing: 1px; margin: 0; font-family: 'Noto Sans KR', sans-serif;">
+                    포카 이커머스 관리자 로그인</h2>
+            </div>
+            <div class="modal-body" style="padding-top: 25px;">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label
+                        style="display: block; margin-bottom: 6px; font-weight: 700; color: #555; font-size: 14px;">아이디
+                        또는 이메일 (ID / Email)</label>
+                    <input type="text" id="gatekeeperId" placeholder="admin@poka.com"
+                        style="width: 100%; padding: 12px 14px; font-size: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; outline: none;">
+                </div>
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label
+                        style="display: block; margin-bottom: 6px; font-weight: 700; color: #555; font-size: 14px;">비밀번호
+                        (Password)</label>
+                    <input type="password" id="gatekeeperPw" placeholder="비밀번호 입력"
+                        style="width: 100%; padding: 12px 14px; font-size: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; outline: none;"
+                        onkeypress="if(event.key==='Enter') executeGatekeeperLogin()">
+                </div>
+                <button class="btn-save"
+                    style="width: 100%; padding: 14px; font-size: 16px; margin-bottom: 12px; background: #a44f47; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: background 0.2s;"
+                    onmouseover="this.style.background='#8c413a'" onmouseout="this.style.background='#a44f47'"
+                    onclick="executeGatekeeperLogin()">로그인 (Login)</button>
+                <div style="text-align: center; margin-top: 10px;">
+                    <button
+                        style="background: none; border: none; color: #a44f47; font-size: 13px; text-decoration: none; cursor: pointer; font-weight: 700; padding: 6px 12px; border-radius: 4px; background: #fdf3f2;"
+                        onclick="fillDemoAccount()">[ 데모 계정 자동 입력 ]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('closeLoginModal').addEventListener('click', function () {
+            alert('로그인이 필요한 서비스입니다. (Login required.)');
+            // Safely reload or go to top of page
+            window.location.href = 'index.html';
+        });
+
+        function fillDemoAccount() {
+            document.getElementById('gatekeeperId').value = 'admin@poka.com';
+            document.getElementById('gatekeeperPw').value = 'demo1234!';
+        }
+
+        let sessionTimeout;
+        function resetSessionTimeout() {
+            clearTimeout(sessionTimeout);
+            sessionTimeout = setTimeout(() => {
+                // Blur all children except the modal and scripts
+                Array.from(document.body.children).forEach(child => {
+                    if (child.id !== 'loginGatekeeperModal' && child.tagName !== 'SCRIPT' && child.id !== 'medical-cursor') {
+                        child.style.transition = 'filter 0.3s ease';
+                        child.style.filter = 'blur(6px)';
+                    }
+                });
+                const modal = document.getElementById('loginGatekeeperModal');
+                modal.style.opacity = '0';
+                modal.style.display = 'flex';
+                // Trigger reflow
+                void modal.offsetWidth;
+                modal.style.transition = 'opacity 0.4s ease';
+                modal.style.opacity = '1';
+                document.getElementById('gatekeeperId').value = '';
+                document.getElementById('gatekeeperPw').value = '';
+            }, 30 * 60 * 1000); // 30 minutes
+        }
+
+        // Attach listeners for inactivity
+        document.addEventListener('mousemove', resetSessionTimeout);
+        document.addEventListener('keypress', resetSessionTimeout);
+        document.addEventListener('click', resetSessionTimeout);
+        document.addEventListener('scroll', resetSessionTimeout);
+
+        // Start the timer
+        resetSessionTimeout();
+
+        function executeGatekeeperLogin() {
+            const idVal = document.getElementById('gatekeeperId').value;
+            const pwVal = document.getElementById('gatekeeperPw').value;
+
+            if (!idVal || !pwVal) {
+                alert('아이디와 비밀번호를 모두 입력해주세요.');
+                return;
+            }
+
+            alert('로그인이 완료되었습니다. 환영합니다!');
+            const modal = document.getElementById('loginGatekeeperModal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                Array.from(document.body.children).forEach(child => {
+                    if (child.id !== 'loginGatekeeperModal' && child.tagName !== 'SCRIPT' && child.id !== 'medical-cursor') {
+                        child.style.filter = 'none';
+                    }
+                });
+            }, 400);
+            resetSessionTimeout();
         }
     </script>
 </body>
