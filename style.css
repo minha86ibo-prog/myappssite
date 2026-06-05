@@ -23,7 +23,7 @@ body {
     width: 75px !important;
     height: auto !important;
     pointer-events: none;
-    z-index: 99999;
+    z-index: 9999999 !important;
     opacity: 0;
     transform: translate(-200px, -200px);
     transition: opacity 0.3s ease;
@@ -4435,21 +4435,21 @@ html {
 /* ── Outer container: two-column flex ── */
 .mockup-parallax-container {
     display: flex;
-    align-items: flex-start;
-    gap: 80px;
-    max-width: 1200px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;
+    max-width: 1500px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 40px;
     box-sizing: border-box;
-    min-height: 640px;
+    min-height: 700px;
 }
 
-/* ── LEFT: Sticky text column ── */
+/* ── LEFT: Text column ── */
 .mockup-sticky-text {
-    flex: 0 0 380px;
-    position: sticky;
-    top: 15%;
-    padding-top: 20px;
+    flex: 1;
+    max-width: 550px;
+    padding-top: 0;
     box-sizing: border-box;
 }
 
@@ -4490,6 +4490,28 @@ html {
     color: #666;
     margin-bottom: 28px;
     word-break: keep-all;
+}
+
+.secondary-cta-btn {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #26a69a;
+    background: rgba(38, 166, 154, 0.05);
+    border: 2px solid #26a69a;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.secondary-cta-btn:hover {
+    background: #26a69a;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(38, 166, 154, 0.2);
 }
 
 /* ── Checklist with hover glow ── */
@@ -4916,5 +4938,257 @@ html {
 @media screen and (max-width: 768px) {
     .util-frequency {
         box-sizing: border-box;
+}
+}
+
+/* =======================================================
+   APP PREVIEW - FEATURE CARDS & CTA
+   ======================================================= */
+.feature-card-box-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.single-fc-card {
+    position: relative;
+    background: #fff;
+    border-radius: 24px;
+    padding: 0;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid #eaeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 520px;
+    overflow: hidden;
+}
+
+.fc-hover-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    z-index: 10;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.single-fc-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 60px rgba(38, 166, 154, 0.18);
+    border-color: #26a69a;
+}
+
+.single-fc-card:hover .fc-hover-glow {
+    opacity: 1;
+    transform: translate(-50%, -55%);
+}
+
+.single-fc-img {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.single-fc-content {
+    padding: 35px 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.single-fc-content h4 {
+    font-size: 1.65rem;
+    color: #222;
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.single-fc-content p {
+    font-size: 1.15rem;
+    color: #777;
+    line-height: 1.5;
+}
+
+.mockup-cta-container {
+    text-align: center;
+    margin-top: 60px;
+    width: 100%;
+}
+
+.modal-cta-container {
+    text-align: center;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.modal-btn-style {
+    font-size: 1.05rem;
+    padding: 14px 30px;
+    width: 100%;
+    justify-content: center;
+}
+
+.cta-beta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #26a69a 0%, #00897b 100%);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(38, 166, 154, 0.3);
+    transition: all 0.3s ease;
+}
+
+.cta-beta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(38, 166, 154, 0.4);
+    color: #fff;
+}
+
+.cta-icon {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+    .fc-grid {
+        grid-template-columns: 1fr;
     }
+}
+
+/* =======================================================
+   FEATURE MODAL & SLIDER
+   ======================================================= */
+.feature-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.feature-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+}
+
+.modal-content {
+    position: relative;
+    background: #EFECE1; /* Premium light beige tone */
+    width: 90%;
+    max-width: 800px;
+    border-radius: 20px;
+    padding: 40px 30px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    transform: scale(0.95);
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.feature-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 1px solid #777;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 100001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+    background: #fff;
+    transform: scale(1.05);
+}
+
+.modal-showcase {
+    width: 100%;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.showcase-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.modal-text-block {
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 0 20px;
+}
+
+.modal-header-title {
+    font-size: 1.45rem;
+    color: #00796B; /* Deep teal/mint */
+    margin-bottom: 12px;
+    font-weight: 800;
+}
+
+.modal-body-desc {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+/* Ensure cursor pointer explicitly for CTA */
+.cta-beta-btn {
+    cursor: pointer;
+    z-index: 100001;
+    position: relative;
+    pointer-events: auto;
 }

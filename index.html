@@ -292,56 +292,28 @@
             <!-- ▌LEFT: Sticky Text Column -->
             <div class="mockup-sticky-text">
                 <span class="mockup-v2-eyebrow">MAIN SCREENS</span>
-                <h2 class="mockup-v2-title">어디아파?<br><span class="mockup-v2-accent">앱 미리보기</span></h2>
+                <h2 class="mockup-v2-title">어디가 아프신가요?</h2>
                 <div class="mockup-v2-divider"></div>
                 <p class="mockup-v2-desc">
-                    증상을 입력하면 AI가 건강 상태를 쉽고 빠르게 분석해
-                    사용자에게 이해하기 쉬운 건강 인사이트를 제공해드려요.
+                    갑작스러운 통증이나 증상으로 당황하셨나요? '어디아파'는 AI 기반의 정밀한 증상 분석을 통해 가장 적합한 진료과를 추천하고, 내 주변의 신뢰할 수 있는 병원 매칭부터 예약까지 한
+                    번에 해결해 드립니다.
                 </p>
-
-                <!-- Feature checklist with teal glow highlights -->
-                <ul class="mockup-v2-features">
-                    <li class="feat-item" data-feat="1">
-                        <span class="feat-check">✓</span>
-                        <div>
-                            <strong>증상 분석</strong>
-                            <span>AI가 증상을 파악해 진료과를 추천</span>
-                        </div>
-                    </li>
-                    <li class="feat-item" data-feat="2">
-                        <span class="feat-check">✓</span>
-                        <div>
-                            <strong>건강 기록</strong>
-                            <span>나의 진료 히스토리를 한눈에 관리</span>
-                        </div>
-                    </li>
-                    <li class="feat-item" data-feat="3">
-                        <span class="feat-check">✓</span>
-                        <div>
-                            <strong>병원 연결</strong>
-                            <span>주변 추천 병원 바로 연결</span>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="mockup-v2-badges">
-                    <span class="mv2-badge">List View</span>
-                    <span class="mv2-badge accent">AI Analysis</span>
-                </div>
+                <a href="https://eodi-kpxwu0bia-minha86ibo-progs-projects.vercel.app/" target="_blank" class="secondary-cta-btn">
+                    베타버전 시연하기 ↗
+                </a>
             </div>
 
-            <!-- ▌RIGHT: Deconstructed Layer UI Showcase -->
-            <div class="deconstructed-ui-container">
-                <!-- Background Layer (검색 흐름) -->
-                <div class="ui-layer layer-back">
-                    <img src="img/02. search.png" alt="어디아파 검색 흐름 레이어">
+            <!-- ▌RIGHT: Single Feature Card Box -->
+            <div class="feature-card-box-container">
+                <div class="single-fc-card" onclick="openModal()">
+                    <div class="fc-hover-glow">Click to view details &amp; showcase</div>
+                    <img src="img/card01.png" alt="DIGITAL HEALTH ASSISTANT" class="single-fc-img">
+                    <div class="single-fc-content">
+                        <h4>4. 어디아파?</h4>
+                        <p>(병원웹앱/디자인)</p>
+                    </div>
                 </div>
-
-                <!-- Foreground Layer (AI 결과 진단) -->
-                <div class="ui-layer layer-front">
-                    <img src="img/05. ai_result.png" alt="결과 진단 레이어">
-                </div>
-            </div><!-- /deconstructed-ui-container -->
+            </div><!-- /feature-card-box-container -->
         </div>
     </section>
 
@@ -635,11 +607,14 @@
                             <span class="tag ai-badge-blink" style="opacity: 0;">기획 분석 완료</span>
                             <ul>
                                 <li class="ai-list-item" style="opacity: 0; transform: translateY(15px);">
-                                    <strong>1.</strong> 자신의 정확한 증상을 파악하기 어려운 문제</li>
+                                    <strong>1.</strong> 자신의 정확한 증상을 파악하기 어려운 문제
+                                </li>
                                 <li class="ai-list-item" style="opacity: 0; transform: translateY(15px);">
-                                    <strong>2.</strong> 어떤 진료과를 가야 할지 판단하지 못하는 문제</li>
+                                    <strong>2.</strong> 어떤 진료과를 가야 할지 판단하지 못하는 문제
+                                </li>
                                 <li class="ai-list-item" style="opacity: 0; transform: translateY(15px);">
-                                    <strong>3.</strong> 과거 진료 기록을 체계적으로 관리하기 어려운 문제</li>
+                                    <strong>3.</strong> 과거 진료 기록을 체계적으로 관리하기 어려운 문제
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -1007,7 +982,8 @@
                         </svg>
                     </span>
                     <span class="pulse-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#26a69a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#26a69a" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
                             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
                         </svg>
                     </span>
@@ -1365,6 +1341,51 @@
                 });
             });
         });
+    </script>
+    <!-- ── FEATURE MODAL & CAROUSEL ── -->
+    <div id="featureModal" class="feature-modal">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <button type="button" class="modal-close-btn" onclick="closeModal()" style="cursor: pointer !important; pointer-events: auto !important; z-index: 999999 !important;">
+                <svg style="pointer-events: none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-showcase">
+                <img src="img/card02.png" alt="어디아파 메인 뷰" class="showcase-img">
+            </div>
+
+            <div class="modal-text-block">
+                <h3 class="modal-header-title">🩺 스마트한 디지털 건강 비서, 어디아파?</h3>
+                <p class="modal-body-desc">
+                    사용자의 증상 데이터를 기반으로 AI 기술을 활용하여 정밀한 증상 검색과 맞춤형 건강 정보를 제공하는 차세대 건강 플랫폼(Web App)입니다. 데이터를 통한 직관적인 UI 설계
+                    과정을 직접 확인해 보세요.
+                </p>
+            </div>
+
+            <!-- Modal CTA Button -->
+            <div class="modal-cta-container">
+                <a href="https://eodi-kpxwu0bia-minha86ibo-progs-projects.vercel.app/" target="_blank"
+                    class="cta-beta-btn modal-btn-style">
+                    베타버전 체험하기
+                    <span class="cta-icon">🚀</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Premium Modal Logic
+        function openModal() {
+            document.getElementById('featureModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('featureModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
     </script>
 </body>
 
