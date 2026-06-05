@@ -1334,14 +1334,23 @@
 
             @media (max-width: 768px) {
                 .conclusion-split {
-                    text-align: center;
-                    flex-direction: column-reverse;
+                    flex-direction: column;
                     gap: 30px;
                 }
 
+                .conclusion-text-col, .conclusion-img-col {
+                    width: 100%;
+                    max-width: 100%;
+                }
+
                 .conclusion-split .conclusion-title {
-                    text-align: center;
                     font-size: 1.8rem;
+                }
+
+                .conclusion-image-card img {
+                    width: 100% !important;
+                    height: auto !important;
+                    object-fit: contain !important;
                 }
             }
         </style>
